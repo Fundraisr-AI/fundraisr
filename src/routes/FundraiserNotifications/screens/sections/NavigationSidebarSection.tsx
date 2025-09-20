@@ -17,17 +17,23 @@ import {
   Avatar,
   AvatarFallback,
 } from "../../../../components/ui/avatar";
-import { Button } from "../../../../components/ui/button";
 import { Badge } from "../../../../components/ui/badge";
+import { Button } from "../../../../components/ui/button";
 
 export const NavigationSidebarSection = (): JSX.Element => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(true); // Start collapsed by default
   const hoverTimeoutRef = useRef<number | null>(null);
+  const isInitialMount = useRef(true);
 
   // Auto-collapse after hover timeout (standard SaaS behavior)
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     if (isHovered) {
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current);
@@ -80,7 +86,7 @@ export const NavigationSidebarSection = (): JSX.Element => {
     {
       icon: CalendarIcon,
       label: "Calendar",
-      isActive: true,
+      isActive: false,
       badge: null,
       onClick: () => navigate("/calendar"),
     },
@@ -104,7 +110,7 @@ export const NavigationSidebarSection = (): JSX.Element => {
     {
       icon: BellIcon,
       label: "Notifications",
-      isActive: false,
+      isActive: true,
       badge: null,
       hasNotification: true,
       onClick: () => navigate("/notifications"),
@@ -137,7 +143,7 @@ export const NavigationSidebarSection = (): JSX.Element => {
     },
     {
       iconSrc: "https://c.animaapp.com/mfr8j7rbwvSuXy/img/squircle.svg",
-      unionSrc: "https://c.animaapp.com/mfqpait0Qdrcn2/img/union.svg",
+      unionSrc: "https://c.animaapp.com/mfr8j7rbwvSuXy/img/union.svg",
       label: "Project Management",
       isActive: false,
       badge: null,

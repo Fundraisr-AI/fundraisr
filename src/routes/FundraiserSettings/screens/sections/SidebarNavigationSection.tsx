@@ -20,7 +20,7 @@ import {
 import { Button } from "../../../../components/ui/button";
 import { Badge } from "../../../../components/ui/badge";
 
-export const NavigationSidebarSection = (): JSX.Element => {
+export const SidebarNavigationSection = (): JSX.Element => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(true); // Start collapsed by default
@@ -80,7 +80,7 @@ export const NavigationSidebarSection = (): JSX.Element => {
     {
       icon: CalendarIcon,
       label: "Calendar",
-      isActive: true,
+      isActive: false,
       badge: null,
       onClick: () => navigate("/calendar"),
     },
@@ -120,7 +120,7 @@ export const NavigationSidebarSection = (): JSX.Element => {
     {
       icon: SettingsIcon,
       label: "Settings",
-      isActive: false,
+      isActive: true,
       badge: null,
       hasNotification: false,
       onClick: () => navigate("/settings"),
@@ -318,16 +318,10 @@ export const NavigationSidebarSection = (): JSX.Element => {
       </div>
 
       <div className="flex flex-col gap-2 w-full">
-        {/* Collapse Toggle Button - Now acts as hover trigger */}
+        {/* Collapse Toggle Button */}
         <Button
           variant="ghost"
           onClick={() => setIsCollapsed(!isCollapsed)}
-          onMouseEnter={() => {
-            if (hoverTimeoutRef.current) {
-              clearTimeout(hoverTimeoutRef.current);
-            }
-            setIsHovered(true);
-          }}
           className={`flex items-center justify-center p-2 w-full transition-all duration-200 ${
             isCollapsed && !isHovered ? "px-2" : "px-4"
           }`}

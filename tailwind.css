@@ -5,6 +5,26 @@
   .all-\[unset\] {
     all: unset;
   }
+  
+  .sidebar-expanded {
+    animation: sidebar-expand 0.3s ease-in-out forwards;
+  }
+  
+  .sidebar-collapsed {
+    animation: sidebar-collapse 0.3s ease-in-out forwards;
+  }
+  
+  .text-fade-in {
+    animation: text-fade-in 0.2s ease-in-out forwards;
+  }
+  
+  .text-fade-out {
+    animation: text-fade-out 0.2s ease-in-out forwards;
+  }
+  
+  .sidebar-transition {
+    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+  }
 }
 
 :root {
@@ -116,6 +136,54 @@
 
   to {
     transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes sidebar-expand {
+  0% {
+    width: 80px;
+    opacity: 0.8;
+  }
+  
+  to {
+    width: 260px;
+    opacity: 1;
+  }
+}
+
+@keyframes sidebar-collapse {
+  0% {
+    width: 260px;
+    opacity: 1;
+  }
+  
+  to {
+    width: 80px;
+    opacity: 0.8;
+  }
+}
+
+@keyframes text-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes text-fade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  to {
+    opacity: 0;
+    transform: translateX(-10px);
   }
 }
 
