@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "label": "Fundraiser",
       "routes": [
         "/fundraising-agent"
@@ -36,6 +36,20 @@
       "label": "FundraiserCalendar",
       "routes": [
         "/calendar"
+      ]
+    },
+    {
+      "id": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "label": "FundraiserDue",
+      "routes": [
+        "/due-diligence"
+      ]
+    },
+    {
+      "id": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "label": "FundraiserDealRoom",
+      "routes": [
+        "/deal-room"
       ]
     }
   ],
@@ -89,9 +103,9 @@
       }
     },
     {
-      "id": "src/screens/FundraisrHomepage/sections/NavigationSection/NavigationSection.tsx:56:21-to-src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/screens/FundraisrHomepage/sections/NavigationSection/NavigationSection.tsx:56:21-to-src/routes/Fundraisr/screens/Fundraiser.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
-      "target": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "target": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
@@ -121,15 +135,47 @@
       }
     },
     {
-      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:32:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/screens/FundraisrHomepage/sections/NavigationSection/NavigationSection.tsx:73:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "data": {
+        "viaRoute": "/due-diligence",
+        "trigger": {
+          "element": "navigate(\"/due-diligence\")",
+          "line": 73,
+          "endLine": 73,
+          "column": 21,
+          "endColumn": 47,
+          "sourceFile": "src/screens/FundraisrHomepage/sections/NavigationSection/NavigationSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/FundraisrHomepage/sections/NavigationSection/NavigationSection.tsx:80:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "data": {
+        "viaRoute": "/deal-room",
+        "trigger": {
+          "element": "navigate(\"/deal-room\")",
+          "line": 80,
+          "endLine": 80,
+          "column": 21,
+          "endColumn": 43,
+          "sourceFile": "src/screens/FundraisrHomepage/sections/NavigationSection/NavigationSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:31:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 32,
-          "endLine": 32,
+          "line": 31,
+          "endLine": 31,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx"
@@ -137,15 +183,15 @@
       }
     },
     {
-      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:39:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:38:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 39,
-          "endLine": 39,
+          "line": 38,
+          "endLine": 38,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx"
@@ -153,15 +199,15 @@
       }
     },
     {
-      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:46:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:45:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 46,
-          "endLine": 46,
+          "line": 45,
+          "endLine": 45,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx"
@@ -169,15 +215,15 @@
       }
     },
     {
-      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:53:21-to-src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:52:21-to-src/routes/Fundraisr/screens/Fundraiser.tsx",
       "source": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
-      "target": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "target": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 53,
-          "endLine": 53,
+          "line": 52,
+          "endLine": 52,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx"
@@ -185,15 +231,15 @@
       }
     },
     {
-      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:63:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:62:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 63,
-          "endLine": 63,
+          "line": 62,
+          "endLine": 62,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx"
@@ -201,15 +247,47 @@
       }
     },
     {
-      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:33:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:69:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "source": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "data": {
+        "viaRoute": "/due-diligence",
+        "trigger": {
+          "element": "navigate(\"/due-diligence\")",
+          "line": 69,
+          "endLine": 69,
+          "column": 21,
+          "endColumn": 47,
+          "sourceFile": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx:76:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "source": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "data": {
+        "viaRoute": "/deal-room",
+        "trigger": {
+          "element": "navigate(\"/deal-room\")",
+          "line": 76,
+          "endLine": 76,
+          "column": 21,
+          "endColumn": 43,
+          "sourceFile": "src/routes/FundraisrOutreach/screens/sections/NavigationSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:31:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 33,
-          "endLine": 33,
+          "line": 31,
+          "endLine": 31,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx"
@@ -217,15 +295,15 @@
       }
     },
     {
-      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:40:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:38:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 40,
-          "endLine": 40,
+          "line": 38,
+          "endLine": 38,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx"
@@ -233,15 +311,15 @@
       }
     },
     {
-      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:47:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:45:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 47,
-          "endLine": 47,
+          "line": 45,
+          "endLine": 45,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx"
@@ -249,15 +327,15 @@
       }
     },
     {
-      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:54:21-to-src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:52:21-to-src/routes/Fundraisr/screens/Fundraiser.tsx",
       "source": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
-      "target": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "target": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 54,
-          "endLine": 54,
+          "line": 52,
+          "endLine": 52,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx"
@@ -265,15 +343,15 @@
       }
     },
     {
-      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:64:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:62:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 64,
-          "endLine": 64,
+          "line": 62,
+          "endLine": 62,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx"
@@ -281,8 +359,40 @@
       }
     },
     {
-      "id": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx:22:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
-      "source": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:69:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "source": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "data": {
+        "viaRoute": "/due-diligence",
+        "trigger": {
+          "element": "navigate(\"/due-diligence\")",
+          "line": 69,
+          "endLine": 69,
+          "column": 21,
+          "endColumn": 47,
+          "sourceFile": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx:76:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "source": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "data": {
+        "viaRoute": "/deal-room",
+        "trigger": {
+          "element": "navigate(\"/deal-room\")",
+          "line": 76,
+          "endLine": 76,
+          "column": 21,
+          "endColumn": 43,
+          "sourceFile": "src/routes/FundraiserDeal/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx:22:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "source": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
@@ -292,13 +402,13 @@
           "endLine": 22,
           "column": 21,
           "endColumn": 34,
-          "sourceFile": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx"
+          "sourceFile": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx"
         }
       }
     },
     {
-      "id": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx:30:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
-      "source": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx:30:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "source": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
@@ -308,13 +418,13 @@
           "endLine": 30,
           "column": 21,
           "endColumn": 42,
-          "sourceFile": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx"
+          "sourceFile": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx"
         }
       }
     },
     {
-      "id": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx:38:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
-      "source": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx:38:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "source": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
@@ -324,14 +434,14 @@
           "endLine": 38,
           "column": 21,
           "endColumn": 42,
-          "sourceFile": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx"
+          "sourceFile": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx"
         }
       }
     },
     {
-      "id": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx:46:21-to-src/routes/Fundraiser/screens/Fundraiser.tsx",
-      "source": "src/routes/Fundraiser/screens/Fundraiser.tsx",
-      "target": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx:46:21-to-src/routes/Fundraisr/screens/Fundraiser.tsx",
+      "source": "src/routes/Fundraisr/screens/Fundraiser.tsx",
+      "target": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
@@ -340,13 +450,13 @@
           "endLine": 46,
           "column": 21,
           "endColumn": 51,
-          "sourceFile": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx"
+          "sourceFile": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx"
         }
       }
     },
     {
-      "id": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx:57:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
-      "source": "src/routes/Fundraiser/screens/Fundraiser.tsx",
+      "id": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx:57:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "source": "src/routes/Fundraisr/screens/Fundraiser.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
@@ -356,7 +466,343 @@
           "endLine": 57,
           "column": 21,
           "endColumn": 42,
-          "sourceFile": "src/routes/Fundraiser/screens/sections/SidebarSection.tsx"
+          "sourceFile": "src/routes/Fundraisr/screens/sections/SidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx:31:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "source": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate(\"/\")",
+          "line": 31,
+          "endLine": 31,
+          "column": 21,
+          "endColumn": 34,
+          "sourceFile": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx:38:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "source": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "data": {
+        "viaRoute": "/outreach",
+        "trigger": {
+          "element": "navigate(\"/outreach\")",
+          "line": 38,
+          "endLine": 38,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx:45:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "source": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "data": {
+        "viaRoute": "/pipeline",
+        "trigger": {
+          "element": "navigate(\"/pipeline\")",
+          "line": 45,
+          "endLine": 45,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx:52:21-to-src/routes/Fundraisr/screens/Fundraiser.tsx",
+      "source": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "target": "src/routes/Fundraisr/screens/Fundraiser.tsx",
+      "data": {
+        "viaRoute": "/fundraising-agent",
+        "trigger": {
+          "element": "navigate(\"/fundraising-agent\")",
+          "line": 52,
+          "endLine": 52,
+          "column": 21,
+          "endColumn": 51,
+          "sourceFile": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx:62:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "source": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "data": {
+        "viaRoute": "/calendar",
+        "trigger": {
+          "element": "navigate(\"/calendar\")",
+          "line": 62,
+          "endLine": 62,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx:69:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "source": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "data": {
+        "viaRoute": "/due-diligence",
+        "trigger": {
+          "element": "navigate(\"/due-diligence\")",
+          "line": 69,
+          "endLine": 69,
+          "column": 21,
+          "endColumn": 47,
+          "sourceFile": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx:76:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "source": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "data": {
+        "viaRoute": "/deal-room",
+        "trigger": {
+          "element": "navigate(\"/deal-room\")",
+          "line": 76,
+          "endLine": 76,
+          "column": 21,
+          "endColumn": 43,
+          "sourceFile": "src/routes/FundraiserCalendar/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx:31:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "source": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate(\"/\")",
+          "line": 31,
+          "endLine": 31,
+          "column": 21,
+          "endColumn": 34,
+          "sourceFile": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx:38:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "source": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "data": {
+        "viaRoute": "/outreach",
+        "trigger": {
+          "element": "navigate(\"/outreach\")",
+          "line": 38,
+          "endLine": 38,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx:45:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "source": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "data": {
+        "viaRoute": "/pipeline",
+        "trigger": {
+          "element": "navigate(\"/pipeline\")",
+          "line": 45,
+          "endLine": 45,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx:52:21-to-src/routes/Fundraisr/screens/Fundraiser.tsx",
+      "source": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "target": "src/routes/Fundraisr/screens/Fundraiser.tsx",
+      "data": {
+        "viaRoute": "/fundraising-agent",
+        "trigger": {
+          "element": "navigate(\"/fundraising-agent\")",
+          "line": 52,
+          "endLine": 52,
+          "column": 21,
+          "endColumn": 51,
+          "sourceFile": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx:62:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "source": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "data": {
+        "viaRoute": "/calendar",
+        "trigger": {
+          "element": "navigate(\"/calendar\")",
+          "line": 62,
+          "endLine": 62,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx:69:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "source": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "data": {
+        "viaRoute": "/due-diligence",
+        "trigger": {
+          "element": "navigate(\"/due-diligence\")",
+          "line": 69,
+          "endLine": 69,
+          "column": 21,
+          "endColumn": 47,
+          "sourceFile": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx:76:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "source": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "data": {
+        "viaRoute": "/deal-room",
+        "trigger": {
+          "element": "navigate(\"/deal-room\")",
+          "line": 76,
+          "endLine": 76,
+          "column": 21,
+          "endColumn": 43,
+          "sourceFile": "src/routes/FundraiserDue/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx:31:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "source": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate(\"/\")",
+          "line": 31,
+          "endLine": 31,
+          "column": 21,
+          "endColumn": 34,
+          "sourceFile": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx:38:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "source": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "data": {
+        "viaRoute": "/outreach",
+        "trigger": {
+          "element": "navigate(\"/outreach\")",
+          "line": 38,
+          "endLine": 38,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx:45:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "source": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "data": {
+        "viaRoute": "/pipeline",
+        "trigger": {
+          "element": "navigate(\"/pipeline\")",
+          "line": 45,
+          "endLine": 45,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx:52:21-to-src/routes/Fundraisr/screens/Fundraiser.tsx",
+      "source": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "target": "src/routes/Fundraisr/screens/Fundraiser.tsx",
+      "data": {
+        "viaRoute": "/fundraising-agent",
+        "trigger": {
+          "element": "navigate(\"/fundraising-agent\")",
+          "line": 52,
+          "endLine": 52,
+          "column": 21,
+          "endColumn": 51,
+          "sourceFile": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx:62:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "source": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "data": {
+        "viaRoute": "/calendar",
+        "trigger": {
+          "element": "navigate(\"/calendar\")",
+          "line": 62,
+          "endLine": 62,
+          "column": 21,
+          "endColumn": 42,
+          "sourceFile": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx:69:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "source": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "data": {
+        "viaRoute": "/due-diligence",
+        "trigger": {
+          "element": "navigate(\"/due-diligence\")",
+          "line": 69,
+          "endLine": 69,
+          "column": 21,
+          "endColumn": 47,
+          "sourceFile": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx:76:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "source": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "data": {
+        "viaRoute": "/deal-room",
+        "trigger": {
+          "element": "navigate(\"/deal-room\")",
+          "line": 76,
+          "endLine": 76,
+          "column": 21,
+          "endColumn": 43,
+          "sourceFile": "src/routes/FundraiserDealRoom/screens/sections/NavigationSidebarSection.tsx"
         }
       }
     }

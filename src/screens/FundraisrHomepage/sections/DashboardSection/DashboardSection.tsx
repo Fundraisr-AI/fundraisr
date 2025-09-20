@@ -10,7 +10,6 @@ import {
   PhoneIcon,
   SearchIcon,
 } from "lucide-react";
-import React from "react";
 import {
   Avatar,
   AvatarFallback,
@@ -31,10 +30,6 @@ import {
 import { Tabs, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
 
 export const DashboardSection = (): JSX.Element => {
-  // Data for fundraising progress bars
-  const progressBars = [
-    { width: "w-[460px]", height: "h-[26px]", bgColor: "bg-[#888ae8]" },
-  ];
 
   const remainingBars = Array.from({ length: 72 }, (_, index) => ({
     width: "w-[1.5px]",
@@ -278,49 +273,44 @@ export const DashboardSection = (): JSX.Element => {
   const getStatusBadgeStyles = (type: string) => {
     switch (type) {
       case "approved":
-        return "bg-[#ecf8f1] text-[#1b8441]";
-      case "draft":
-        return "bg-[#efefef] text-[#3b4c63]";
-      case "completed":
-        return "bg-[#d1181829] text-[#d11818]";
-      case "in-progress":
-        return "bg-[#d1a21829] text-[#d1a218]";
-      case "pending":
-        return "bg-[#efefef] text-[#3b4c63]";
       case "closed":
-        return "bg-[#ecf8f1] text-[#1b8441]";
+        return "badge-success";
+      case "completed":
+        return "badge-info";
+      case "in-progress":
+        return "badge-warning";
+      case "draft":
+      case "pending":
       default:
-        return "bg-[#efefef] text-[#3b4c63]";
+        return "badge-neutral";
     }
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-white rounded-[20px_0px_0px_0px] overflow-hidden border-t border-l border-[#eaeaea] translate-y-[-1rem] animate-fade-in opacity-0">
+    <div className="w-full h-full flex flex-col content-section animate-fade-in-up">
       {/* Header Section */}
-      <header className="flex mx-5 h-[53px] relative mt-5 items-center justify-between translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-        <div className="flex flex-col w-[422px] items-start gap-0.5 relative">
-          <h1 className="self-stretch mt-[-1.00px] font-semibold text-[#111111] text-xl leading-[30px] relative [font-family:'Manrope',Helvetica] tracking-[0]">
+      <header className="flex mx-6 h-[60px] relative mt-6 items-center justify-between">
+        <div className="flex flex-col items-start gap-1 relative">
+          <h1 className="font-bold text-foreground text-2xl leading-tight tracking-tight">
             Dashboard
           </h1>
-          <p className="font-normal leading-[21px] relative self-stretch [font-family:'Manrope',Helvetica] text-[#4f5059] text-sm tracking-[0]">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             Track Your Fundraising Progress And Investor Engagement
           </p>
         </div>
 
-        <div className="relative w-[332px] h-[37px] bg-white rounded-lg overflow-hidden border border-solid border-[#eaeaea]">
-          <div className="relative top-[calc(50.00%_-_10px)] left-[calc(50.00%_-_156px)] w-[238px] flex gap-2.5">
-            <SearchIcon className="w-5 h-5 text-[#4f5059]" />
-            <Input
-              placeholder="SearchIcon transaction, campaigns..."
-              className="w-[206px] h-5 border-none p-0 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px] leading-5 bg-transparent focus-visible:ring-0"
-            />
-          </div>
+        <div className="relative flex items-center gap-3 px-4 py-2.5 bg-background rounded-lg border border-input input-enhanced max-w-sm">
+          <SearchIcon className="w-4 h-4 text-muted-foreground" />
+          <Input
+            placeholder="Search transactions, campaigns..."
+            className="border-none p-0 bg-transparent focus-visible:ring-0 text-sm placeholder:text-muted-foreground"
+          />
         </div>
       </header>
 
       {/* Welcome Card */}
-      <Card className="mx-[19px] h-56 relative mt-[19px] bg-[#fbfbfb] rounded-[20px] border border-solid border-[#eaeaea] translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-        <CardContent className="flex items-start gap-10 p-5">
+      <Card className="mx-6 relative mt-6 card-elevated bg-gradient-to-br from-primary/5 to-brand-secondary/5">
+        <CardContent className="flex items-start gap-10 p-6">
           <div className="flex flex-col w-[363px] items-start gap-4 relative">
             <div className="relative w-[66px] h-16">
               <div className="absolute top-0 left-0 w-16 h-16 bg-[#e5effa] rounded-xl" />

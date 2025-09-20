@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
 } from "../../../../components/ui/avatar";
 import { Badge } from "../../../../components/ui/badge";
 import { Button } from "../../../../components/ui/button";
@@ -70,14 +69,14 @@ export const NavigationSection = (): JSX.Element => {
       label: "Due Diligence",
       isActive: false,
       badge: null,
-      onClick: () => {},
+      onClick: () => navigate("/due-diligence"),
     },
     {
       icon: UserSquareIcon,
       label: "Deal Room",
       isActive: false,
       badge: null,
-      onClick: () => {},
+      onClick: () => navigate("/deal-room"),
     },
   ];
 
@@ -87,14 +86,14 @@ export const NavigationSection = (): JSX.Element => {
       label: "Notifications",
       isActive: false,
       hasNotification: true,
-      onClick: () => {},
+      onClick: () => navigate("/notifications"),
     },
     {
       icon: HelpCircleIcon,
       label: "Support",
       isActive: false,
       hasNotification: false,
-      onClick: () => {},
+      onClick: () => navigate("/support"),
     },
     {
       icon: SettingsIcon,
@@ -154,7 +153,7 @@ export const NavigationSection = (): JSX.Element => {
                       item.isActive
                         ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]"
                         : "h-11"
-                    } hover:bg-gray-50 transition-colors`}
+                    } transition-colors`}
                   >
                     <div className="flex items-center gap-2 relative flex-1 grow">
                       <IconComponent className="relative w-5 h-5" />
@@ -292,11 +291,6 @@ export const NavigationSection = (): JSX.Element => {
         <div className="flex items-center justify-between relative flex-1 grow">
           <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
             <Avatar className="w-[46px] h-[46px] relative mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] border border-solid border-neutral-100">
-              <AvatarImage
-                src="https://c.animaapp.com/mfqjua33FHoyZF/img/profile-image.png"
-                alt="Profile image"
-                className="object-cover"
-              />
               <AvatarFallback>JA</AvatarFallback>
             </Avatar>
 

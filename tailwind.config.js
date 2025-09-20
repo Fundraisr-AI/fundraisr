@@ -42,6 +42,32 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          foreground: "hsl(var(--info-foreground))",
+        },
+        brand: {
+          primary: "hsl(var(--brand-primary))",
+          secondary: "hsl(var(--brand-secondary))",
+          accent: "hsl(var(--brand-accent))",
+        },
+        sidebar: {
+          bg: "hsl(var(--sidebar-bg))",
+          active: "hsl(var(--sidebar-active))",
+          "active-border": "hsl(var(--sidebar-active-border))",
+        },
+        content: {
+          bg: "hsl(var(--content-bg))",
+          border: "hsl(var(--content-border))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

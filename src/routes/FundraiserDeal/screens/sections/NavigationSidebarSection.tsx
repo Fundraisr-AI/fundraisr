@@ -11,12 +11,10 @@ import {
   UserSquareIcon,
   UsersIcon,
 } from "lucide-react";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
 } from "../../../../components/ui/avatar";
 import { Badge } from "../../../../components/ui/badge";
 import { Button } from "../../../../components/ui/button";
@@ -68,14 +66,14 @@ export const NavigationSidebarSection = (): JSX.Element => {
       label: "Due Diligence",
       isActive: false,
       badge: null,
-      onClick: () => {},
+      onClick: () => navigate("/due-diligence"),
     },
     {
       icon: UserSquareIcon,
       label: "Deal Room",
       isActive: false,
       badge: null,
-      onClick: () => {},
+      onClick: () => navigate("/deal-room"),
     },
   ];
 
@@ -86,7 +84,7 @@ export const NavigationSidebarSection = (): JSX.Element => {
       isActive: false,
       badge: null,
       hasNotification: true,
-      onClick: () => {},
+      onClick: () => navigate("/notifications"),
     },
     {
       icon: HelpCircleIcon,
@@ -94,7 +92,7 @@ export const NavigationSidebarSection = (): JSX.Element => {
       isActive: false,
       badge: null,
       hasNotification: false,
-      onClick: () => {},
+      onClick: () => navigate("/support"),
     },
     {
       icon: SettingsIcon,
@@ -142,28 +140,37 @@ export const NavigationSidebarSection = (): JSX.Element => {
                 </h2>
               </header>
 
-              {mainMenuItems.map((item, index) => (
-                <Button
-                  key={`main-${index}`}
-                  variant="ghost"
-                  onClick={item.onClick}
-                  className={`flex h-11 px-4 py-3 w-full items-center justify-start gap-2 ${
-                    item.isActive ? "border border-[#eaeaea] rounded-xl" : ""
-                  } h-auto`}
-                >
-                  <item.icon className="w-5 h-5" />
-                  <span
-                    className={`flex-1 text-left ${item.isActive ? "font-medium" : "font-medium"} [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]`}
+              {mainMenuItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Button
+                    key={item.label}
+                    variant={item.isActive ? "secondary" : "ghost"}
+                    onClick={item.onClick}
+                    className={`flex h-[46px] items-center justify-start px-4 py-3 relative self-stretch w-full ${
+                      item.isActive
+                        ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]"
+                        : "h-11"
+                    } transition-colors`}
                   >
-                    {item.label}
-                  </span>
-                  {item.badge && (
-                    <Badge className="bg-[#17a34a29] text-[#17a34a] hover:bg-[#17a34a29] rounded px-2 py-1 text-xs font-medium [font-family:'Inter',Helvetica]">
-                      {item.badge}
-                    </Badge>
-                  )}
-                </Button>
-              ))}
+                    <div className="flex items-center gap-2 relative flex-1 grow">
+                      <IconComponent className="relative w-5 h-5" />
+                      <div
+                        className={`flex-1 text-left relative ${
+                          item.isActive ? "font-semibold" : "font-medium"
+                        } [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]`}
+                      >
+                        {item.label}
+                      </div>
+                    </div>
+                    {item.badge && (
+                      <Badge className="bg-[#17a34a29] text-[#17a34a] hover:bg-[#17a34a29] rounded px-2 py-1 text-xs font-medium [font-family:'Inter',Helvetica]">
+                        {item.badge}
+                      </Badge>
+                    )}
+                  </Button>
+                );
+              })}
 
               <img
                 className="w-full h-8"
@@ -179,19 +186,28 @@ export const NavigationSidebarSection = (): JSX.Element => {
                 </h2>
               </header>
 
-              {toolsMenuItems.map((item, index) => (
-                <Button
-                  key={`tools-${index}`}
-                  variant="ghost"
-                  onClick={item.onClick}
-                  className="flex h-11 px-4 py-3 w-full items-center justify-start gap-2 h-auto"
-                >
-                  <item.icon className="w-5 h-5" />
-                  <span className="flex-1 text-left font-medium [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
-                    {item.label}
-                  </span>
-                </Button>
-              ))}
+              {toolsMenuItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Button
+                    key={item.label}
+                    variant={item.isActive ? "secondary" : "ghost"}
+                    onClick={item.onClick}
+                    className={`flex h-[46px] items-center justify-start px-4 py-3 relative self-stretch w-full ${
+                      item.isActive
+                        ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]"
+                        : "h-11"
+                    } transition-colors`}
+                  >
+                    <div className="flex items-center gap-2 relative flex-1 grow">
+                      <IconComponent className="relative w-5 h-5" />
+                      <div className="flex-1 text-left relative font-medium [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
+                        {item.label}
+                      </div>
+                    </div>
+                  </Button>
+                );
+              })}
 
               <img
                 className="w-full h-8"
@@ -207,22 +223,31 @@ export const NavigationSidebarSection = (): JSX.Element => {
                 </h2>
               </header>
 
-              {accountMenuItems.map((item, index) => (
-                <Button
-                  key={`account-${index}`}
-                  variant="ghost"
-                  onClick={item.onClick}
-                  className="flex h-11 px-4 py-3 w-full items-center justify-start gap-2 h-auto"
-                >
-                  <item.icon className="w-5 h-5" />
-                  <span className="flex-1 text-left font-medium [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
-                    {item.label}
-                  </span>
-                  {item.hasNotification && (
-                    <div className="w-2 h-2 bg-[#e94235] rounded-full" />
-                  )}
-                </Button>
-              ))}
+              {accountMenuItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Button
+                    key={item.label}
+                    variant={item.isActive ? "secondary" : "ghost"}
+                    onClick={item.onClick}
+                    className={`flex h-[46px] items-center justify-start px-4 py-3 relative self-stretch w-full ${
+                      item.isActive
+                        ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]"
+                        : "h-11"
+                    } transition-colors`}
+                  >
+                    <div className="flex items-center gap-2 relative flex-1 grow">
+                      <IconComponent className="relative w-5 h-5" />
+                      <div className="flex-1 text-left relative font-medium [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
+                        {item.label}
+                      </div>
+                    </div>
+                    {item.hasNotification && (
+                      <div className="w-2 h-2 bg-[#e94235] rounded-full" />
+                    )}
+                  </Button>
+                );
+              })}
 
               <img
                 className="w-full h-8"
@@ -238,34 +263,43 @@ export const NavigationSidebarSection = (): JSX.Element => {
                 </h2>
               </header>
 
-              {adminMenuItems.map((item, index) => (
-                <Button
-                  key={`admin-${index}`}
-                  variant="ghost"
-                  onClick={item.onClick}
-                  className="flex h-11 px-4 py-3 w-full items-center justify-start gap-2 h-auto"
-                >
-                  {item.icon ? (
-                    <item.icon className="w-5 h-5" />
-                  ) : (
-                    <div className="relative w-5 h-5">
-                      <img
-                        className="absolute w-[38.75%] h-[28.33%] top-[33.75%] left-[31.67%]"
-                        alt="Union"
-                        src={item.unionSrc}
-                      />
-                      <img
-                        className="absolute w-full h-full top-0 left-0"
-                        alt="Squircle"
-                        src={item.iconSrc}
-                      />
+              {adminMenuItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Button
+                    key={item.label}
+                    variant={item.isActive ? "secondary" : "ghost"}
+                    onClick={item.onClick}
+                    className={`flex h-[46px] items-center justify-start px-4 py-3 relative self-stretch w-full ${
+                      item.isActive
+                        ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]"
+                        : "h-11"
+                    } transition-colors`}
+                  >
+                    <div className="flex items-center gap-2 relative flex-1 grow">
+                      {IconComponent ? (
+                        <IconComponent className="relative w-5 h-5" />
+                      ) : (
+                        <div className="relative w-5 h-5">
+                          <img
+                            className="absolute w-[38.75%] h-[28.33%] top-[33.75%] left-[31.67%]"
+                            alt="Union"
+                            src="https://c.animaapp.com/mfqpait0Qdrcn2/img/union.svg"
+                          />
+                          <img
+                            className="absolute w-full h-full top-0 left-0"
+                            alt="Squircle"
+                            src="https://c.animaapp.com/mfqpait0Qdrcn2/img/squircle.svg"
+                          />
+                        </div>
+                      )}
+                      <div className="flex-1 text-left relative font-medium [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
+                        {item.label}
+                      </div>
                     </div>
-                  )}
-                  <span className="flex-1 text-left font-medium [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
-                    {item.label}
-                  </span>
-                </Button>
-              ))}
+                  </Button>
+                );
+              })}
             </div>
           </section>
         </div>
@@ -278,11 +312,6 @@ export const NavigationSidebarSection = (): JSX.Element => {
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
             <Avatar className="w-[46px] h-[46px] border border-neutral-100">
-              <AvatarImage
-                src="https://c.animaapp.com/mfr8j7rbwvSuXy/img/profile-image.png"
-                alt="Profile image"
-                className="object-cover"
-              />
               <AvatarFallback>JA</AvatarFallback>
             </Avatar>
             <div className="flex flex-col items-start">

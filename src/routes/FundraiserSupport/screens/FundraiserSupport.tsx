@@ -1,11 +1,11 @@
 import { NavigationSidebarSection } from "./sections/NavigationSidebarSection";
-import { ProspectListSection } from "./sections/ProspectListSection";
+import { SupportSection } from "./sections/SupportSection";
 
-export const FundraiserDue = (): JSX.Element => {
+export const FundraiserSupport = (): JSX.Element => {
   return (
     <div className="bg-[#fbfbfb] flex w-full min-h-screen overflow-hidden">
       <NavigationSidebarSection />
-      <ProspectListSection />
+      <SupportSection />
     </div>
   );
 };

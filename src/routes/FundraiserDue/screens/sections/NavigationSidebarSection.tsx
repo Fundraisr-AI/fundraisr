@@ -1,7 +1,7 @@
 import {
   BellIcon,
   CalendarIcon,
-  FolderOpenIcon,
+  ChevronUpIcon,
   HeartIcon,
   HelpCircleIcon,
   HomeIcon,
@@ -11,240 +11,232 @@ import {
   UserSquareIcon,
   UsersIcon,
 } from "lucide-react";
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
 } from "../../components/ui/avatar";
-import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 
-const mainMenuItems = [
-  {
-    icon: HomeIcon,
-    label: "Home",
-    isActive: false,
-    badge: null,
-  },
-  {
-    icon: UsersIcon,
-    label: "Outreach",
-    isActive: false,
-    badge: null,
-  },
-  {
-    icon: ShieldIcon,
-    label: "Pipeline",
-    isActive: false,
-    badge: "+3",
-  },
-  {
-    icon: HeartIcon,
-    label: "Fundraising Agent",
-    isActive: false,
-    badge: "+7",
-  },
-];
-
-const toolsMenuItems = [
-  {
-    icon: CalendarIcon,
-    label: "Calendar",
-    isActive: false,
-    badge: null,
-  },
-  {
-    icon: ShieldIcon,
-    label: "Due Diligence",
-    isActive: true,
-    badge: null,
-  },
-  {
-    icon: UserSquareIcon,
-    label: "Deal Room",
-    isActive: false,
-    badge: null,
-  },
-];
-
-const accountMenuItems = [
-  {
-    icon: BellIcon,
-    label: "Notifications",
-    isActive: false,
-    badge: null,
-    hasNotification: true,
-  },
-  {
-    icon: HelpCircleIcon,
-    label: "Support",
-    isActive: false,
-    badge: null,
-  },
-  {
-    icon: SettingsIcon,
-    label: "Settings",
-    isActive: false,
-    badge: null,
-  },
-];
-
-const adminMenuItems = [
-  {
-    icon: LayoutIcon,
-    label: "Admin View",
-    isActive: false,
-    badge: null,
-  },
-  {
-    icon: FolderOpenIcon,
-    label: "Project Management",
-    isActive: false,
-    badge: null,
-  },
-];
-
 export const NavigationSidebarSection = (): JSX.Element => {
+  const navigate = useNavigate();
+
+  const mainMenuItems = [
+    {
+      icon: HomeIcon,
+      label: "Home",
+      isActive: false,
+      badge: null,
+      onClick: () => navigate("/"),
+    },
+    {
+      icon: UsersIcon,
+      label: "Outreach",
+      isActive: false,
+      badge: null,
+      onClick: () => navigate("/outreach"),
+    },
+    {
+      icon: ShieldIcon,
+      label: "Pipeline",
+      isActive: false,
+      badge: { count: "+3", color: "bg-[#17a34a29] text-[#17a34a]" },
+      onClick: () => navigate("/pipeline"),
+    },
+    {
+      icon: HeartIcon,
+      label: "Fundraising Agent",
+      isActive: false,
+      badge: { count: "+7", color: "bg-[#17a34a29] text-[#17a34a]" },
+      onClick: () => navigate("/fundraising-agent"),
+    },
+  ];
+
+  const toolsMenuItems = [
+    {
+      icon: CalendarIcon,
+      label: "Calendar",
+      isActive: false,
+      badge: null,
+      onClick: () => navigate("/calendar"),
+    },
+    {
+      icon: ShieldIcon,
+      label: "Due Diligence",
+      isActive: true,
+      badge: null,
+      onClick: () => navigate("/due-diligence"),
+    },
+    {
+      icon: UserSquareIcon,
+      label: "Deal Room",
+      isActive: false,
+      badge: null,
+      onClick: () => navigate("/deal-room"),
+    },
+  ];
+
+  const accountMenuItems = [
+    {
+      icon: BellIcon,
+      label: "Notifications",
+      isActive: false,
+      badge: null,
+      hasNotification: true,
+      onClick: () => navigate("/notifications"),
+    },
+    {
+      icon: HelpCircleIcon,
+      label: "Support",
+      isActive: false,
+      badge: null,
+      onClick: () => navigate("/support"),
+    },
+    {
+      icon: SettingsIcon,
+      label: "Settings",
+      isActive: false,
+      badge: null,
+      onClick: () => {},
+    },
+  ];
+
+  const adminMenuItems = [
+    {
+      icon: LayoutIcon,
+      label: "Admin View",
+      isActive: false,
+      badge: null,
+      onClick: () => {},
+    },
+    {
+      icon: null,
+      label: "Project Management",
+      isActive: false,
+      badge: null,
+      customIcon: true,
+      onClick: () => {},
+    },
+  ];
+
+  const renderMenuItem = (item: any, index: number) => (
+    <Button
+      key={index}
+      variant="ghost"
+      onClick={item.onClick}
+      className={`flex h-11 items-center justify-between px-4 py-3 w-full transition-colors ${
+        item.isActive
+          ? "bg-white rounded-xl border border-solid border-[#eaeaea]"
+          : ""
+      }`}
+    >
+      <div className="flex items-center gap-2 flex-1">
+        {item.customIcon ? (
+          <div className="relative w-5 h-5">
+            <img
+              className="absolute w-[38.75%] h-[28.33%] top-[33.75%] left-[31.67%]"
+              alt="Union"
+              src="https://c.animaapp.com/mfqpait0Qdrcn2/img/union.svg"
+            />
+            <img
+              className="absolute w-full h-full top-0 left-0"
+              alt="Squircle"
+              src="https://c.animaapp.com/mfqpait0Qdrcn2/img/squircle.svg"
+            />
+          </div>
+        ) : item.icon ? (
+          <item.icon className="w-5 h-5" />
+        ) : null}
+        <span
+          className={`flex-1 text-left ${item.isActive ? "font-medium" : "font-medium"} [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]`}
+        >
+          {item.label}
+        </span>
+      </div>
+      {item.badge && (
+        <div
+          className={`flex w-6 h-6 items-center justify-center gap-2.5 p-2.5 ${item.badge.color} rounded`}
+        >
+          <div className="relative w-5 mt-[-7.50px] mb-[-6.50px] ml-[-8.00px] mr-[-8.00px] [font-family:'Inter',Helvetica] font-medium text-xs text-center tracking-[0] leading-[18px]">
+            {item.badge.count}
+          </div>
+        </div>
+      )}
+      {item.hasNotification && (
+        <div className="w-2 h-2 bg-[#e94235] rounded-[1000px]" />
+      )}
+    </Button>
+  );
+
   return (
-    <nav className="flex flex-col w-full h-full items-start justify-between p-6 relative">
-      <div className="flex flex-col items-start gap-6 relative self-stretch w-full flex-[0_0_auto]">
+    <nav className="flex flex-col w-[260px] h-full items-start justify-between p-6 relative">
+      <div className="flex flex-col items-start gap-6 w-full">
         <img
-          className="relative self-stretch w-full flex-[0_0_auto]"
+          className="w-full"
           alt="Header container"
-          src="https://c.animaapp.com/mfr96fgpUpNNmx/img/header-container.svg"
+          src="https://c.animaapp.com/mfqpait0Qdrcn2/img/header-container.svg"
         />
 
-        <div className="flex flex-col items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
-          <section className="flex flex-col items-end relative self-stretch w-full flex-[0_0_auto]">
-            <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
-              <header className="flex items-center pl-2 pr-4 pt-1 pb-2 relative self-stretch w-full flex-[0_0_auto]">
-                <h2 className="relative w-fit [font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
+        <div className="flex flex-col items-start gap-5 w-full">
+          <section className="flex flex-col items-end w-full">
+            <div className="flex flex-col items-start w-full">
+              <div className="flex items-center pl-2 pr-4 pt-1 pb-2 w-full">
+                <h2 className="[font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
                   MAIN
                 </h2>
-              </header>
+              </div>
 
-              {mainMenuItems.map((item, index) => (
-                <Button
-                  key={`main-${index}`}
-                  variant="ghost"
-                  className={`flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start h-auto ${
-                    item.isActive
-                      ? "bg-white border border-[#eaeaea] rounded-xl"
-                      : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-2 relative flex-1 grow">
-                    <item.icon className="relative w-5 h-5" />
-                    <span
-                      className={`flex-1 text-left relative [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px] ${
-                        item.label === "Home" ? "font-semibold" : "font-medium"
-                      }`}
-                    >
-                      {item.label}
-                    </span>
-                  </div>
-                  {item.badge && (
-                    <Badge className="flex w-6 h-6 items-center justify-center gap-2.5 p-2.5 relative bg-[#17a34a29] rounded text-[#17a34a] text-xs font-medium">
-                      {item.badge}
-                    </Badge>
-                  )}
-                </Button>
-              ))}
+              {mainMenuItems.map((item, index) => renderMenuItem(item, index))}
 
               <img
-                className="relative self-stretch w-full h-8"
+                className="w-full h-8"
                 alt="Menu item main menu"
-                src="https://c.animaapp.com/mfr96fgpUpNNmx/img/menu-item-main-menu.svg"
+                src="https://c.animaapp.com/mfqpait0Qdrcn2/img/menu-item-main-menu.svg"
               />
             </div>
 
-            <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
-              <header className="flex items-center pl-2 pr-4 pt-1 pb-2 relative self-stretch w-full flex-[0_0_auto]">
-                <h2 className="relative w-fit [font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
+            <div className="flex flex-col items-start w-full">
+              <div className="flex items-center pl-2 pr-4 pt-1 pb-2 w-full">
+                <h2 className="[font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
                   TOOLS
                 </h2>
-              </header>
+              </div>
 
-              {toolsMenuItems.map((item, index) => (
-                <Button
-                  key={`tools-${index}`}
-                  variant="ghost"
-                  className={`flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start h-auto ${
-                    item.isActive
-                      ? "bg-white border border-[#eaeaea] rounded-xl"
-                      : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-2 relative flex-1 grow">
-                    <item.icon className="relative w-5 h-5" />
-                    <span className="flex-1 text-left font-medium relative [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
-                      {item.label}
-                    </span>
-                  </div>
-                </Button>
-              ))}
+              {toolsMenuItems.map((item, index) => renderMenuItem(item, index))}
 
               <img
-                className="relative self-stretch w-full h-8"
+                className="w-full h-8"
                 alt="Menu item main menu"
-                src="https://c.animaapp.com/mfr96fgpUpNNmx/img/menu-item-main-menu.svg"
+                src="https://c.animaapp.com/mfqpait0Qdrcn2/img/menu-item-main-menu.svg"
               />
             </div>
 
-            <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
-              <header className="flex items-center pl-2 pr-4 pt-1 pb-2 relative self-stretch w-full flex-[0_0_auto]">
-                <h2 className="relative w-fit [font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
+            <div className="flex flex-col items-start w-full">
+              <div className="flex items-center pl-2 pr-4 pt-1 pb-2 w-full">
+                <h2 className="[font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
                   ACCOUNT
                 </h2>
-              </header>
+              </div>
 
-              {accountMenuItems.map((item, index) => (
-                <Button
-                  key={`account-${index}`}
-                  variant="ghost"
-                  className="flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start h-auto"
-                >
-                  <div className="flex items-center gap-2 relative flex-1 grow">
-                    <item.icon className="relative w-5 h-5" />
-                    <span className="flex-1 text-left font-medium relative [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
-                      {item.label}
-                    </span>
-                  </div>
-                  {item.hasNotification && (
-                    <div className="relative w-2 h-2 bg-[#e94235] rounded-[1000px]" />
-                  )}
-                </Button>
-              ))}
+              {accountMenuItems.map((item, index) =>
+                renderMenuItem(item, index),
+              )}
 
               <img
-                className="relative self-stretch w-full h-8"
+                className="w-full h-8"
                 alt="Menu item main menu"
-                src="https://c.animaapp.com/mfr96fgpUpNNmx/img/menu-item-main-menu.svg"
+                src="https://c.animaapp.com/mfqpait0Qdrcn2/img/menu-item-main-menu.svg"
               />
             </div>
 
-            <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
-              <header className="flex items-center pl-2 pr-4 pt-1 pb-2 relative self-stretch w-full flex-[0_0_auto]">
-                <h2 className="relative w-fit [font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
+            <div className="flex flex-col items-start w-full">
+              <div className="flex items-center pl-2 pr-4 pt-1 pb-2 w-full">
+                <h2 className="[font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
                   ADMIN
                 </h2>
-              </header>
+              </div>
 
-              {adminMenuItems.map((item, index) => (
-                <Button
-                  key={`admin-${index}`}
-                  variant="ghost"
-                  className="flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start h-auto"
-                >
-                  <div className="flex items-center gap-2 relative flex-1 grow">
-                    <item.icon className="relative w-5 h-5" />
-                    <span className="flex-1 text-left font-medium relative [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]">
-                      {item.label}
-                    </span>
-                  </div>
-                </Button>
-              ))}
+              {adminMenuItems.map((item, index) => renderMenuItem(item, index))}
             </div>
           </section>
         </div>
@@ -252,34 +244,25 @@ export const NavigationSidebarSection = (): JSX.Element => {
 
       <Button
         variant="ghost"
-        className="flex items-center px-2 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-xl border border-solid border-[#eaeaea] h-auto justify-start"
+        className="flex items-center px-2 py-2.5 w-full bg-white rounded-xl border border-solid border-[#eaeaea] h-auto"
       >
-        <div className="flex items-center justify-between relative flex-1 grow">
-          <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-            <Avatar className="w-[46px] h-[46px] border border-neutral-100">
-              <AvatarImage
-                src="https://c.animaapp.com/mfr96fgpUpNNmx/img/profile-image.png"
-                alt="Profile image"
-                className="object-cover"
-              />
+        <div className="flex items-center justify-between w-full">
+          <div className="inline-flex items-center gap-2">
+            <Avatar className="w-[46px] h-[46px] border border-solid border-neutral-100">
               <AvatarFallback>JA</AvatarFallback>
             </Avatar>
 
-            <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
-              <div className="relative self-stretch [font-family:'Manrope',Helvetica] font-medium text-[#111111] text-sm tracking-[0] leading-[21px]">
+            <div className="inline-flex flex-col items-start">
+              <div className="[font-family:'Manrope',Helvetica] font-medium text-[#111111] text-sm tracking-[0] leading-[21px]">
                 John Alessandro
               </div>
-              <div className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#777777] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
+              <div className="[font-family:'Manrope',Helvetica] font-medium text-[#777777] text-xs tracking-[0] leading-[18px] whitespace-nowrap">
                 john@fundraiser.com
               </div>
             </div>
           </div>
 
-          <img
-            className="relative w-4 h-4"
-            alt="Arrow up"
-            src="https://c.animaapp.com/mfr96fgpUpNNmx/img/arrow-up.svg"
-          />
+          <ChevronUpIcon className="w-4 h-4" />
         </div>
       </Button>
     </nav>

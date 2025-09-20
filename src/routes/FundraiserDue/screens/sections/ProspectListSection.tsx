@@ -7,7 +7,6 @@ import {
   MoreHorizontalIcon,
   SearchIcon,
 } from "lucide-react";
-import React from "react";
 import {
   Avatar,
   AvatarFallback,
@@ -108,8 +107,8 @@ const prospects = [
 
 export const ProspectListSection = (): JSX.Element => {
   return (
-    <section className="w-full h-full flex flex-col bg-white rounded-[20px_0px_0px_0px] overflow-hidden border border-solid border-[#eaeaea]">
-      <header className="flex ml-5 w-[1140px] h-[53px] relative mt-5 items-center justify-between bg-transparent">
+    <section className="flex-1 flex flex-col bg-white rounded-[20px_0px_0px_0px] overflow-hidden border border-solid border-[#eaeaea]">
+      <header className="flex mx-5 h-[53px] relative mt-5 items-center justify-between bg-transparent">
         <div className="flex flex-col w-[422px] items-start gap-0.5 relative">
           <h1 className="relative self-stretch mt-[-1.00px] [font-family:'Manrope',Helvetica] font-semibold text-[#111111] text-xl tracking-[0] leading-[30px]">
             Due Diligence
@@ -125,18 +124,18 @@ export const ProspectListSection = (): JSX.Element => {
             <div className="relative top-[calc(50.00%_-_10px)] left-[calc(50.00%_-_156px)] w-[147px] flex gap-2.5">
               <SearchIcon className="w-5 h-5 text-[#4f5059]" />
               <span className="w-[115px] h-5 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px] leading-5 whitespace-nowrap">
-                SearchIcon prospect...
+                Search prospect...
               </span>
             </div>
           </div>
 
-          <Button className="h-10 px-3 py-2 bg-[#09215e] border-[0.5px] border-solid border-[#fbfbfb] text-[#fbfbfb] text-xs tracking-[-0.24px] leading-[18px] [font-family:'Manrope',Helvetica] font-medium rounded-lg h-auto">
-            Add Prosprect
+          <Button className="h-10 px-3 py-2 bg-[#09215e] border-[0.5px] border-solid border-[#fbfbfb] text-[#fbfbfb] text-xs tracking-[-0.24px] leading-[18px] [font-family:'Manrope',Helvetica] font-medium rounded-lg">
+            Add Prospect
           </Button>
         </div>
       </header>
 
-      <div className="flex ml-5 w-[1140px] h-10 relative mt-[26px] items-center justify-between">
+      <div className="flex mx-5 h-10 relative mt-[26px] items-center justify-between">
         <Tabs
           defaultValue="all"
           className="inline-flex items-center p-0.5 relative flex-[0_0_auto] mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] bg-[#fbfbfb] rounded-lg border border-solid border-[#eaeaea]"
@@ -162,7 +161,7 @@ export const ProspectListSection = (): JSX.Element => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb] bg-white hover:bg-gray-50 h-auto"
+                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb] bg-white hover:bg-gray-50"
               >
                 <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                   <ArrowUpDownIcon className="relative w-4 h-4 text-[#4f5059]" />
@@ -185,12 +184,12 @@ export const ProspectListSection = (): JSX.Element => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb] bg-white hover:bg-gray-50 h-auto"
+                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb] bg-white hover:bg-gray-50"
               >
                 <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                   <FilterIcon className="relative w-4 h-4 text-[#4f5059]" />
                   <span className="mt-[-1.00px] leading-[18px] whitespace-nowrap relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px]">
-                    FilterIcon
+                    Filter
                   </span>
                 </div>
                 <ChevronDownIcon className="relative w-3 h-3 text-[#4f5059]" />
@@ -206,7 +205,7 @@ export const ProspectListSection = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="flex ml-5 w-[1140px] h-[1178px] relative mt-[17px] flex-wrap items-start gap-[16px_16px]">
+      <div className="flex mx-[19px] relative mt-[17px] flex-wrap items-start gap-[16px_16px]">
         {prospects.map((prospect) => (
           <Card
             key={prospect.id}
@@ -344,7 +343,7 @@ export const ProspectListSection = (): JSX.Element => {
                 </span>
               </div>
 
-              <Button className="flex h-10 justify-center px-3 py-2 self-stretch w-full bg-[#09215e] border-[0.5px] border-solid border-[#fbfbfb] items-center gap-2 relative rounded-lg mt-3.5 text-[#fbfbfb] [font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] hover:bg-[#09215e]/90 h-auto">
+              <Button className="flex h-10 justify-center px-3 py-2 self-stretch w-full bg-[#09215e] border-[0.5px] border-solid border-[#fbfbfb] items-center gap-2 relative rounded-lg mt-3.5 text-[#fbfbfb] [font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] hover:bg-[#09215e]/90">
                 DD Report
               </Button>
             </CardContent>

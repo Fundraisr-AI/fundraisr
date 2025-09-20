@@ -13,24 +13,24 @@ import {
 
 export const MainContentSection = (): JSX.Element => {
   return (
-    <main className="w-full h-full content-section flex flex-col overflow-hidden">
-      <header className="flex mx-6 h-[60px] relative mt-6 items-center justify-between">
-        <div className="flex flex-col items-start gap-1 relative">
-          <h1 className="font-bold text-foreground text-2xl leading-tight tracking-tight">
+    <main className="w-full h-full bg-white rounded-[20px_0px_0px_0px] flex flex-col overflow-hidden border border-solid border-[#eaeaea]">
+      <header className="flex mx-5 h-[53px] relative mt-5 items-center justify-between">
+        <div className="flex flex-col w-[422px] items-start gap-0.5 relative">
+          <h1 className="self-stretch mt-[-1.00px] font-semibold text-[#111111] text-xl tracking-[0] leading-[30px] relative [font-family:'Manrope',Helvetica]">
             AI Fundraisr Agent
           </h1>
 
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Generate Personalized Investor Outreach With AI
+          <p className="self-stretch relative [font-family:'Manrope',Helvetica] font-normal text-[#4f5059] text-sm tracking-[0] leading-[21px]">
+            Generate Personalized Investor Outreach With Ai
           </p>
         </div>
 
-        <Badge className="badge-success px-4 py-2 text-sm font-medium">
+        <Badge className="inline-flex h-10 items-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-[#17a34a29] rounded-lg border-[0.5px] border-solid border-[#eaeaea] text-[#17a34a] font-medium text-xs tracking-[-0.24px] leading-[18px] [font-family:'Manrope',Helvetica] hover:bg-[#17a34a29]">
           Admin Access
         </Badge>
       </header>
 
-      <Card className="mx-6 relative mt-6 card-elevated flex-1">
+      <Card className="mx-[19px] h-[493px] relative mt-5 rounded-[20px] border border-solid border-[#eaeaea]">
         <CardContent className="items-start gap-[22px] p-5 flex flex-col overflow-hidden">
           <div className="flex items-center gap-3 relative self-stretch w-full flex-[0_0_auto]">
             <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
@@ -59,11 +59,11 @@ export const MainContentSection = (): JSX.Element => {
 
                 <div className="flex flex-col items-center gap-2 relative self-stretch w-full flex-[0_0_auto]">
                   <p className="relative self-stretch mt-[-1.00px] [font-family:'Manrope',Helvetica] font-semibold text-[#111111] text-base text-center tracking-[-0.32px] leading-6">
-                    Drop File Here or Click To Upload
+                    Drop File Here or Click To UploadIcon
                   </p>
 
                   <p className="w-fit whitespace-nowrap relative [font-family:'Manrope',Helvetica] font-normal text-[#4f5059] text-sm tracking-[0] leading-[21px]">
-                    Supports Only PDF File Type
+                    Supports Only Pdf File Type
                   </p>
                 </div>
               </div>
@@ -85,7 +85,7 @@ export const MainContentSection = (): JSX.Element => {
           <div className="flex items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
             <div className="flex flex-col items-start gap-2 relative flex-1 grow">
               <Label className="relative flex items-center justify-center self-stretch mt-[-1.00px] [font-family:'Manrope',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
-                LinkedIn Profile URL
+                Linkedin Profile URL
               </Label>
 
               <Input

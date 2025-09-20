@@ -1,3 +1,4 @@
+import React from "react";
 import { MainContentSection } from "./sections/MainContentSection";
 import { SidebarSection } from "./sections/SidebarSection";
 

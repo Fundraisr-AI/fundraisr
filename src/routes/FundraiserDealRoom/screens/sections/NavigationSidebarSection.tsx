@@ -15,10 +15,10 @@ import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   AvatarFallback,
-} from "../../../../components/ui/avatar";
-import { Button } from "../../../../components/ui/button";
+} from "../../components/ui/avatar";
+import { Button } from "../../components/ui/button";
 
-export const NavigationSection = (): JSX.Element => {
+export const NavigationSidebarSection = (): JSX.Element => {
   const navigate = useNavigate();
 
   const mainMenuItems = [
@@ -32,7 +32,7 @@ export const NavigationSection = (): JSX.Element => {
     {
       icon: UsersIcon,
       label: "Outreach",
-      isActive: true,
+      isActive: false,
       badge: null,
       onClick: () => navigate("/outreach"),
     },
@@ -70,7 +70,7 @@ export const NavigationSection = (): JSX.Element => {
     {
       icon: UserSquareIcon,
       label: "Deal Room",
-      isActive: false,
+      isActive: true,
       badge: null,
       onClick: () => navigate("/deal-room"),
     },

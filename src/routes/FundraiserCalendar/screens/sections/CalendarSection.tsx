@@ -5,7 +5,6 @@ import {
   RefreshCwIcon,
   SearchIcon,
 } from "lucide-react";
-import React from "react";
 import {
   Avatar,
   AvatarFallback,
@@ -124,46 +123,37 @@ export const CalendarSection = (): JSX.Element => {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col gap-[23px] bg-white rounded-[20px_0px_0px_0px] overflow-hidden border border-solid border-[#eaeaea] relative">
-      <header className="flex ml-5 w-[1140px] h-[53px] mt-5 items-center justify-between">
-        <div className="flex flex-col w-[422px] items-start gap-0.5">
-          <h1 className="mt-[-1.00px] font-semibold text-[#111111] text-xl leading-[30px] [font-family:'Manrope',Helvetica] tracking-[0]">
-            CalendarIcon
+    <div className="w-full h-full flex flex-col gap-6 content-section relative">
+      <header className="flex mx-6 h-[60px] mt-6 items-center justify-between">
+        <div className="flex flex-col items-start gap-1">
+          <h1 className="font-bold text-foreground text-2xl leading-tight tracking-tight">
+            Calendar
           </h1>
-          <p className="font-normal text-[#4f5059] text-sm leading-[21px] [font-family:'Manrope',Helvetica] tracking-[0]">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             Email Reply Dates And Lead Interactions
           </p>
         </div>
 
         <div className="inline-flex items-center gap-4 flex-[0_0_auto]">
-          <div className="relative w-[332px] h-[37px] bg-white rounded-lg overflow-hidden border border-solid border-[#eaeaea]">
-            <div className="relative top-[calc(50.00%_-_10px)] left-[calc(50.00%_-_156px)] w-[88px] flex gap-2.5">
-              <SearchIcon className="w-5 h-5 text-[#4f5059]" />
-              <div className="w-14 h-5 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px] leading-5 whitespace-nowrap">
-                SearchIcon...
-              </div>
+          <div className="relative flex items-center gap-3 px-4 py-2.5 bg-background rounded-lg border border-input input-enhanced max-w-sm">
+            <SearchIcon className="w-4 h-4 text-muted-foreground" />
+            <div className="text-muted-foreground text-sm">
+              Search...
             </div>
           </div>
 
-          <Button
-            variant="outline"
-            className="h-10 gap-3 px-3 py-2 rounded-lg border-[0.5px] border-solid border-[#d9dadb] bg-white"
-          >
+          <Button variant="outline" className="gap-2 px-4 py-2">
             <RefreshCwIcon className="w-4 h-4" />
-            <span className="[font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-              Sync CalendarIcon
-            </span>
+            Sync Calendar
           </Button>
 
-          <Button className="h-10 gap-2 px-3 py-2 bg-[#09215e] rounded-lg border-[0.5px] border-solid border-[#fbfbfb] text-[#fbfbfb] hover:bg-[#09215e]/90">
-            <span className="[font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-              Add Event
-            </span>
+          <Button className="btn-primary gap-2 px-4 py-2">
+            Add Event
           </Button>
         </div>
       </header>
 
-      <main className="ml-[19px] w-[1142px] h-[896px] items-start gap-[22px] p-5 rounded-[20px] flex overflow-hidden border border-solid border-[#eaeaea]">
+      <main className="mx-[19px] h-[896px] items-start gap-[22px] p-5 rounded-[20px] flex overflow-hidden border border-solid border-[#eaeaea]">
         <aside className="inline-flex flex-col items-start gap-[22px] flex-[0_0_auto]">
           <Card className="w-[356px] pt-4 pb-0 px-0 mt-[-1.00px] ml-[-1.00px] mr-[-1.00px] rounded-[14px] overflow-hidden border border-solid border-[#eaeaea]">
             <CardContent className="p-0">

@@ -6,7 +6,6 @@ import {
   TrendingDownIcon,
   TrendingUpIcon,
 } from "lucide-react";
-import React from "react";
 import { Badge } from "../../../../components/ui/badge";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
@@ -53,9 +52,11 @@ export const DealPipelineSection = (): JSX.Element => {
 
   const calendarWeeks = [
     [
-      { day: "31", isOtherMonth: true },
+      { day: "31", isOtherMonth: true, isToday: false },
       {
         day: "1",
+        isOtherMonth: false,
+        isToday: false,
         events: [
           {
             name: "Chantal Thibault",
@@ -69,17 +70,19 @@ export const DealPipelineSection = (): JSX.Element => {
           },
         ],
       },
-      { day: "2" },
-      { day: "3" },
-      { day: "4" },
-      { day: "5" },
-      { day: "6" },
+      { day: "2", isOtherMonth: false, isToday: false },
+      { day: "3", isOtherMonth: false, isToday: false },
+      { day: "4", isOtherMonth: false, isToday: false },
+      { day: "5", isOtherMonth: false, isToday: false },
+      { day: "6", isOtherMonth: false, isToday: false },
     ],
     [
-      { day: "7" },
-      { day: "8" },
+      { day: "7", isOtherMonth: false, isToday: false },
+      { day: "8", isOtherMonth: false, isToday: false },
       {
         day: "9",
+        isOtherMonth: false,
+        isToday: false,
         events: [
           {
             name: "Chantal Thibault",
@@ -93,18 +96,20 @@ export const DealPipelineSection = (): JSX.Element => {
           },
         ],
       },
-      { day: "10" },
-      { day: "11" },
-      { day: "12", isToday: true },
-      { day: "13" },
+      { day: "10", isOtherMonth: false, isToday: false },
+      { day: "11", isOtherMonth: false, isToday: false },
+      { day: "12", isOtherMonth: false, isToday: true },
+      { day: "13", isOtherMonth: false, isToday: false },
     ],
     [
-      { day: "14" },
-      { day: "15" },
-      { day: "16" },
-      { day: "17" },
+      { day: "14", isOtherMonth: false, isToday: false },
+      { day: "15", isOtherMonth: false, isToday: false },
+      { day: "16", isOtherMonth: false, isToday: false },
+      { day: "17", isOtherMonth: false, isToday: false },
       {
         day: "18",
+        isOtherMonth: false,
+        isToday: false,
         events: [
           {
             name: "Chantal Thibault",
@@ -118,65 +123,61 @@ export const DealPipelineSection = (): JSX.Element => {
           },
         ],
       },
-      { day: "19" },
-      { day: "20" },
+      { day: "19", isOtherMonth: false, isToday: false },
+      { day: "20", isOtherMonth: false, isToday: false },
     ],
     [
-      { day: "21" },
-      { day: "22" },
-      { day: "23" },
-      { day: "24" },
-      { day: "25" },
-      { day: "26" },
-      { day: "27" },
+      { day: "21", isOtherMonth: false, isToday: false },
+      { day: "22", isOtherMonth: false, isToday: false },
+      { day: "23", isOtherMonth: false, isToday: false },
+      { day: "24", isOtherMonth: false, isToday: false },
+      { day: "25", isOtherMonth: false, isToday: false },
+      { day: "26", isOtherMonth: false, isToday: false },
+      { day: "27", isOtherMonth: false, isToday: false },
     ],
     [
-      { day: "28" },
-      { day: "29" },
-      { day: "30" },
-      { day: "1", isOtherMonth: true },
-      { day: "2", isOtherMonth: true },
-      { day: "3", isOtherMonth: true },
-      { day: "4", isOtherMonth: true },
+      { day: "28", isOtherMonth: false, isToday: false },
+      { day: "29", isOtherMonth: false, isToday: false },
+      { day: "30", isOtherMonth: false, isToday: false },
+      { day: "1", isOtherMonth: true, isToday: false },
+      { day: "2", isOtherMonth: true, isToday: false },
+      { day: "3", isOtherMonth: true, isToday: false },
+      { day: "4", isOtherMonth: true, isToday: false },
     ],
   ];
 
   return (
-    <section className="w-full h-full bg-white rounded-[20px_0px_0px_0px] flex flex-col overflow-hidden border border-solid border-[#eaeaea]">
-      <header className="flex mx-5 h-[53px] relative mt-5 items-center justify-between">
-        <div className="flex flex-col w-[422px] items-start gap-0.5 relative">
-          <h1 className="self-stretch mt-[-1.00px] font-semibold text-[#111111] text-xl leading-[30px] relative [font-family:'Manrope',Helvetica] tracking-[0]">
+    <section className="w-full h-full content-section flex flex-col overflow-hidden">
+      <header className="flex mx-6 h-[60px] relative mt-6 items-center justify-between">
+        <div className="flex flex-col items-start gap-1 relative">
+          <h1 className="font-bold text-foreground text-2xl leading-tight tracking-tight">
             Deal Pipeline
           </h1>
-          <p className="self-stretch font-normal text-[#4f5059] text-sm leading-[21px] relative [font-family:'Manrope',Helvetica] tracking-[0]">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             Track And Manage Your Fundraising Opportunities
           </p>
         </div>
 
         <div className="inline-flex items-center gap-4 relative flex-[0_0_auto]">
-          <div className="relative w-[332px] h-[37px] bg-white rounded-lg overflow-hidden border border-solid border-[#eaeaea]">
-            <div className="relative top-[calc(50.00%_-_10px)] left-[calc(50.00%_-_156px)] w-[238px] flex gap-2.5">
-              <SearchIcon className="w-5 h-5 text-[#4f5059]" />
-              <Input
-                placeholder="SearchIcon transaction, campaigns..."
-                className="w-[206px] h-5 border-none p-0 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px] leading-5 bg-transparent focus-visible:ring-0"
-              />
-            </div>
+          <div className="relative flex items-center gap-3 px-4 py-2.5 bg-background rounded-lg border border-input input-enhanced max-w-sm">
+            <SearchIcon className="w-4 h-4 text-muted-foreground" />
+            <Input
+              placeholder="Search transactions, campaigns..."
+              className="border-none p-0 bg-transparent focus-visible:ring-0 text-sm placeholder:text-muted-foreground"
+            />
           </div>
 
-          <Button className="h-auto inline-flex h-10 items-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-[#09215e] rounded-lg border-[0.5px] border-solid border-[#fbfbfb]">
-            <span className="text-[#fbfbfb] relative w-fit [font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-              Add Prosprect
-            </span>
+          <Button className="btn-primary px-4 py-2">
+            Add Prospect
           </Button>
         </div>
       </header>
 
-      <div className="flex mx-5 h-40 relative mt-6 items-center gap-5">
+      <div className="flex mx-6 h-40 relative mt-6 items-center gap-5">
         {statsData.map((stat, index) => (
           <Card
             key={index}
-            className="flex flex-col h-[162px] items-start justify-between p-4 relative flex-1 grow mt-[-1.00px] mb-[-1.00px] bg-white rounded-[20px] overflow-hidden border border-solid border-[#eaeaea]"
+            className="card-elevated flex flex-col h-[162px] items-start justify-between p-6 relative flex-1 grow"
           >
             <CardContent className="p-0 w-full">
               <div className="flex items-center gap-4 relative self-stretch w-full flex-[0_0_auto]">
@@ -265,7 +266,7 @@ export const DealPipelineSection = (): JSX.Element => {
           <div className="inline-flex gap-3 flex-[0_0_auto] items-center relative">
             <Button
               variant="outline"
-              className="h-auto inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
+              className="inline-flex items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
             >
               <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                 <ArrowUpDownIcon className="w-4 h-4 text-[#4f5059]" />
@@ -278,12 +279,12 @@ export const DealPipelineSection = (): JSX.Element => {
 
             <Button
               variant="outline"
-              className="h-auto inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
+              className="inline-flex items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
             >
               <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                 <FilterIcon className="w-4 h-4 text-[#4f5059]" />
                 <span className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-                  FilterIcon
+                  Filter
                 </span>
               </div>
               <ChevronDownIcon className="w-3 h-3 text-[#4f5059]" />
@@ -307,7 +308,7 @@ export const DealPipelineSection = (): JSX.Element => {
                   <div className="inline-flex items-center gap-3 relative flex-[0_0_auto]">
                     <Button
                       variant="outline"
-                      className="h-auto inline-flex h-10 items-center gap-2 pl-3 pr-2 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
+                      className="inline-flex items-center gap-2 pl-3 pr-2 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
                     >
                       <span className="text-[#4f5059] relative w-fit [font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
                         Month View
@@ -323,7 +324,7 @@ export const DealPipelineSection = (): JSX.Element => {
 
                     <Button
                       variant="outline"
-                      className="h-auto inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
+                      className="inline-flex items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
                     >
                       <span className="text-[#4f5059] relative w-fit [font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
                         Today
