@@ -1,11 +1,11 @@
 import React from "react";
 import { DashboardSection } from "./sections/DashboardSection";
-import { NavigationSection } from "./sections/NavigationSection";
+import { NavigationSidebarSection } from "./sections/NavigationSidebarSection";
 
 export const FundraisrOutreach = (): JSX.Element => {
   return (
     <div className="bg-[#fbfbfb] flex min-h-screen w-full">
-      <NavigationSection />
+      <NavigationSidebarSection />
       <div className="flex-1">
         <DashboardSection />
       </div>

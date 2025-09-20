@@ -1,6 +1,6 @@
 import React from "react";
 import { DashboardSection } from "./sections/DashboardSection/DashboardSection";
-import { NavigationSection } from "./sections/NavigationSection/NavigationSection";
+import { NavigationSidebarSection } from "./sections/NavigationSection/NavigationSidebarSection";
 
 export const FundraisrHomepage = (): JSX.Element => {
   return (
@@ -9,7 +9,7 @@ export const FundraisrHomepage = (): JSX.Element => {
       data-model-id="28:5659"
     >
       <div className="translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
-        <NavigationSection />
+        <NavigationSidebarSection />
       </div>
       <div className="flex-1 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
         <DashboardSection />
