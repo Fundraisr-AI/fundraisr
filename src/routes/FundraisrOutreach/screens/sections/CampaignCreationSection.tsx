@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import vector22 from "./sections/vector-22.svg";
-import vector23 from "./sections/vector-23.svg";
-import vector24 from "./sections/vector-24.svg";
+import vector22 from "./vector-22.svg";
+import vector23 from "./vector-23.svg";
+import vector24 from "./vector-24.svg";
 
 export const CampaignCreationSection = (): JSX.Element => {
   const [formData, setFormData] = useState({
