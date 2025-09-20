@@ -323,79 +323,52 @@ export const NavigationSidebarSection = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 w-full">
-        {/* Collapse Toggle Button - Now acts as hover trigger */}
+      {/* User Profile */}
+      <div className="relative group mt-auto">
         <Button
-          variant="ghost"
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          onMouseEnter={() => {
-            if (hoverTimeoutRef.current) {
-              clearTimeout(hoverTimeoutRef.current);
-            }
-            setIsHovered(true);
-          }}
-          className={`flex items-center justify-center p-2 w-full transition-all duration-200 ${
-            isCollapsed && !isHovered ? "px-2" : "px-4"
+          variant="outline"
+          className={`flex items-center py-2.5 w-full bg-white rounded-xl border border-[#eaeaea] h-auto transition-all duration-200 ${
+            isCollapsed && !isHovered ? "px-2 justify-center" : "px-2"
           }`}
         >
-          <div className={`transition-transform duration-200 ${isCollapsed ? "rotate-180" : ""}`}>
-            <ChevronUpIcon className="w-4 h-4" />
-          </div>
-          {(!isCollapsed || isHovered) && (
-            <span className={`ml-2 text-sm font-medium transition-opacity duration-200 ${
-              isCollapsed && !isHovered ? "opacity-0" : "opacity-100"
-            }`}>
-              {isCollapsed ? "Expand" : "Collapse"}
-            </span>
-          )}
-        </Button>
-
-        {/* User Profile */}
-        <div className="relative group">
-          <Button
-            variant="outline"
-            className={`flex items-center py-2.5 w-full bg-white rounded-xl border border-[#eaeaea] h-auto transition-all duration-200 ${
-              isCollapsed && !isHovered ? "px-2 justify-center" : "px-2"
-            }`}
-          >
-            <div className={`flex items-center w-full ${
-              isCollapsed && !isHovered ? "justify-center" : "justify-between"
-            }`}>
-              <div className="flex items-center gap-2">
-                <Avatar className={`border border-neutral-100 flex-shrink-0 transition-all duration-200 ${
-                  isCollapsed && !isHovered ? "w-8 h-8" : "w-[46px] h-[46px]"
-                }`}>
-                  <AvatarFallback className={`transition-all duration-200 ${
-                    isCollapsed && !isHovered ? "text-xs" : "text-sm"
-                  }`}>JA</AvatarFallback>
-                </Avatar>
-                {(!isCollapsed || isHovered) && (
-                  <div className={`flex flex-col items-start transition-opacity duration-200 ${
-                    isCollapsed && !isHovered ? "opacity-0" : "opacity-100"
-                  }`}>
-                    <div className="[font-family:'Manrope',Helvetica] font-medium text-[#111111] text-sm tracking-[0] leading-[21px]">
-                      John Alessandro
-                    </div>
-                    <div className="[font-family:'Manrope',Helvetica] font-medium text-[#777777] text-xs tracking-[0] leading-[18px]">
-                      john@fundraiser.com
-                    </div>
-                  </div>
-                )}
-              </div>
+          <div className={`flex items-center w-full ${
+            isCollapsed && !isHovered ? "justify-center" : "justify-between"
+          }`}>
+            <div className="flex items-center gap-2">
+              <Avatar className={`border border-neutral-100 flex-shrink-0 transition-all duration-200 ${
+                isCollapsed && !isHovered ? "w-8 h-8" : "w-[46px] h-[46px]"
+              }`}>
+                <AvatarFallback className={`transition-all duration-200 ${
+                  isCollapsed && !isHovered ? "text-xs" : "text-sm"
+                }`}>JA</AvatarFallback>
+              </Avatar>
               {(!isCollapsed || isHovered) && (
-                <ChevronUpIcon className={`w-4 h-4 transition-opacity duration-200 ${
+                <div className={`flex flex-col items-start transition-opacity duration-200 ${
                   isCollapsed && !isHovered ? "opacity-0" : "opacity-100"
-                }`} />
+                }`}>
+                  <div className="[font-family:'Manrope',Helvetica] font-medium text-[#111111] text-sm tracking-[0] leading-[21px]">
+                    John Alessandro
+                  </div>
+                  <div className="[font-family:'Manrope',Helvetica] font-medium text-[#777777] text-xs tracking-[0] leading-[18px]">
+                    john@fundraiser.com
+                  </div>
+                </div>
               )}
             </div>
-          </Button>
-          {/* Tooltip for collapsed state */}
-          {isCollapsed && !isHovered && (
-            <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
-              John Alessandro
-            </div>
-          )}
-        </div>
+            {(!isCollapsed || isHovered) && (
+              <ChevronUpIcon className={`w-4 h-4 transition-opacity duration-200 ${
+                isCollapsed && !isHovered ? "opacity-0" : "opacity-100"
+              }`} />
+            )}
+          </div>
+        </Button>
+        {/* Enhanced tooltip for collapsed state */}
+        {isCollapsed && !isHovered && (
+          <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-3 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+            <div className="font-medium">John Alessandro</div>
+            <div className="text-gray-300 text-[10px] mt-0.5">john@fundraiser.com</div>
+          </div>
+        )}
       </div>
     </nav>
   );
