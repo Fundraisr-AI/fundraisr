@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   CalendarIcon,
   ChevronDownIcon,
@@ -22,8 +23,15 @@ import {
   TableRow,
 } from "../../../../components/ui/table";
 import { Tabs, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
+import { OutreachCreate } from "../OutreachCreate";
 
 export const DashboardSection = (): JSX.Element => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCreateCampaign = () => {
+    setIsModalOpen(true);
+  };
+
   const metricCards = [
     {
       value: "424",
@@ -142,7 +150,8 @@ export const DashboardSection = (): JSX.Element => {
   ];
 
   return (
-    <main className="flex flex-col bg-white rounded-[20px_0px_0px_0px] overflow-hidden border-t border-l border-[#eaeaea] p-5 gap-5">
+    <div className="relative">
+      <main className="flex flex-col bg-white rounded-[20px_0px_0px_0px] overflow-hidden border-t border-l border-[#eaeaea] p-5 gap-5">
       <header className="flex items-center justify-between">
         <div className="flex flex-col gap-0.5">
           <h1 className="font-semibold text-[#111111] text-xl leading-[30px] [font-family:'Manrope',Helvetica] tracking-[0]">
@@ -161,7 +170,10 @@ export const DashboardSection = (): JSX.Element => {
               className="w-[332px] h-[37px] pl-10 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px]"
             />
           </div>
-          <Button className="h-10 bg-[#09215e] text-[#fbfbfb] text-xs [font-family:'Manrope',Helvetica] font-medium tracking-[-0.24px] border-[0.5px] border-[#fbfbfb]">
+          <Button 
+            onClick={handleCreateCampaign}
+            className="h-10 bg-[#09215e] text-[#fbfbfb] text-xs [font-family:'Manrope',Helvetica] font-medium tracking-[-0.24px] border-[0.5px] border-[#fbfbfb] hover:bg-[#0a2668] transition-colors"
+          >
             Create Campaign
           </Button>
         </div>
@@ -656,6 +668,14 @@ export const DashboardSection = (): JSX.Element => {
           <div className="absolute w-full left-0 bottom-0.5 h-[65px] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_100%)]" />
         </CardContent>
       </Card>
-    </main>
+      </main>
+      
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50">
+          <OutreachCreate />
+        </div>
+      )}
+    </div>
   );
 };
