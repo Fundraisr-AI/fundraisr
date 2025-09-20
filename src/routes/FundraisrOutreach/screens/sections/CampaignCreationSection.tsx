@@ -3,7 +3,7 @@ import vector22 from "./vector-22.svg";
 import vector23 from "./vector-23.svg";
 import vector24 from "./vector-24.svg";
 
-export const CampaignCreationSection = (): JSX.Element => {
+export const CampaignCreationSection = ({ onClose }: { onClose: () => void }): JSX.Element => {
   const [formData, setFormData] = useState({
     campaignName: "",
     numberOfLeads: "",
@@ -84,7 +84,7 @@ export const CampaignCreationSection = (): JSX.Element => {
           Create Campaign
         </h1>
 
-        <button className="h-6 w-6 mr-5 flex" aria-label="Close">
+        <button className="h-6 w-6 mr-5 flex" aria-label="Close" onClick={onClose}>
           <img className="mt-1.5 w-3 h-3 ml-1.5" alt="Close" src={vector22} />
         </button>
       </header>
@@ -93,7 +93,10 @@ export const CampaignCreationSection = (): JSX.Element => {
         <div className="inline-flex mt-2.5 w-[180px] h-10 ml-[600px] relative items-center gap-3">
           <button
             className="border border-solid border-[#eaeaea] flex w-[84px] h-10 items-center justify-center gap-2 px-3 py-2 relative rounded-lg hover:bg-gray-50 transition-colors"
-            onClick={handleCancel}
+            onClick={() => {
+              handleCancel();
+              onClose();
+            }}
           >
             <span className="relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
               Cancel

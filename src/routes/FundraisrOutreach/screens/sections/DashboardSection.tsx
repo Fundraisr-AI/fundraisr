@@ -32,6 +32,10 @@ export const DashboardSection = (): JSX.Element => {
     setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const metricCards = [
     {
       value: "424",
@@ -673,7 +677,7 @@ export const DashboardSection = (): JSX.Element => {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50">
-          <OutreachCreate />
+          <OutreachCreate onClose={handleCloseModal} />
         </div>
       )}
     </div>
