@@ -1,4 +1,6 @@
 import { useState } from "react";
+import line85 from "./line-85.svg";
+import line86 from "./line-86.svg";
 
 export const AccountSettingsSection = () => {
   const [activeTab, setActiveTab] = useState("Account");
@@ -19,6 +21,15 @@ export const AccountSettingsSection = () => {
     meetingReminders: true,
     systemAlerts: true,
     weeklyDigest: false,
+  });
+
+  const [integrationSettings, setIntegrationSettings] = useState({
+    "google-sheets": true,
+    "zapier": true,
+    "slack": true,
+    "microsoft-teams": true,
+    "microsoft-excel": false,
+    "airtable": true,
   });
 
   const tabs = [
@@ -132,6 +143,13 @@ export const AccountSettingsSection = () => {
     setNotificationSettings((prev) => ({
       ...prev,
       [key]: !prev[key],
+    }));
+  };
+
+  const handleIntegrationToggle = (integrationId: string) => {
+    setIntegrationSettings((prev) => ({
+      ...prev,
+      [integrationId]: !prev[integrationId as keyof typeof prev],
     }));
   };
 
@@ -466,6 +484,316 @@ export const AccountSettingsSection = () => {
                   )}
                 </div>
               ))}
+            </section>
+          </div>
+        </section>
+      )}
+
+      {/* Integrations Tab Content */}
+      {activeTab === "Integrations" && (
+        <section className="mx-6 p-5 mt-6 rounded-[20px] overflow-hidden flex flex-col items-start gap-[22px] border border-solid border-[#eaeaea]">
+          <div className="flex items-center gap-3 relative self-stretch w-full flex-[0_0_auto]">
+            <div className="flex flex-col items-start justify-center gap-0.5 relative flex-1 grow">
+              <h2 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                Integrations
+              </h2>
+              <p className="w-fit text-xs leading-[16.8px] whitespace-nowrap relative [font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] tracking-[0]">
+                Connect Your Account With External Services
+              </p>
+            </div>
+
+            <div className="inline-flex items-center gap-3 relative flex-[0_0_auto]">
+              <button className="flex w-[84px] h-10 items-center justify-center gap-2 px-3 py-2 relative rounded-lg border border-solid border-[#eaeaea] hover:bg-gray-50 transition-colors">
+                <span className="relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                  Cancel
+                </span>
+              </button>
+
+              <button className="inline-flex h-10 items-center justify-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-[#09215e] rounded-lg border-[0.5px] border-solid border-[#fbfbfb] hover:bg-[#0a1a4f] transition-colors">
+                <span className="relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-[#fbfbfb] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                  Save Integration Settings
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div className="items-start gap-5 self-stretch w-full flex-[0_0_auto] flex relative">
+            {[
+              {
+                id: "google-sheets",
+                name: "Google Sheets",
+                description: "Sync Campaign Data With Google Sheets",
+                enabled: integrationSettings["google-sheets"],
+                logo: <div className="w-[52px] h-[52px] bg-[#4285F4] rounded-lg"></div>,
+              },
+              {
+                id: "zapier",
+                name: "Zapier",
+                description: "Sync Campaign Data With Google Sheets",
+                enabled: integrationSettings["zapier"],
+                logo: <div className="w-[52px] h-[52px] bg-[#FF4A00] rounded-lg"></div>,
+              },
+              {
+                id: "slack",
+                name: "Slack",
+                description: "Sync Campaign Data With Google Sheets",
+                enabled: integrationSettings["slack"],
+                logo: <div className="w-[52px] h-[52px] bg-[#4A154B] rounded-lg"></div>,
+              },
+            ].map((integration) => (
+              <article
+                key={integration.id}
+                className="flex flex-col items-start gap-5 relative flex-1 grow bg-[#fbfbfb] rounded-xl border border-solid border-[#eaeaea]"
+              >
+                <div className="flex flex-col items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
+                  <div className="flex-col items-start gap-4 pt-4 pb-0 px-4 self-stretch w-full flex-[0_0_auto] flex relative">
+                    <div className="items-start justify-center gap-2 self-stretch w-full flex-[0_0_auto] flex relative">
+                      <div className="items-center gap-2 flex-1 grow flex relative">
+                        {integration.logo}
+                        <h3 className="relative flex-1 [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-black text-base tracking-[-0.32px] leading-6">
+                          {integration.name}
+                        </h3>
+                      </div>
+                      <button
+                        onClick={() => handleIntegrationToggle(integration.id)}
+                        className={`inline-flex items-center ${integration.enabled ? "justify-end" : "justify-start"} p-0.5 relative flex-[0_0_auto] ${integration.enabled ? "bg-[#09215e]" : "bg-[#dedede]"} rounded-[100px] w-8 h-4 transition-colors duration-200 hover:opacity-80`}
+                        role="switch"
+                        aria-checked={integration.enabled}
+                        aria-label={`Toggle ${integration.name} integration`}
+                      >
+                        <div className="bg-white shadow-[0px_2px_4px_#0000001a] relative w-4 h-4 rounded-lg transition-transform duration-200" />
+                      </button>
+                    </div>
+                    <p className="[font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] text-xs leading-[16.8px] relative self-stretch tracking-[0]">
+                      {integration.description}
+                    </p>
+                  </div>
+                </div>
+                <footer className="items-center justify-end gap-2.5 p-4 self-stretch w-full flex-[0_0_auto] border-t [border-top-style:solid] border-[#eaeaea] flex relative">
+                  <button className="mt-[-1.00px] relative w-fit [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#272a34] text-sm tracking-[-0.28px] leading-[19.6px] whitespace-nowrap hover:text-[#09215e] transition-colors">
+                    View Integrations
+                  </button>
+                </footer>
+              </article>
+            ))}
+          </div>
+
+          <div className="items-start gap-5 self-stretch w-full flex-[0_0_auto] flex relative">
+            {[
+              {
+                id: "microsoft-teams",
+                name: "Microsoft Teams",
+                description: "Sync Campaign Data With Google Sheets",
+                enabled: integrationSettings["microsoft-teams"],
+                logo: <div className="w-[52px] h-[52px] bg-[#6264A7] rounded-lg"></div>,
+              },
+              {
+                id: "microsoft-excel",
+                name: "Microsoft Excel",
+                description: "Sync Campaign Data With Google Sheets",
+                enabled: integrationSettings["microsoft-excel"],
+                logo: <div className="w-[52px] h-[52px] bg-[#217346] rounded-lg"></div>,
+              },
+              {
+                id: "airtable",
+                name: "Airtable",
+                description: "Sync Campaign Data With Google Sheets",
+                enabled: integrationSettings["airtable"],
+                logo: <div className="w-[52px] h-[52px] bg-[#18BFFF] rounded-lg"></div>,
+              },
+            ].map((integration) => (
+              <article
+                key={integration.id}
+                className="flex flex-col items-start gap-5 relative flex-1 grow bg-[#fbfbfb] rounded-xl border border-solid border-[#eaeaea]"
+              >
+                <div className="flex flex-col items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
+                  <div className="flex-col items-start gap-4 pt-4 pb-0 px-4 self-stretch w-full flex-[0_0_auto] flex relative">
+                    <div className="items-start justify-center gap-2 self-stretch w-full flex-[0_0_auto] flex relative">
+                      <div className="items-center gap-2 flex-1 grow flex relative">
+                        {integration.logo}
+                        <h3 className="relative flex-1 [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-black text-base tracking-[-0.32px] leading-6">
+                          {integration.name}
+                        </h3>
+                      </div>
+                      <button
+                        onClick={() => handleIntegrationToggle(integration.id)}
+                        className={`inline-flex items-center ${integration.enabled ? "justify-end" : "justify-start"} p-0.5 relative flex-[0_0_auto] ${integration.enabled ? "bg-[#09215e]" : "bg-[#dedede]"} rounded-[100px] w-8 h-4 transition-colors duration-200 hover:opacity-80`}
+                        role="switch"
+                        aria-checked={integration.enabled}
+                        aria-label={`Toggle ${integration.name} integration`}
+                      >
+                        <div className="bg-white shadow-[0px_2px_4px_#0000001a] relative w-4 h-4 rounded-lg transition-transform duration-200" />
+                      </button>
+                    </div>
+                    <p className="[font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] text-xs leading-[16.8px] relative self-stretch tracking-[0]">
+                      {integration.description}
+                    </p>
+                  </div>
+                </div>
+                <footer className="items-center justify-end gap-2.5 p-4 self-stretch w-full flex-[0_0_auto] border-t [border-top-style:solid] border-[#eaeaea] flex relative">
+                  <button className="mt-[-1.00px] relative w-fit [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#272a34] text-sm tracking-[-0.28px] leading-[19.6px] whitespace-nowrap hover:text-[#09215e] transition-colors">
+                    View Integrations
+                  </button>
+                </footer>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Data & Security Tab Content */}
+      {activeTab === "DataSecurity" && (
+        <section className="mx-6 p-5 mt-6 rounded-[20px] overflow-hidden flex flex-col items-start gap-[22px] border border-solid border-[#eaeaea]">
+          <div className="flex items-center gap-3 relative self-stretch w-full flex-[0_0_auto]">
+            <div className="flex flex-col items-start justify-center gap-0.5 relative flex-1 grow">
+              <h2 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                Data & Security
+              </h2>
+              <p className="w-fit text-xs leading-[16.8px] whitespace-nowrap relative [font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] tracking-[0]">
+                Manage Your Data And Security Preferences
+              </p>
+            </div>
+
+            <div className="inline-flex items-center gap-3 relative flex-[0_0_auto]">
+              <button className="flex w-[84px] h-10 items-center justify-center gap-2 px-3 py-2 relative rounded-lg border border-solid border-[#eaeaea] hover:bg-gray-50 transition-colors">
+                <span className="relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                  Cancel
+                </span>
+              </button>
+
+              <button className="inline-flex flex-[0_0_auto] bg-[#09215e] border-[0.5px] border-solid border-[#fbfbfb] h-10 items-center justify-center gap-2 px-3 py-2 relative rounded-lg hover:bg-[#0a1a4f] transition-colors">
+                <span className="text-[#fbfbfb] relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                  Save Settings
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div className="flex flex-col w-[760px] gap-8 flex-[0_0_auto] items-start relative">
+            {/* Data Export Section */}
+            <section className="flex w-[760px] gap-2 flex-[0_0_auto] items-start relative">
+              <div className="flex flex-col gap-2 flex-1 grow items-start relative">
+                <h3 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                  Data Export
+                </h3>
+
+                <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
+                  <p className="w-fit [font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] text-xs leading-[16.8px] whitespace-nowrap relative mt-[-1.00px] tracking-[0]">
+                    Export All Your Data Including Campaigns, Contacts, And Analytics
+                  </p>
+                </div>
+              </div>
+
+              <button className="inline-flex flex-[0_0_auto] bg-[#09215e] border-[0.5px] border-solid border-[#fbfbfb] h-10 items-center justify-center gap-2 px-3 py-2 relative rounded-lg hover:bg-[#0a1a4f] transition-colors">
+                <span className="text-[#fbfbfb] relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                  Export All Data
+                </span>
+              </button>
+            </section>
+
+            {/* Divider */}
+            <img
+              className="self-stretch w-full relative h-px ml-[-0.50px] mr-[-0.50px] object-cover"
+              alt=""
+              src={line85}
+              role="separator"
+            />
+
+            {/* Security Section */}
+            <section className="flex flex-col gap-5 self-stretch w-full flex-[0_0_auto] items-start relative">
+              <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
+                <h3 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                  Security
+                </h3>
+
+                <div className="inline-flex flex-col gap-4 flex-[0_0_auto] items-start relative">
+                  {[
+                    {
+                      title: "Two-Factor Authentication",
+                      description: "Add An Extra Layer Of Security",
+                      buttonText: "Enable 2FA",
+                      buttonStyle: "border border-solid border-[#eaeaea]",
+                      textColor: "text-[#4f5059]",
+                    },
+                    {
+                      title: "Login Sessions",
+                      description: "Manage Active Login Sessions",
+                      buttonText: "View Sessions",
+                      buttonStyle: "border border-solid border-[#eaeaea]",
+                      textColor: "text-[#4f5059]",
+                    },
+                    {
+                      title: "Sign Out",
+                      description: "Sign Out Of Your Account",
+                      buttonText: "Sign Out",
+                      buttonStyle: "border border-solid border-[#db5050]",
+                      textColor: "text-[#db5050]",
+                    },
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex w-[760px] gap-2 flex-[0_0_auto] items-start relative"
+                    >
+                      <div className="flex flex-col gap-2 flex-1 grow items-start relative">
+                        <h4 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                          {item.title}
+                        </h4>
+
+                        <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
+                          <p className="w-fit [font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] text-xs leading-[16.8px] whitespace-nowrap relative mt-[-1.00px] tracking-[0]">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      <button
+                        className={`flex w-[84px] h-10 items-center justify-center gap-2 px-3 py-2 relative rounded-lg ${item.buttonStyle} hover:opacity-80 transition-opacity`}
+                      >
+                        <span
+                          className={`relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium ${item.textColor} text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap`}
+                        >
+                          {item.buttonText}
+                        </span>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Divider */}
+            <img
+              className="self-stretch w-full relative h-px ml-[-0.50px] mr-[-0.50px] object-cover"
+              alt=""
+              src={line86}
+              role="separator"
+            />
+
+            {/* Danger Zone Section */}
+            <section className="inline-flex flex-col gap-2 flex-[0_0_auto] items-start relative">
+              <h3 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                Danger Zone
+              </h3>
+
+              <div className="flex w-[760px] gap-2 p-5 flex-[0_0_auto] bg-[#db515114] rounded-xl items-start relative">
+                <div className="flex flex-col gap-2 flex-1 grow items-start relative">
+                  <h4 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-sm tracking-[-0.28px] leading-[21px] whitespace-nowrap">
+                    Delete Account
+                  </h4>
+
+                  <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
+                    <p className="w-fit [font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] text-xs leading-[16.8px] whitespace-nowrap relative mt-[-1.00px] tracking-[0]">
+                      Permanently Delete Your Account And All Associated Data. This Action Cannot Be Undone.
+                    </p>
+                  </div>
+                </div>
+
+                <button className="inline-flex flex-[0_0_auto] bg-[#db5050] border-[0.5px] border-solid border-[#fbfbfb] h-10 items-center justify-center gap-2 px-3 py-2 relative rounded-lg hover:bg-[#c73e3e] transition-colors">
+                  <span className="text-[#fbfbfb] relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                    Delete Account
+                  </span>
+                </button>
+              </div>
             </section>
           </div>
         </section>
