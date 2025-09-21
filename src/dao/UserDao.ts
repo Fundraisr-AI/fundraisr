@@ -77,4 +77,45 @@ export default class UserDao {
       return e;
     }
   }
+
+  async updateData(id: string, email: string) {
+    try {
+      const dataJson = {
+        emailVerified: new Date(),
+        email: email,
+      };
+      const whereJson = {
+        id: id,
+      };
+
+      const finalQuery = {
+        data: dataJson,
+        where: whereJson,
+      };
+      const result = await prisma.user.update(finalQuery);
+      return result;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  async updatePassword(id: string, password: string) {
+    try {
+      const dataJson = {
+        password: password,
+      };
+      const whereJson = {
+        id: id,
+      };
+
+      const finalQuery = {
+        data: dataJson,
+        where: whereJson,
+      };
+      const result = await prisma.user.update(finalQuery);
+      return result;
+    } catch (e) {
+      return e;
+    }
+  }
 }
