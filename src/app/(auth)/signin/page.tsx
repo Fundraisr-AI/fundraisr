@@ -8,7 +8,7 @@ export default async function SignIn() {
           <div className="flex items-center gap-2.5 font-bricolage text-2xl font-normal text-foreground">
             Fundraisr
           </div>
-          <LoginForm />
+          {/* <LoginForm /> */}
           <p className="flex items-center gap-1.5 font-familjen text-sm text-muted"></p>
         </div>
       </div>

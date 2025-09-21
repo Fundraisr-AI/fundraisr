@@ -1,3 +1,4 @@
+import SignupForm from "@/components/forms/SignupForm";
 import { Suspense } from "react";
 
 export default async function SignUp() {
@@ -8,7 +9,7 @@ export default async function SignUp() {
           <div className="flex items-center gap-2.5 font-bricolage text-2xl font-normal text-foreground">
             Fundraisr
           </div>
-          <LoginForm />
+          <SignupForm />
           <p className="flex items-center gap-1.5 font-familjen text-sm text-muted"></p>
         </div>
       </div>

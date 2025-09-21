@@ -5,17 +5,22 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { Form } from "radix-ui";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import axiosInstance from "@/lib/axios";
 import AllAPIRouteMapping from "@/utils/AllAPIRouteMapping";
 
-import { Checkbox } from "@/components/ui/checkbox";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-import { GoogleIcon } from "@/app/(auth)/_components/Icon";
 
 const userFormSchema = z
   .object({
@@ -23,7 +28,6 @@ const userFormSchema = z
     email: z.string().email(),
     password: z.string(),
     confirmPassword: z.string(),
-    privacyPolicy: z.boolean(),
   })
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
@@ -47,7 +51,6 @@ export default function SignupForm() {
       email: "",
       password: "",
       confirmPassword: "",
-      privacyPolicy: false,
     },
   });
 
@@ -156,50 +159,6 @@ export default function SignupForm() {
                 </FormItem>
               )}
             />
-            {/* Checkboxes */}
-
-            <FormField
-              control={form.control}
-              name="privacyPolicy"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        id="privacyPolicy"
-                        checked={field.value}
-                        onCheckedChange={(checked) => field.onChange(checked)}
-                        required
-                      />
-                      <label
-                        htmlFor="privacyPolicy"
-                        className="flex items-center justify-center gap-1 font-bricolage text-sm text-foreground"
-                      >
-                        I agree to the
-                        <a
-                          href="/privacy-policy"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-secondary underline"
-                        >
-                          Privacy Policy
-                        </a>
-                        and
-                        <a
-                          href="/terms-and-conditions"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-secondary underline"
-                        >
-                          Terms and Conditions
-                        </a>
-                      </label>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
           <div className="space-y-5">
             <Button type="submit" className="w-full">
@@ -237,18 +196,6 @@ export default function SignupForm() {
         <div className="h-[1px] w-full bg-border"></div>
         or
         <div className="h-[1px] w-full bg-border"></div>
-      </div>
-
-      {/* Social Login */}
-      <div className="mt-4 grid gap-4">
-        <Button
-          className="w-full"
-          onClick={() => handleSocialLogin("google")}
-          variant="outline"
-        >
-          <GoogleIcon />
-          Sign In with Google
-        </Button>
       </div>
     </div>
   );
