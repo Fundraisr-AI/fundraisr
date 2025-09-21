@@ -42,4 +42,39 @@ export default class UserDao {
     const result = await this.getUserByEmail(email);
     return !jsonUtilsImpl.isEmpty(result) === true;
   }
+
+  async getUserById(id: string) {
+    try {
+      const whereJson = {
+        id: id,
+      };
+
+      const finalQuery = {
+        where: whereJson,
+      };
+      const result = await prisma.user.findUnique(finalQuery);
+      return result;
+    } catch (e) {
+      throw e;
+    }
+  }
+  async setEmailVerifiedById(id: string) {
+    try {
+      const dataJson = {
+        emailVerified: new Date(),
+      };
+      const whereJson = {
+        id: id,
+      };
+
+      const finalQuery = {
+        data: dataJson,
+        where: whereJson,
+      };
+      const result = await prisma.user.update(finalQuery);
+      return result;
+    } catch (e) {
+      return e;
+    }
+  }
 }

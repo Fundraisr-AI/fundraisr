@@ -12,7 +12,7 @@ const envVariables = {
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
   },
   resend: {
-    apiKey: process.env.DEV_RESEND_API_KEY || "",
+    apiKey: process.env.RESEND_API_KEY || "",
   },
 };
 
