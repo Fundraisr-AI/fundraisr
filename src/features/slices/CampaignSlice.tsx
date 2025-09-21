@@ -52,11 +52,13 @@ const campaignSlice = createSlice({
           state,
           action: PayloadAction<GetAllCampaignStatusByUserResponse[]>
         ) => {
-          state.campaigns = action.payload.map((campaignResponse) => ({
-            ...campaignResponse,
-            loading: false, // Default value for the 'loading' property of each CampaignState item
-            campaigns: [], // Default value for the 'campaigns' property of each CampaignState item
-          }));
+          if (action.payload.length > 0) {
+            state.campaigns = action.payload.map((campaignResponse) => ({
+              ...campaignResponse,
+              loading: false, // Default value for the 'loading' property of each CampaignState item
+              campaigns: [], // Default value for the 'campaigns' property of each CampaignState item
+            }));
+          }
         }
       );
   },

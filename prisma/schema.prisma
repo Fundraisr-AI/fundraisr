@@ -96,6 +96,9 @@ model Campaign {
   id            String      @id @default(uuid())
   name          String
   status        String?
+  geography     String?
+  leadList      String?
+  copy          String?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   smartLeadsId    String    @default("")
