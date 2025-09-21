@@ -14,6 +14,9 @@ const envVariables = {
   resend: {
     apiKey: process.env.RESEND_API_KEY || "",
   },
+  smartLead: {
+    apiKey: process.env.SMARTLEAD_API_KEY || "",
+  },
 };
 
 export default envVariables;

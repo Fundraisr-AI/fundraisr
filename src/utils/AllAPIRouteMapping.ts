@@ -22,5 +22,8 @@ const AllAPIRouteMapping = {
     },
   },
 };
+export const SmartLeadsAPIRouteMapping = {
+  baseUrl: "https://server.smartlead.ai/api/v1",
+};
 
 export default AllAPIRouteMapping;
