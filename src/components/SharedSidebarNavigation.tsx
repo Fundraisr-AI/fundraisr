@@ -211,8 +211,8 @@ export const SharedSidebarNavigation = (): JSX.Element => {
               {showLabels && (
                 <div
                   className={`flex-1 text-left relative ${
-                    isActive ? "font-semibold" : "font-medium"
-                  } [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]`}
+                    isActive ? "font-manrope-semibold" : "font-manrope-medium"
+                  } text-[#111111] text-sm tracking-[0]`}
                 >
                   {item.label}
                 </div>
@@ -277,7 +277,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
             <div className="flex flex-col items-start w-full">
               {!(isCollapsed && !isHovered) && (
                 <header className="flex items-center pl-2 pr-4 pt-1 pb-2 w-full">
-                  <h2 className="[font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px]">
+                  <h2 className="font-manrope-semibold text-[#84858b] text-xs tracking-[0]">
                     MAIN
                   </h2>
                 </header>
@@ -297,7 +297,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
             <div className="flex flex-col items-start w-full">
               {!(isCollapsed && !isHovered) && (
                 <header className="flex items-center pl-2 pr-4 pt-1 pb-2 w-full">
-                  <h2 className="[font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px]">
+                  <h2 className="font-manrope-semibold text-[#84858b] text-xs tracking-[0]">
                     TOOLS
                   </h2>
                 </header>
@@ -317,7 +317,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
             <div className="flex flex-col items-start w-full">
               {!(isCollapsed && !isHovered) && (
                 <header className="flex items-center pl-2 pr-4 pt-1 pb-2 w-full">
-                  <h2 className="[font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px]">
+                  <h2 className="font-manrope-semibold text-[#84858b] text-xs tracking-[0]">
                     ACCOUNT
                   </h2>
                 </header>
@@ -337,7 +337,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
             <div className="flex flex-col items-start w-full">
               {!(isCollapsed && !isHovered) && (
                 <header className="flex items-center pl-2 pr-4 pt-1 pb-2 w-full">
-                  <h2 className="[font-family:'Manrope',Helvetica] font-semibold text-[#84858b] text-xs tracking-[0] leading-[18px]">
+                  <h2 className="font-manrope-semibold text-[#84858b] text-xs tracking-[0]">
                     ADMIN
                   </h2>
                 </header>
@@ -394,10 +394,10 @@ export const SharedSidebarNavigation = (): JSX.Element => {
                   <div className={`flex flex-col items-start transition-opacity duration-200 ${
                     isCollapsed && !isHovered ? "opacity-0" : "opacity-100"
                   }`}>
-                    <div className="[font-family:'Manrope',Helvetica] font-medium text-[#111111] text-sm tracking-[0] leading-[21px]">
+                    <div className="font-manrope-medium text-[#111111] text-sm tracking-[0]">
                       John Alessandro
                     </div>
-                    <div className="[font-family:'Manrope',Helvetica] font-medium text-[#777777] text-xs tracking-[0] leading-[18px]">
+                    <div className="font-manrope-medium text-[#777777] text-xs tracking-[0]">
                       john@fundraiser.com
                     </div>
                   </div>
@@ -427,7 +427,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
                   className="flex items-center gap-2 w-full px-3 py-2 text-sm text-[#db5050] hover:bg-red-50 transition-colors"
                 >
                   <LogOutIcon className="w-4 h-4" />
-                  <span className="[font-family:'Manrope',Helvetica] font-medium">Logout</span>
+                  <span className="font-manrope-medium">Logout</span>
                 </button>
               </div>
             </div>

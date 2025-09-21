@@ -293,6 +293,8 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    line-height: 150%;
   }
 
   #root {
@@ -302,6 +304,31 @@
 }
 
 @layer components {
+  /* Manrope Font Utilities */
+  .font-manrope-regular {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    line-height: 150%;
+  }
+  
+  .font-manrope-medium {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    line-height: 150%;
+  }
+  
+  .font-manrope-semibold {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    line-height: 150%;
+  }
+  
+  .font-manrope-bold {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    line-height: 150%;
+  }
+
   /* Enhanced Button Styles */
   .btn-primary {
     @apply bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-2 focus:ring-primary/20 transition-all duration-200 font-medium;
