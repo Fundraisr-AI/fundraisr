@@ -11,6 +11,9 @@ const envVariables = {
     clientId: process.env.GOOGLE_CLIENT_ID || "",
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
   },
+  resend: {
+    apiKey: process.env.DEV_RESEND_API_KEY || "",
+  },
 };
 
 export default envVariables;
