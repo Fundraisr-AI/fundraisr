@@ -1,3 +1,4 @@
+"use client";
 import {
   CalendarIcon,
   ClockIcon,
@@ -24,8 +25,22 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store";
+import {
+  getAllCampaignStatusByUserAsync,
+  selectCampaign,
+} from "@/features/slices/CampaignSlice";
 
 export const DashboardSection = (): JSX.Element => {
+  const dispatch = useDispatch<AppDispatch>();
+  const campaigns = useSelector(selectCampaign);
+
+  useEffect(() => {
+    dispatch(getAllCampaignStatusByUserAsync());
+  }, []);
+
   const remainingBars = Array.from({ length: 72 }, (_, index) => ({
     width: "w-[1.5px]",
     height: "h-[26px]",
@@ -636,11 +651,11 @@ export const DashboardSection = (): JSX.Element => {
                             campaign.status.type === "closed"
                               ? "bg-[#1b8441]"
                               : campaign.status.type === "draft" ||
-                                campaign.status.type === "pending"
-                              ? "bg-[#c2c8d0]"
-                              : campaign.status.type === "completed"
-                              ? "bg-[#d11818]"
-                              : "bg-[#d1a218]"
+                                  campaign.status.type === "pending"
+                                ? "bg-[#c2c8d0]"
+                                : campaign.status.type === "completed"
+                                  ? "bg-[#d11818]"
+                                  : "bg-[#d1a218]"
                           }`}
                         />
                         <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
@@ -895,8 +910,8 @@ export const DashboardSection = (): JSX.Element => {
                           lead.status.type === "closed"
                             ? "bg-[#1b8441]"
                             : lead.status.type === "pending"
-                            ? "bg-[#c2c8d0]"
-                            : "bg-[#d1a218]"
+                              ? "bg-[#c2c8d0]"
+                              : "bg-[#d1a218]"
                         }`}
                       />
                       <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">

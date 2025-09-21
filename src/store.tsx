@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import UserReducer from "@/features/slices/UserSlice";
+import CampaignReducer from "@/features/slices/CampaignSlice";
 
 export const store = configureStore({
   reducer: {
     user: UserReducer,
+    campaign: CampaignReducer,
   },
 });
 
