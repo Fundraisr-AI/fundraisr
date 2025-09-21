@@ -10,7 +10,6 @@ import {
   UserSquareIcon,
   UsersIcon,
 } from "lucide-react";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Avatar,
@@ -144,14 +143,14 @@ export const ToolsSidebarSection = (): JSX.Element => {
                   key={`main-${index}`}
                   variant="ghost"
                   onClick={item.onClick}
-                  className={`flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start h-auto ${
+                  className={`flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start ${
                     item.isActive
                       ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]"
                       : ""
                   }`}
                 >
                   <div className="flex items-center gap-2 relative flex-1 grow mt-[-0.50px] mb-[-0.50px]">
-                    <item.icon className="relative w-5 h-5" />
+                    {item.icon && <item.icon className="relative w-5 h-5" />}
                     <span
                       className={`flex-1 relative mt-[-1.00px] [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px] text-left ${
                         item.isActive ? "font-medium" : "font-medium"
@@ -187,10 +186,10 @@ export const ToolsSidebarSection = (): JSX.Element => {
                   key={`tools-${index}`}
                   variant="ghost"
                   onClick={item.onClick}
-                  className="flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start h-auto"
+                  className="flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start"
                 >
                   <div className="flex items-center gap-2 relative flex-1 grow mt-[-0.50px] mb-[-0.50px]">
-                    <item.icon className="relative w-5 h-5" />
+                    {item.icon && <item.icon className="relative w-5 h-5" />}
                     <span className="flex-1 font-medium relative mt-[-1.00px] [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px] text-left">
                       {item.label}
                     </span>
@@ -217,10 +216,10 @@ export const ToolsSidebarSection = (): JSX.Element => {
                   key={`account-${index}`}
                   variant="ghost"
                   onClick={item.onClick}
-                  className="flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start h-auto"
+                  className="flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start"
                 >
                   <div className="flex items-center gap-2 relative flex-1 grow mt-[-0.50px] mb-[-0.50px]">
-                    <item.icon className="relative w-5 h-5" />
+                    {item.icon && <item.icon className="relative w-5 h-5" />}
                     <span className="flex-1 font-medium relative mt-[-1.00px] [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px] text-left">
                       {item.label}
                     </span>
@@ -250,7 +249,7 @@ export const ToolsSidebarSection = (): JSX.Element => {
                   key={`admin-${index}`}
                   variant="ghost"
                   onClick={item.onClick}
-                  className="flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start h-auto"
+                  className="flex h-11 px-4 py-3 self-stretch w-full items-center relative justify-start"
                 >
                   <div className="flex items-center gap-2 relative flex-1 grow mt-[-0.50px] mb-[-0.50px]">
                     {item.customIcon ? (
@@ -267,7 +266,7 @@ export const ToolsSidebarSection = (): JSX.Element => {
                         />
                       </div>
                     ) : (
-                      <item.icon className="relative w-5 h-5" />
+                      item.icon && <item.icon className="relative w-5 h-5" />
                     )}
                     <span
                       className={`font-medium relative mt-[-1.00px] [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px] text-left ${

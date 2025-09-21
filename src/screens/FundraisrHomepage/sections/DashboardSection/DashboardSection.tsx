@@ -299,11 +299,11 @@ export const DashboardSection = (): JSX.Element => {
           </p>
         </div>
 
-        <div className="relative flex items-center gap-3 px-4 py-2.5 bg-background rounded-lg border border-input input-enhanced max-w-sm">
-          <SearchIcon className="w-4 h-4 text-muted-foreground" />
+        <div className="relative">
+          <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#4f5059]" />
           <Input
             placeholder="Search transactions, campaigns..."
-            className="border-none p-0 bg-transparent focus-visible:ring-0 text-sm placeholder:text-muted-foreground"
+            className="w-[332px] h-[37px] pl-10 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px]"
           />
         </div>
       </header>

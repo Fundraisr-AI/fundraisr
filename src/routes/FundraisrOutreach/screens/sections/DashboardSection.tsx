@@ -170,7 +170,7 @@ export const DashboardSection = (): JSX.Element => {
           <div className="relative">
             <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#4f5059]" />
             <Input
-              placeholder="Search transaction, campaigns..."
+              placeholder="Search transactions, campaigns..."
               className="w-[332px] h-[37px] pl-10 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px]"
             />
           </div>
@@ -292,25 +292,13 @@ export const DashboardSection = (): JSX.Element => {
             </div>
           </CardHeader>
           <CardContent className="relative">
-            <div className="absolute top-[20px] left-9 w-40 h-40 bg-[url(https://c.animaapp.com/mfqpait0Qdrcn2/img/ellipse-2055.svg)] bg-[100%_100%]">
-              <img
-                className="absolute top-[111px] left-[35px] w-[111px] h-[49px]"
-                alt="Ellipse"
-                src="https://c.animaapp.com/mfqpait0Qdrcn2/img/ellipse-2052.svg"
-              />
-              <img
-                className="absolute top-px left-0 w-20 h-[143px]"
-                alt="Ellipse"
-                src="https://c.animaapp.com/mfqpait0Qdrcn2/img/ellipse-2053.svg"
-              />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-0.5">
-                <div className="text-xl font-bold text-[#111111] tracking-[-0.30px] [font-family:'Manrope',Helvetica]">
-                  +23%
-                </div>
-                <div className="text-xs font-medium text-[#acb8c2] text-center tracking-[-0.18px] [font-family:'Manrope',Helvetica]">
-                  Increased from last year
-                </div>
-              </div>
+            <div className="absolute top-[20px] left-9 w-40 h-40">
+              {/* Donut Chart - Orange segment (40%) */}
+              <div className="absolute inset-0 rounded-full border-8 border-[#fc814a] border-r-transparent transform rotate-[-90deg]"></div>
+              {/* Blue segment (26%) */}
+              <div className="absolute inset-0 rounded-full border-8 border-transparent border-r-[#05668d] transform rotate-[54deg]"></div>
+              {/* Remaining segment (34%) */}
+              <div className="absolute inset-0 rounded-full border-8 border-transparent border-r-[#e5e7eb] transform rotate-[126deg]"></div>
             </div>
             <div className="absolute top-[55px] left-5 flex gap-[61px]">
               <div className="flex items-center justify-center w-[38px] h-[38px] bg-white rounded-full border border-[#e0e0e0] shadow-lg">
@@ -677,7 +665,7 @@ export const DashboardSection = (): JSX.Element => {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50">
-          <OutreachCreate onClose={handleCloseModal} />
+          <OutreachCreate isOpen={isModalOpen} onClose={handleCloseModal} />
         </div>
       )}
     </div>

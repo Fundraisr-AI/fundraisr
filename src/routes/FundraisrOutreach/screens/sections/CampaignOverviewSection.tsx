@@ -385,25 +385,13 @@ export const CampaignOverviewSection = () => {
               </div>
             </div>
           </div>
-          <div className="absolute top-[86px] left-9 w-40 h-40 bg-[url(/ellipse-2055.svg)] bg-[100%_100%]">
-            <img
-              className="absolute top-[111px] left-[35px] w-[111px] h-[49px] aspect-[1]"
-              alt="Chart segment"
-              src={ellipse2052}
-            />
-            <img
-              className="absolute top-px left-0 w-20 h-[143px] aspect-[1]"
-              alt="Chart segment"
-              src={ellipse2053}
-            />
-            <div className="inline-flex flex-col items-center justify-center gap-0.5 absolute top-[calc(50.00%_-_27px)] left-[calc(50.00%_-_48px)]">
-              <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-xl tracking-[-0.30px] leading-[24.0px] whitespace-nowrap">
-                +23%
-              </div>
-              <div className="relative w-24 [font-family:'Manrope-Medium',Helvetica] font-medium text-[#acb8c2] text-xs text-center tracking-[-0.18px] leading-[14.4px]">
-                Increased from last year
-              </div>
-            </div>
+          <div className="absolute top-[86px] left-9 w-40 h-40">
+            {/* Donut Chart - Orange segment (40%) */}
+            <div className="absolute inset-0 rounded-full border-8 border-[#fc814a] border-r-transparent transform rotate-[-90deg]"></div>
+            {/* Blue segment (26%) */}
+            <div className="absolute inset-0 rounded-full border-8 border-transparent border-r-[#05668d] transform rotate-[54deg]"></div>
+            {/* Remaining segment (34%) */}
+            <div className="absolute inset-0 rounded-full border-8 border-transparent border-r-[#e5e7eb] transform rotate-[126deg]"></div>
           </div>
           <div className="absolute top-[121px] left-5 w-[137px] h-[140px] flex gap-[61px]">
             <div className="flex w-[38px] h-[38px] relative items-center justify-center gap-1 px-3 py-2 bg-dark-tertiarytr120 rounded-[100000px] border border-solid border-dark-tertiarytr90 shadow-[0px_2.32px_4.4px_#00000005,0px_5.59px_10.57px_#00000007,0px_10.52px_19.91px_#00000009,0px_18.76px_35.51px_#0000000b,0px_35.09px_66.43px_#0000000d,0px_84px_159px_#00000012]">
