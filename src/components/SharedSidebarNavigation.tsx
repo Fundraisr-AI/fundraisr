@@ -14,16 +14,17 @@ import {
   UsersIcon,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Avatar,
   AvatarFallback,
-} from "../../../../components/ui/avatar";
-import { Button } from "../../../../components/ui/button";
-import { Badge } from "../../../../components/ui/badge";
+} from "./ui/avatar";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 
-export const SidebarNavigationSection = (): JSX.Element => {
+export const SharedSidebarNavigation = (): JSX.Element => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isHovered, setIsHovered] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(true); // Start collapsed by default
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -78,28 +79,28 @@ export const SidebarNavigationSection = (): JSX.Element => {
     {
       icon: HomeIcon,
       label: "Home",
-      isActive: false,
+      path: "/",
       badge: null,
       onClick: () => navigate("/"),
     },
     {
       icon: UsersIcon,
       label: "Outreach",
-      isActive: false,
+      path: "/outreach",
       badge: null,
       onClick: () => navigate("/outreach"),
     },
     {
       icon: ShieldIcon,
       label: "Pipeline",
-      isActive: false,
+      path: "/pipeline",
       badge: "+3",
       onClick: () => navigate("/pipeline"),
     },
     {
       icon: HeartIcon,
       label: "Fundraising Agent",
-      isActive: false,
+      path: "/fundraising-agent",
       badge: "+7",
       onClick: () => navigate("/fundraising-agent"),
     },
@@ -109,21 +110,21 @@ export const SidebarNavigationSection = (): JSX.Element => {
     {
       icon: CalendarIcon,
       label: "Calendar",
-      isActive: false,
+      path: "/calendar",
       badge: null,
       onClick: () => navigate("/calendar"),
     },
     {
       icon: ShieldIcon,
       label: "Due Diligence",
-      isActive: false,
+      path: "/due-diligence",
       badge: null,
       onClick: () => navigate("/due-diligence"),
     },
     {
       icon: UserSquareIcon,
       label: "Deal Room",
-      isActive: false,
+      path: "/deal-room",
       badge: null,
       onClick: () => navigate("/deal-room"),
     },
@@ -133,7 +134,7 @@ export const SidebarNavigationSection = (): JSX.Element => {
     {
       icon: BellIcon,
       label: "Notifications",
-      isActive: false,
+      path: "/notifications",
       badge: null,
       hasNotification: true,
       onClick: () => navigate("/notifications"),
@@ -141,7 +142,7 @@ export const SidebarNavigationSection = (): JSX.Element => {
     {
       icon: HelpCircleIcon,
       label: "Support",
-      isActive: false,
+      path: "/support",
       badge: null,
       hasNotification: false,
       onClick: () => navigate("/support"),
@@ -149,7 +150,7 @@ export const SidebarNavigationSection = (): JSX.Element => {
     {
       icon: SettingsIcon,
       label: "Settings",
-      isActive: true,
+      path: "/settings",
       badge: null,
       hasNotification: false,
       onClick: () => navigate("/settings"),
@@ -160,7 +161,7 @@ export const SidebarNavigationSection = (): JSX.Element => {
     {
       icon: LayoutIcon,
       label: "Admin View",
-      isActive: false,
+      path: "/admin",
       badge: null,
       onClick: () => {},
     },
@@ -168,7 +169,7 @@ export const SidebarNavigationSection = (): JSX.Element => {
       iconSrc: "https://c.animaapp.com/mfr8j7rbwvSuXy/img/squircle.svg",
       unionSrc: "https://c.animaapp.com/mfqpait0Qdrcn2/img/union.svg",
       label: "Project Management",
-      isActive: false,
+      path: "/project-management",
       badge: null,
       onClick: () => {},
     },
@@ -177,14 +178,16 @@ export const SidebarNavigationSection = (): JSX.Element => {
   const renderMenuItems = (items: any[], showLabels: boolean = true) => {
     return items.map((item) => {
       const IconComponent = item.icon;
+      const isActive = location.pathname === item.path;
+      
       return (
         <div key={item.label} className="relative group">
           <Button
-            variant={item.isActive ? "secondary" : "ghost"}
+            variant={isActive ? "secondary" : "ghost"}
             onClick={item.onClick}
             className={`flex items-center relative w-full transition-all duration-200 ${
               showLabels 
-                ? `h-[46px] px-4 py-3 justify-start ${item.isActive ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]" : "h-11"}`
+                ? `h-[46px] px-4 py-3 justify-start ${isActive ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]" : "h-11"}`
                 : "h-[52px] px-4 py-3 justify-center"
             }`}
           >
@@ -208,7 +211,7 @@ export const SidebarNavigationSection = (): JSX.Element => {
               {showLabels && (
                 <div
                   className={`flex-1 text-left relative ${
-                    item.isActive ? "font-semibold" : "font-medium"
+                    isActive ? "font-semibold" : "font-medium"
                   } [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]`}
                 >
                   {item.label}
@@ -415,8 +418,8 @@ export const SidebarNavigationSection = (): JSX.Element => {
             </div>
           )}
 
-          {/* Profile Dropdown Menu */}
-          {isProfileOpen && (!isCollapsed || isHovered) && (
+          {/* Profile Dropdown Menu - Always show when profile is open */}
+          {isProfileOpen && (
             <div className="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-lg border border-[#eaeaea] shadow-lg z-50">
               <div className="py-1">
                 <button

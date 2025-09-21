@@ -1,11 +1,10 @@
-import React from "react";
 import { AccountSettingsSection } from "./sections/AccountSettingsSection";
-import { SidebarNavigationSection } from "./sections/SidebarNavigationSection";
+import { SharedSidebarNavigation } from "../../../components/SharedSidebarNavigation";
 
 export const FundraiserSettings = (): JSX.Element => {
   return (
     <div className="bg-[#fbfbfb] flex min-h-screen w-full">
-      <SidebarNavigationSection />
+      <SharedSidebarNavigation />
       <div className="flex-1">
         <AccountSettingsSection />
       </div>
