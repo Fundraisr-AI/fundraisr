@@ -29,6 +29,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
 import {
+  CampaignState,
   getAllCampaignStatusByUserAsync,
   selectCampaign,
 } from "@/features/slices/CampaignSlice";
@@ -595,7 +596,7 @@ export const DashboardSection = (): JSX.Element => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {campaignData.map((campaign, index) => (
+                {campaigns.campaigns.map((campaign: CampaignState, index) => (
                   <TableRow
                     key={index}
                     className="h-[72px] border-b border-[#e9eaec]"
@@ -609,7 +610,7 @@ export const DashboardSection = (): JSX.Element => {
                         />
                         <div className="inline-flex flex-col items-start justify-center">
                           <div className="font-semibold text-[#192330] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                            {campaign.title}
+                            {campaign.name}
                           </div>
                           <div className="font-normal text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica] text-[#3b4c63]">
                             {campaign.subtitle}
@@ -622,44 +623,44 @@ export const DashboardSection = (): JSX.Element => {
                         <img
                           className="relative w-5 h-[15px]"
                           alt="Flag"
-                          src={campaign.geography.flag}
+                          src={""}
                         />
                         <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                          {campaign.geography.location}
+                          {""}
                         </span>
                       </div>
                     </TableCell>
                     <TableCell className="w-[105px] p-4 border-r border-[#e9eaec]">
                       <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                        {campaign.leadList}
+                        {""}
                       </span>
                     </TableCell>
                     <TableCell className="w-[100px] p-4 border-r border-[#e9eaec]">
                       <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                        {campaign.copy}
+                        {""}
                       </span>
                     </TableCell>
                     <TableCell className="w-[145px] p-4 border-r border-[#e9eaec]">
                       <Badge
                         className={`inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[100px] ${getStatusBadgeStyles(
-                          campaign.status.type
+                          campaign.status || ""
                         )}`}
                       >
                         <div
                           className={`w-1.5 h-1.5 rounded-[80px] ${
-                            campaign.status.type === "approved" ||
-                            campaign.status.type === "closed"
+                            campaign.status === "approved" ||
+                            campaign.status === "closed"
                               ? "bg-[#1b8441]"
-                              : campaign.status.type === "draft" ||
-                                  campaign.status.type === "pending"
+                              : campaign.status === "draft" ||
+                                  campaign.status === "pending"
                                 ? "bg-[#c2c8d0]"
-                                : campaign.status.type === "completed"
+                                : campaign.status === "completed"
                                   ? "bg-[#d11818]"
                                   : "bg-[#d1a218]"
                           }`}
                         />
                         <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                          {campaign.status.label}
+                          {campaign.status}
                         </span>
                       </Badge>
                     </TableCell>

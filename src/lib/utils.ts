@@ -5,8 +5,3 @@ import { auth } from "@/auth";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-export const getCurrentUser = async () => {
-  const session = await auth();
-  return session;
-};

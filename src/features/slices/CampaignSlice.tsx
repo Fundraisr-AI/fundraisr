@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import CampaignImpl from "../logic/CampaignImpl";
 import { RootState } from "@/store";
+import { GetAllCampaignStatusByUserResponse } from "@/response";
 
 export interface CampaignState {
   id: string;
@@ -47,7 +48,16 @@ const campaignSlice = createSlice({
       })
       .addCase(
         getAllCampaignStatusByUserAsync.fulfilled,
-        (state, action) => {}
+        (
+          state,
+          action: PayloadAction<GetAllCampaignStatusByUserResponse[]>
+        ) => {
+          state.campaigns = action.payload.map((campaignResponse) => ({
+            ...campaignResponse,
+            loading: false, // Default value for the 'loading' property of each CampaignState item
+            campaigns: [], // Default value for the 'campaigns' property of each CampaignState item
+          }));
+        }
       );
   },
 });

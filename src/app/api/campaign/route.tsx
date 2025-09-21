@@ -1,6 +1,6 @@
 import CampaignDao from "@/dao/CampaignDao";
 import errorHandler from "@/helpers/errorHandler";
-import { getCurrentUser } from "@/lib/utils";
+import { getCurrentUser } from "@/next-auth/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, res: NextResponse) {
