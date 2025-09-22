@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import CampaignImpl from "../logic/CampaignImpl";
 import { RootState } from "@/store";
-import { GetAllCampaignStatusByUserResponse } from "@/response";
+import {
+  GetAllCampaignStatusByUserResponse,
+  GetCampaignInvestorTypeDistributionMetricsResponse,
+} from "@/response";
 
 export interface CampaignState {
   id: string;
@@ -19,6 +22,10 @@ export interface CampaignState {
   meetingsBooked: Number;
   replyRate: Number;
   positive: Number;
+  geography: String;
+  leadList: String;
+  investor: String;
+  copy: String;
 }
 
 const initialState: CampaignState = {
@@ -37,6 +44,10 @@ const initialState: CampaignState = {
   meetingsBooked: 0,
   replyRate: 0,
   positive: 0,
+  geography: "",
+  leadList: "",
+  investor: "",
+  copy: "",
 };
 
 const campaignSlice = createSlice({
@@ -89,7 +100,32 @@ const campaignSlice = createSlice({
       )
       .addCase(getCampaignMetricsByUserAsync.rejected, (state, action) => {
         state.loading = false;
-      });
+      })
+      .addCase(
+        getCampaignInvestorTypeDistributionMetricsAsync.pending,
+        (state) => {}
+      )
+      .addCase(
+        getCampaignInvestorTypeDistributionMetricsAsync.fulfilled,
+        (
+          state,
+          action: PayloadAction<GetCampaignInvestorTypeDistributionMetricsResponse>
+        ) => {
+          state.loading = false;
+          state.totalActiveCampaigns = action.payload.totalActiveCampaigns;
+          state.totalLeads = action.payload.totalLeads;
+          state.positiveReplied = action.payload.positiveReplied;
+          state.meetingsBooked = action.payload.meetingsBooked;
+          state.replyRate = action.payload.replyRate;
+          state.positive = action.payload.positive;
+        }
+      )
+      .addCase(
+        getCampaignInvestorTypeDistributionMetricsAsync.rejected,
+        (state, action) => {
+          state.loading = false;
+        }
+      );
   },
 });
 
@@ -113,6 +149,26 @@ export const getCampaignMetricsByUserAsync = createAsyncThunk(
       // Assuming LeadImpl exists and has a method to fetch leads by campaign ID
       const campaign = new CampaignImpl();
       const data = await campaign.getCampaignMetricsByUser();
+      if (data) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue("No data received for leads");
+      }
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(
+        error.message || "An unknown error occurred while fetching leads"
+      );
+    }
+  }
+);
+
+export const getCampaignInvestorTypeDistributionMetricsAsync = createAsyncThunk(
+  "lead/getCampaignInvestorTypeDistributionMetrics",
+  async (_, thunkAPI) => {
+    try {
+      // Assuming LeadImpl exists and has a method to fetch leads by campaign ID
+      const campaign = new CampaignImpl();
+      const data = await campaign.getCampaignInvestorTypeDistributionMetrics();
       if (data) {
         return data;
       } else {

@@ -18,6 +18,18 @@ export default class CampaignImpl implements CampaignState {
   meetingsBooked: Number = 0;
   replyRate: Number = 0;
   positive: Number = 0;
+  geography: string = "";
+  leadList: string = "";
+  investor: string = "";
+  copy: string = "";
+
+  setId(id: string) {
+    this.id = id;
+  }
+
+  setName(name: string) {
+    this.name = name;
+  }
 
   setMetrics(
     totalActiveCampaigns: Number,
@@ -51,6 +63,17 @@ export default class CampaignImpl implements CampaignState {
     const response = await axiosInstanceHandler.makeCall(
       `${AllAPIRouteMapping.campaigns.getMetrics.apiPath}`,
       AllAPIRouteMapping.campaigns.getMetrics.method
+    );
+    if (response.success) {
+      return response.data;
+    }
+  }
+
+  async getCampaignInvestorTypeDistributionMetrics() {
+    const axiosInstanceHandler = new axiosInstance();
+    const response = await axiosInstanceHandler.makeCall(
+      `${AllAPIRouteMapping.campaigns.getMetricsInvestorTypeDistribution.apiPath}`,
+      AllAPIRouteMapping.campaigns.getMetricsInvestorTypeDistribution.method
     );
     if (response.success) {
       return response.data;

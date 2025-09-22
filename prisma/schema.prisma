@@ -14,12 +14,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?  @db.Text
-  access_token      String?  @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
-  scope             String?  @db.Text
-  id_token          String?  @db.Text
+  scope             String?
+  id_token          String?
   session_state     String?
   metadata          Json?
   createdAt         DateTime @default(now())
@@ -37,25 +37,19 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-enum UserRole {
-  SUPERADMIN
-  ADMIN
-  USER
-}
-
 model User {
-  id            String        @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String?       @unique
+  email         String?      @unique
   emailVerified DateTime?
   password      String?
   image         String?
-  role          UserRole      @default(USER)
-  plan          String?       @default("FREE")
+  role          UserRole     @default(USER)
+  plan          String?      @default("FREE")
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
   accounts      Account[]
   sessions      Session[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
   details       UserDetails?
 }
 
@@ -80,55 +74,71 @@ model PasswordResetToken {
 }
 
 model UserDetails {
-  id          String      @id @default(uuid())
-  companyName String?
+  id           String     @id @default(uuid())
+  companyName  String?
   smartLeadsId String?
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-
-  userId      String   @unique
-  user        User     @relation(fields: [userId], references: [id])
-
-  campaigns   Campaign[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  userId       String     @unique
+  campaigns    Campaign[]
+  user         User       @relation(fields: [userId], references: [id])
 }
 
 model Campaign {
   id            String      @id @default(uuid())
   name          String
   status        String?
-  geography     String?
-  leadList      String?
-  copy          String?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  smartLeadsId    String    @default("")
-
+  smartLeadsId  String      @default("")
   userDetailsId String
+  copy          String?
+  geography     String?
+  leadList      String?
+  investor      String?     @db.VarChar(255)
   userDetails   UserDetails @relation(fields: [userDetailsId], references: [id])
-
   leads         Lead[]
 }
 
 model Lead {
-  id              String      @id @default(uuid())
+  id              String           @id @default(uuid())
   firstname       String
-  lastname       String
+  lastname        String
   email           String
-  status          LeadStatus  @default(NO_COMMENTS)
-  is_replied      Boolean     @default(false)
-  is_unsubscribed Boolean     @default(false)
-  is_bounced      Boolean     @default(false)
+  status          LeadStatus       @default(NO_COMMENTS)
+  is_replied      Boolean          @default(false)
+  is_unsubscribed Boolean          @default(false)
+  is_bounced      Boolean          @default(false)
   smartLeadsId    String
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
-
-  companyName     String? 
-  phoneNumber     String?
-
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
   campaignId      String
-  campaign        Campaign    @relation(fields: [campaignId], references: [id])
-
+  companyName     String?
+  phoneNumber     String?
+  campaign        Campaign         @relation(fields: [campaignId], references: [id])
   messages        MessageHistory[]
+}
+
+model MessageHistory {
+  id               String   @id @default(uuid())
+  from             String
+  to               String
+  type             String
+  smartLeadsId     String
+  time             DateTime
+  email_body       String
+  subject          String
+  email_seq_number String
+  open_count       Int
+  click_count      Int
+  leadId           String
+  lead             Lead     @relation(fields: [leadId], references: [id])
+}
+
+enum UserRole {
+  SUPERADMIN
+  ADMIN
+  USER
 }
 
 enum LeadStatus {
@@ -142,22 +152,4 @@ enum LeadStatus {
   WRONG_PERSON
   VC_MANUAL_APPLICATION
   MEETING_BOOKED
-}
-
-
-model MessageHistory {
-  id        String      @id @default(uuid())
-  from      String
-  to        String  
-  type      String
-  smartLeadsId  String
-  time        DateTime
-  email_body    String    @db.Text
-  subject       String
-  email_seq_number    String
-  open_count      Int
-  click_count     Int
-  // Foreign key to Lead
-  leadId          String
-  lead            Lead        @relation(fields: [leadId], references: [id])
 }

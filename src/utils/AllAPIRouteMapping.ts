@@ -30,6 +30,10 @@ const AllAPIRouteMapping = {
       apiPath: "/api/campaign/metrics",
       method: "GET",
     },
+    getMetricsInvestorTypeDistribution: {
+      apiPath: "/api/campaign/metrics/investor-type-distribution",
+      method: "GET",
+    },
   },
   leads: {
     getAll: {

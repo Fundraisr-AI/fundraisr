@@ -34,6 +34,8 @@ export interface LeadState {
   campaignId: string;
   interested: number;
   meeting_scheduled: number;
+  companyName: string;
+  phoneNumber: string;
 }
 
 const initialState = {
@@ -43,6 +45,8 @@ const initialState = {
   currentCampaignId: "",
   interested: 0,
   meeting_scheduled: 0,
+  companyName: "",
+  phoneNumber: "",
 };
 
 const leadSlice = createSlice({

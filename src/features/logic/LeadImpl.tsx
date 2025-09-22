@@ -19,6 +19,8 @@ export default class LeadImpl implements LeadState {
   campaignId: string = "";
   interested: number = 0;
   meeting_scheduled: number = 0;
+  companyName: string = "";
+  phoneNumber: string = "";
 
   setLeads(leads: LeadState[]) {
     this.leads = leads;

@@ -33,7 +33,7 @@ export default class CampaignDao {
           c.status AS campaign_status,
           COUNT(l.id) AS total_leads,
           COUNT(CASE WHEN l.is_replied THEN 1 END) AS replied,
-          COUNT(CASE WHEN l.status IN ('INTERESTED', 'MEETING_BOOKED') THEN 1 END) AS positive,
+          COUNT(CASE WHEN l.status IN ('INTERESTED', 'MEETING_BOOKED', 'VC_MANUAL_APPLICATION', 'MEETING_REQUESTED', 'INFORMATION_REQUEST') THEN 1 END) AS positive,
           COUNT(CASE WHEN l.status = 'MEETING_BOOKED' THEN 1 END) AS meetings_booked,
           CASE WHEN COUNT(l.id) > 0 THEN 
             ROUND(100.0 * COUNT(CASE WHEN l.is_replied THEN 1 END) / COUNT(l.id), 2)
@@ -67,6 +67,48 @@ export default class CampaignDao {
       };
 
       return finalResult;
+    } catch (e) {
+      console.error(e);
+      throw e; // better than returning e for type safety
+    }
+  }
+
+  async getInvestorTypeDistributionMetrics(userId: string) {
+    try {
+      const stats = await prisma.userDetails.findMany({
+        select: {
+          id: true,
+          companyName: true,
+
+          // number of campaigns for this investor
+          _count: {
+            select: { campaigns: true },
+          },
+
+          campaigns: {
+            select: {
+              id: true,
+              status: true,
+              investor: true,
+              // metrics across all leads of this campaign
+              _count: {
+                select: {
+                  leads: true, // total contacts
+                },
+              },
+              leads: {
+                select: {
+                  status: true,
+                },
+              },
+            },
+          },
+        },
+        where: {
+          user: { id: userId },
+        },
+      });
+      return stats;
     } catch (e) {
       console.error(e);
       throw e; // better than returning e for type safety

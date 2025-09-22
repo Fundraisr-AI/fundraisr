@@ -31,6 +31,7 @@ import { AppDispatch } from "@/store";
 import {
   CampaignState,
   getAllCampaignStatusByUserAsync,
+  getCampaignInvestorTypeDistributionMetricsAsync,
   selectCampaign,
 } from "@/features/slices/CampaignSlice";
 import {
@@ -51,6 +52,7 @@ export const DashboardSection = (): JSX.Element => {
         filters: { status: ["INFORMATION_REQUEST", "INTERESTED"], limit: 5 },
       })
     );
+    dispatch(getCampaignInvestorTypeDistributionMetricsAsync());
   }, []);
 
   const remainingBars = Array.from({ length: 72 }, (_, index) => ({
@@ -60,33 +62,56 @@ export const DashboardSection = (): JSX.Element => {
     marginLeft: index === 71 ? "mr-[-2.50px]" : "",
   }));
 
-  // Market insights data
-  const marketInsightsData = [
-    {
-      color: "bg-[#ccdee0]",
-      label: "Pension Funds",
-      value: "1400",
-      percentage: "(60%)",
+  const colorMap: Record<string, string> = {
+    "Limited Partners": "bg-[#ccdee0]",
+    "Family Offices": "bg-[#33a4a9]",
+    "Venture Capital": "bg-[#1b8084]",
+    All: "bg-[#999999]", // fallback if needed
+  };
+
+  const totalsByInvestor = campaigns.campaigns.reduce<Record<string, number>>(
+    (acc, c: any) => {
+      acc[c.investor] = (acc[c.investor] || 0) + 1;
+      return acc;
     },
-    {
-      color: "bg-[#33a4a9]",
-      label: "Familiy Office",
-      value: "8129",
-      percentage: "(60%)",
-    },
-    {
-      color: "bg-[#1b8084]",
-      label: "Healthcare Innovation",
-      value: "5347",
-      percentage: "(60%)",
-    },
-  ];
+    {}
+  );
+  console.log(totalsByInvestor);
+
+  const total = Object.values(totalsByInvestor).reduce((a, b) => a + b, 0);
+  const marketInsightsData = Object.entries(totalsByInvestor).map(
+    ([investor, count]) => {
+      const percentage = total === 0 ? 0 : (count / total) * 100;
+      return {
+        color: colorMap[investor] || "bg-gray-400", // fallback color
+        label: investor,
+        value: count.toString(), // convert to string if needed
+        percentage: `(${percentage.toFixed(0)}%)`, // round to whole number
+      };
+    }
+  );
 
   const marketStatsData = [
-    { color: "bg-[#edb52b]", label: "Total Contacts", value: "1500" },
-    { color: "bg-[#329369]", label: "Positive Replies", value: "45" },
-    { color: "bg-[#220ea2]", label: "Meetings Scheduled", value: "12" },
-    { color: "bg-[#933277]", label: "Live Campaigns", value: "3" },
+    {
+      color: "bg-[#edb52b]",
+      label: "Total Contacts",
+      value: campaigns.totalLeads,
+    },
+    {
+      color: "bg-[#329369]",
+      label: "Positive Replies",
+      value: campaigns.positiveReplied,
+    },
+    {
+      color: "bg-[#220ea2]",
+      label: "Meetings Scheduled",
+      value: campaigns.meetingsBooked,
+    },
+    {
+      color: "bg-[#933277]",
+      label: "Live Campaigns",
+      value: campaigns.totalActiveCampaigns,
+    },
   ];
 
   // Campaign performance data
@@ -486,7 +511,7 @@ export const DashboardSection = (): JSX.Element => {
             <div className="flex flex-col items-start gap-4 relative self-stretch w-full flex-[0_0_auto]">
               <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
                 <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-3xl tracking-[-0.60px] leading-[33px] whitespace-nowrap">
-                  12,500
+                  {campaigns.totalActiveCampaigns}
                 </div>
                 <Badge className="inline-flex items-center gap-1 pl-1 pr-1.5 py-1 bg-[#17a34a14] text-[#1b8341] rounded-[100px]">
                   <img
@@ -637,18 +662,18 @@ export const DashboardSection = (): JSX.Element => {
                           src={""}
                         />
                         <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                          {""}
+                          {campaign.geography}
                         </span>
                       </div>
                     </TableCell>
                     <TableCell className="w-[105px] p-4 border-r border-[#e9eaec]">
                       <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                        {""}
+                        {campaign.leadList}
                       </span>
                     </TableCell>
                     <TableCell className="w-[100px] p-4 border-r border-[#e9eaec]">
                       <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                        {""}
+                        {campaign.copy}
                       </span>
                     </TableCell>
                     <TableCell className="w-[145px] p-4 border-r border-[#e9eaec]">
@@ -900,17 +925,21 @@ export const DashboardSection = (): JSX.Element => {
                           {lead.email}
                         </span>
                       </div>
-                      <div className="inline-flex items-center gap-1">
-                        <PhoneIcon className="w-4 h-4 text-[#3b4c63]" />
-                        <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                          {""}
-                        </span>
-                      </div>
+                      {lead.phoneNumber ? (
+                        <div className="inline-flex items-center gap-1">
+                          <PhoneIcon className="w-4 h-4 text-[#3b4c63]" />
+                          <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
+                            {lead.phoneNumber}
+                          </span>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </TableCell>
                   <TableCell className="flex-1 p-4 border-r border-[#e9eaec]">
                     <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                      {""}
+                      {lead.companyName}
                     </span>
                   </TableCell>
                   <TableCell className="flex-1 p-4 border-r border-[#e9eaec]">
