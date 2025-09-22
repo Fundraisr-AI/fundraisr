@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   BellIcon,
   CalendarIcon,
@@ -23,33 +23,34 @@ import { Separator } from "@/components/ui/separator";
 
 export const NavigationSection = (): JSX.Element => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const mainMenuItems = [
     {
       icon: HomeIcon,
       label: "Home",
-      isActive: true,
+      isActive: pathname === "/",
       badge: null,
       onClick: () => router.push("/"),
     },
     {
       icon: UsersIcon,
       label: "Outreach",
-      isActive: false,
+      isActive: pathname === "/outreach",
       badge: null,
       onClick: () => router.push("/outreach"),
     },
     {
       icon: ShieldIcon,
       label: "Pipeline",
-      isActive: false,
+      isActive: pathname === "/pipeline",
       badge: "+3",
       onClick: () => router.push("/pipeline"),
     },
     {
       icon: HeartIcon,
       label: "Fundraising Agent",
-      isActive: false,
+      isActive: pathname === "/fundraising-agent",
       badge: "+7",
       onClick: () => router.push("/fundraising-agent"),
     },
@@ -59,21 +60,21 @@ export const NavigationSection = (): JSX.Element => {
     {
       icon: CalendarIcon,
       label: "Calendar",
-      isActive: false,
+      isActive: pathname === "/calendar",
       badge: null,
       onClick: () => router.push("/calendar"),
     },
     {
       icon: ShieldIcon,
       label: "Due Diligence",
-      isActive: false,
+      isActive: pathname === "/due-diligence",
       badge: null,
       onClick: () => router.push("/due-diligence"),
     },
     {
       icon: UserSquareIcon,
       label: "Deal Room",
-      isActive: false,
+      isActive: pathname === "/deal-room",
       badge: null,
       onClick: () => router.push("/deal-room"),
     },
@@ -83,14 +84,14 @@ export const NavigationSection = (): JSX.Element => {
     {
       icon: BellIcon,
       label: "Notifications",
-      isActive: false,
+      isActive: pathname === "/notifications",
       hasNotification: true,
       onClick: () => router.push("/notifications"),
     },
     {
       icon: HelpCircleIcon,
       label: "Support",
-      isActive: false,
+      isActive: pathname === "/support",
       hasNotification: false,
       onClick: () => router.push("/support"),
     },

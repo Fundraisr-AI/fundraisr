@@ -123,6 +123,7 @@ model Lead {
   updatedAt       DateTime    @updatedAt
 
   companyName     String? 
+  phoneNumber     String?
 
   campaignId      String
   campaign        Campaign    @relation(fields: [campaignId], references: [id])

@@ -38,22 +38,44 @@ export const DealPipelineSection = (): JSX.Element => {
     default: "#6b7280", // fallback
   };
 
-  const kanbanFormatColumns = Object.entries(
-    leads.leads.reduce(
-      (acc, lead) => {
-        // create array bucket for each status
-        acc[lead.status] = acc[lead.status] || [];
-        acc[lead.status].push(lead);
-        return acc;
-      },
-      {} as Record<string, typeof leads>
+  const columnKeys = [
+    "Prospect",
+    "No Show",
+    "Meeting Schedule",
+    "Dataroom Granted",
+  ];
+
+  const groupedLeads = leads.leads.reduce(
+    (acc, lead) => {
+      let columnKey: string;
+
+      if (lead.status === "MEETING_BOOKED") {
+        columnKey = "Meeting Schedule";
+      } else if (lead.status === "NO_SHOW") {
+        columnKey = "No Show";
+      } else if (lead.status === "DATAROOM_GRANTED") {
+        columnKey = "Dataroom Granted";
+      } else {
+        columnKey = "Prospect";
+      }
+
+      acc[columnKey].push(lead);
+      return acc;
+    },
+    columnKeys.reduce(
+      (acc, key) => ({ ...acc, [key]: [] }),
+      {} as Record<string, typeof leads.leads>
     )
-  ).map(([status, cards]) => ({
+  );
+
+  const kanbanFormatColumns = columnKeys.map((status) => ({
     title: status,
-    count: cards.length,
+    count: groupedLeads[status].length,
     color: statusColors[status] || statusColors.default,
-    cards, // the actual leads in that status
+    cards: groupedLeads[status],
   }));
+
+  console.log(kanbanFormatColumns);
 
   useEffect(() => {
     dispatch(getLeadMetricsByUserIdAsync());
