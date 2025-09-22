@@ -1,5 +1,6 @@
 import errorHandler from "@/helpers/errorHandler";
 import jsonUtilsImpl from "@/utils/jsonUtils";
+import prisma from "@/lib/prisma";
 
 export default class UserDao {
   async create(name: string, password: string, email: string) {

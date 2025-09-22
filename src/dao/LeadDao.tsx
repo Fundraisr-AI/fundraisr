@@ -1,12 +1,12 @@
 import prisma from "@/lib/prisma";
-export default class CampaignDao {
-  async getAllCampaignsByUserId(userId: string) {
+export default class LeadDao {
+  async getAllLeadsByUserId(userId: string) {
     try {
-      const campaigns = await prisma.campaign.findMany({
+      const leads = await prisma.lead.findMany({
         where: {
-          userDetails: {
-            user: {
-              id: userId,
+          campaign: {
+            userDetails: {
+              userId: userId,
             },
           },
         },
@@ -15,7 +15,7 @@ export default class CampaignDao {
         },
       });
 
-      return campaigns;
+      return leads;
     } catch (e) {
       return e;
     }

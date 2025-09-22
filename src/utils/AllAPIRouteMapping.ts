@@ -27,6 +27,12 @@ const AllAPIRouteMapping = {
       method: "GET",
     },
   },
+  leads: {
+    getAll: {
+      apiPath: "/api/lead",
+      method: "GET",
+    },
+  },
 };
 export const SmartLeadsAPIRouteMapping = {
   baseUrl: "https://server.smartlead.ai/api/v1",

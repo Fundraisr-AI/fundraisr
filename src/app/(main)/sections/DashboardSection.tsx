@@ -33,13 +33,19 @@ import {
   getAllCampaignStatusByUserAsync,
   selectCampaign,
 } from "@/features/slices/CampaignSlice";
+import {
+  getAllLeadsByUserIdAsync,
+  LeadState,
+  selectLead,
+} from "@/features/slices/LeadSlice";
 
 export const DashboardSection = (): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
   const campaigns = useSelector(selectCampaign);
-
+  const leads = useSelector(selectLead);
   useEffect(() => {
     dispatch(getAllCampaignStatusByUserAsync());
+    dispatch(getAllLeadsByUserIdAsync());
   }, []);
 
   const remainingBars = Array.from({ length: 72 }, (_, index) => ({
@@ -613,7 +619,7 @@ export const DashboardSection = (): JSX.Element => {
                             {campaign.name}
                           </div>
                           <div className="font-normal text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica] text-[#3b4c63]">
-                            {campaign.subtitle}
+                            {campaign.subtitle || ""}
                           </div>
                         </div>
                       </div>
@@ -855,7 +861,7 @@ export const DashboardSection = (): JSX.Element => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {recentLeadsData.map((lead, index) => (
+              {leads.leads.map((lead: LeadState, index) => (
                 <TableRow
                   key={index}
                   className="h-[72px] border-b border-[#e9eaec]"
@@ -863,17 +869,19 @@ export const DashboardSection = (): JSX.Element => {
                   <TableCell className="w-[282px] pl-5 pr-4 py-4 border-r border-[#e9eaec]">
                     <div className="flex items-center gap-2">
                       <Avatar className="w-9 h-9">
-                        <AvatarImage src={lead.avatar} alt={lead.name} />
-                        <AvatarFallback>{lead.name.charAt(0)}</AvatarFallback>
+                        <AvatarImage src={""} alt={lead.firstname} />
+                        <AvatarFallback>
+                          {lead.firstname.charAt(0)}
+                        </AvatarFallback>
                       </Avatar>
                       <div className="inline-flex flex-col items-start justify-center gap-0.5">
                         <div className="font-semibold text-[#041824] text-base tracking-[0] leading-5 [font-family:'Manrope',Helvetica]">
-                          {lead.name}
+                          {lead.firstname + " " + lead.lastname}
                         </div>
                         <div className="inline-flex items-center gap-1">
                           <ClockIcon className="w-4 h-4 text-[#3b4c63]" />
                           <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                            {lead.date}
+                            {lead.createdAt}
                           </span>
                         </div>
                       </div>
@@ -890,33 +898,33 @@ export const DashboardSection = (): JSX.Element => {
                       <div className="inline-flex items-center gap-1">
                         <PhoneIcon className="w-4 h-4 text-[#3b4c63]" />
                         <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                          {lead.phone}
+                          {""}
                         </span>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell className="flex-1 p-4 border-r border-[#e9eaec]">
                     <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                      {lead.company}
+                      {""}
                     </span>
                   </TableCell>
                   <TableCell className="flex-1 p-4 border-r border-[#e9eaec]">
                     <Badge
                       className={`inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[100px] ${getStatusBadgeStyles(
-                        lead.status.type
+                        lead.status
                       )}`}
                     >
                       <div
                         className={`w-1.5 h-1.5 rounded-[80px] ${
-                          lead.status.type === "closed"
+                          lead.status === "closed"
                             ? "bg-[#1b8441]"
-                            : lead.status.type === "pending"
+                            : lead.status === "pending"
                               ? "bg-[#c2c8d0]"
                               : "bg-[#d1a218]"
                         }`}
                       />
                       <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                        {lead.status.label}
+                        {lead.status}
                       </span>
                     </Badge>
                   </TableCell>
