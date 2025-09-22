@@ -75,15 +75,15 @@
   ],
   "edges": [
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -91,15 +91,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -107,15 +107,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -123,15 +123,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -139,15 +139,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -155,15 +155,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -171,15 +171,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -187,15 +187,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -203,15 +203,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -219,15 +219,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -235,15 +235,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -251,15 +251,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -267,15 +267,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -283,15 +283,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -299,15 +299,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -315,15 +315,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -331,15 +331,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -347,15 +347,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -363,15 +363,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -379,15 +379,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -395,15 +395,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -411,15 +411,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -427,15 +427,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -443,15 +443,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -459,15 +459,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -475,15 +475,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -491,15 +491,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -507,15 +507,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -523,15 +523,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -539,15 +539,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -555,15 +555,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -571,15 +571,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -587,15 +587,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -603,15 +603,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -619,15 +619,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -635,15 +635,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -651,15 +651,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -667,15 +667,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -683,15 +683,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -699,15 +699,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -715,15 +715,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -731,15 +731,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -747,15 +747,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -763,15 +763,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -779,15 +779,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -795,15 +795,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -811,15 +811,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -827,15 +827,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -843,15 +843,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -859,15 +859,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -875,15 +875,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -891,15 +891,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -907,15 +907,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -923,15 +923,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -939,15 +939,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -955,15 +955,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -971,15 +971,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -987,15 +987,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1003,15 +1003,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1019,15 +1019,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1035,15 +1035,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1051,15 +1051,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1067,15 +1067,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1083,15 +1083,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1099,15 +1099,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1115,15 +1115,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1131,15 +1131,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1147,15 +1147,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1163,15 +1163,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1179,15 +1179,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1195,15 +1195,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1211,15 +1211,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1227,15 +1227,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1243,15 +1243,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1259,15 +1259,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1275,15 +1275,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1291,15 +1291,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1307,15 +1307,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1323,15 +1323,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1339,15 +1339,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1355,15 +1355,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1371,15 +1371,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1387,15 +1387,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1403,15 +1403,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1419,15 +1419,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1435,15 +1435,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1451,15 +1451,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1467,15 +1467,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1483,15 +1483,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1499,15 +1499,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1515,15 +1515,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:70:21-to-src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "navigate(\"/\")",
-          "line": 84,
-          "endLine": 84,
+          "line": 70,
+          "endLine": 70,
           "column": 21,
           "endColumn": 34,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1531,15 +1531,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:77:21-to-src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisrOutreach/screens/FundraisrOutreach.tsx",
       "data": {
         "viaRoute": "/outreach",
         "trigger": {
           "element": "navigate(\"/outreach\")",
-          "line": 91,
-          "endLine": 91,
+          "line": 77,
+          "endLine": 77,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1547,15 +1547,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:98:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:84:21-to-src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDeal/screens/FundraiserDeal.tsx",
       "data": {
         "viaRoute": "/pipeline",
         "trigger": {
           "element": "navigate(\"/pipeline\")",
-          "line": 98,
-          "endLine": 98,
+          "line": 84,
+          "endLine": 84,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1563,15 +1563,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:105:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:91:21-to-src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraisingAgent/screens/FundraisingAgent.tsx",
       "data": {
         "viaRoute": "/fundraising-agent",
         "trigger": {
           "element": "navigate(\"/fundraising-agent\")",
-          "line": 105,
-          "endLine": 105,
+          "line": 91,
+          "endLine": 91,
           "column": 21,
           "endColumn": 51,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1579,15 +1579,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:101:21-to-src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserCalendar/screens/FundraiserCalendar.tsx",
       "data": {
         "viaRoute": "/calendar",
         "trigger": {
           "element": "navigate(\"/calendar\")",
-          "line": 115,
-          "endLine": 115,
+          "line": 101,
+          "endLine": 101,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1595,15 +1595,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:122:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:108:21-to-src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDue/screens/FundraiserDue.tsx",
       "data": {
         "viaRoute": "/due-diligence",
         "trigger": {
           "element": "navigate(\"/due-diligence\")",
-          "line": 122,
-          "endLine": 122,
+          "line": 108,
+          "endLine": 108,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1611,15 +1611,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:129:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:115:21-to-src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserDealRoom/screens/FundraiserDealRoom.tsx",
       "data": {
         "viaRoute": "/deal-room",
         "trigger": {
           "element": "navigate(\"/deal-room\")",
-          "line": 129,
-          "endLine": 129,
+          "line": 115,
+          "endLine": 115,
           "column": 21,
           "endColumn": 43,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1627,15 +1627,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:140:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:126:21-to-src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserNotifications/screens/FundraiserNotifications.tsx",
       "data": {
         "viaRoute": "/notifications",
         "trigger": {
           "element": "navigate(\"/notifications\")",
-          "line": 140,
-          "endLine": 140,
+          "line": 126,
+          "endLine": 126,
           "column": 21,
           "endColumn": 47,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1643,15 +1643,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:148:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:134:21-to-src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSupport/screens/FundraiserSupport.tsx",
       "data": {
         "viaRoute": "/support",
         "trigger": {
           "element": "navigate(\"/support\")",
-          "line": 148,
-          "endLine": 148,
+          "line": 134,
+          "endLine": 134,
           "column": 21,
           "endColumn": 41,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"
@@ -1659,15 +1659,15 @@
       }
     },
     {
-      "id": "src/components/SharedSidebarNavigation.tsx:156:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
+      "id": "src/components/SharedSidebarNavigation.tsx:142:21-to-src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "source": "src/screens/FundraisrHomepage/FundraisrHomepage.tsx",
       "target": "src/routes/FundraiserSettings/screens/FundraiserSettings.tsx",
       "data": {
         "viaRoute": "/settings",
         "trigger": {
           "element": "navigate(\"/settings\")",
-          "line": 156,
-          "endLine": 156,
+          "line": 142,
+          "endLine": 142,
           "column": 21,
           "endColumn": 42,
           "sourceFile": "src/components/SharedSidebarNavigation.tsx"

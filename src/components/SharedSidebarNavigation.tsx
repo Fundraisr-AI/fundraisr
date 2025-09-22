@@ -1,18 +1,3 @@
-import {
-  BellIcon,
-  CalendarIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  HeartIcon,
-  HelpCircleIcon,
-  HomeIcon,
-  LayoutIcon,
-  LogOutIcon,
-  SettingsIcon,
-  ShieldIcon,
-  UserSquareIcon,
-  UsersIcon,
-} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -21,6 +6,7 @@ import {
 } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { sidebarIcons } from "../assets/icons/sidebarIcons";
 
 export const SharedSidebarNavigation = (): JSX.Element => {
   const navigate = useNavigate();
@@ -77,28 +63,28 @@ export const SharedSidebarNavigation = (): JSX.Element => {
 
   const mainMenuItems = [
     {
-      icon: HomeIcon,
+      iconSrc: sidebarIcons.home,
       label: "Home",
       path: "/",
       badge: null,
       onClick: () => navigate("/"),
     },
     {
-      icon: UsersIcon,
+      iconSrc: sidebarIcons.outreach,
       label: "Outreach",
       path: "/outreach",
       badge: null,
       onClick: () => navigate("/outreach"),
     },
     {
-      icon: ShieldIcon,
+      iconSrc: sidebarIcons.pipeline,
       label: "Pipeline",
       path: "/pipeline",
       badge: "+3",
       onClick: () => navigate("/pipeline"),
     },
     {
-      icon: HeartIcon,
+      iconSrc: sidebarIcons.fundraising,
       label: "Fundraising Agent",
       path: "/fundraising-agent",
       badge: "+7",
@@ -108,21 +94,21 @@ export const SharedSidebarNavigation = (): JSX.Element => {
 
   const toolsMenuItems = [
     {
-      icon: CalendarIcon,
+      iconSrc: sidebarIcons.calendar,
       label: "Calendar",
       path: "/calendar",
       badge: null,
       onClick: () => navigate("/calendar"),
     },
     {
-      icon: ShieldIcon,
+      iconSrc: sidebarIcons.dueDiligence,
       label: "Due Diligence",
       path: "/due-diligence",
       badge: null,
       onClick: () => navigate("/due-diligence"),
     },
     {
-      icon: UserSquareIcon,
+      iconSrc: sidebarIcons.dealRoom,
       label: "Deal Room",
       path: "/deal-room",
       badge: null,
@@ -132,7 +118,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
 
   const accountMenuItems = [
     {
-      icon: BellIcon,
+      iconSrc: sidebarIcons.notifications,
       label: "Notifications",
       path: "/notifications",
       badge: null,
@@ -140,7 +126,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
       onClick: () => navigate("/notifications"),
     },
     {
-      icon: HelpCircleIcon,
+      iconSrc: sidebarIcons.support,
       label: "Support",
       path: "/support",
       badge: null,
@@ -148,7 +134,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
       onClick: () => navigate("/support"),
     },
     {
-      icon: SettingsIcon,
+      iconSrc: sidebarIcons.settings,
       label: "Settings",
       path: "/settings",
       badge: null,
@@ -159,15 +145,14 @@ export const SharedSidebarNavigation = (): JSX.Element => {
 
   const adminMenuItems = [
     {
-      icon: LayoutIcon,
+      iconSrc: sidebarIcons.projectManagement,
       label: "Admin View",
       path: "/admin",
       badge: null,
       onClick: () => {},
     },
     {
-      iconSrc: "https://c.animaapp.com/mfr8j7rbwvSuXy/img/squircle.svg",
-      unionSrc: "https://c.animaapp.com/mfqpait0Qdrcn2/img/union.svg",
+      iconSrc: sidebarIcons.admin,
       label: "Project Management",
       path: "/project-management",
       badge: null,
@@ -192,7 +177,9 @@ export const SharedSidebarNavigation = (): JSX.Element => {
             }`}
           >
             <div className={`flex items-center gap-2 relative ${showLabels ? "flex-1 grow" : ""}`}>
-              {IconComponent ? (
+              {item.iconSrc ? (
+                <img src={item.iconSrc} alt={item.label} className="relative w-6 h-6 flex-shrink-0" />
+              ) : IconComponent ? (
                 <IconComponent className="relative w-6 h-6 flex-shrink-0" />
               ) : (
                 <div className="relative w-6 h-6 flex-shrink-0">
@@ -261,8 +248,8 @@ export const SharedSidebarNavigation = (): JSX.Element => {
             className={`w-full transition-all duration-300 ${
               isCollapsed && !isHovered ? "h-8 w-8 mx-auto" : "h-auto"
             }`}
-            alt="Header container"
-            src="https://c.animaapp.com/mfr8j7rbwvSuXy/img/header-container.svg"
+            alt="Fundraisr Logo"
+            src={isCollapsed && !isHovered ? sidebarIcons.collapsedLogo : sidebarIcons.logo}
           />
           {/* Invisible hover area over the arrow */}
           <div 
@@ -359,7 +346,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
           }`}
         >
           <div className={`transition-transform duration-200 ${isCollapsed ? "rotate-180" : ""}`}>
-            <ChevronUpIcon className="w-4 h-4" />
+            <img src={sidebarIcons.arrow} alt="Collapse/Expand" className="w-4 h-4" />
           </div>
           {(!isCollapsed || isHovered) && (
             <span className={`ml-2 text-sm font-medium transition-opacity duration-200 ${
@@ -404,9 +391,11 @@ export const SharedSidebarNavigation = (): JSX.Element => {
                 )}
               </div>
               {(!isCollapsed || isHovered) && (
-                <ChevronDownIcon className={`w-4 h-4 transition-all duration-200 ${
+                <div className={`w-4 h-4 transition-all duration-200 ${
                   isCollapsed && !isHovered ? "opacity-0" : "opacity-100"
-                } ${isProfileOpen ? "rotate-180" : ""}`} />
+                } ${isProfileOpen ? "rotate-180" : ""}`}>
+                  ▼
+                </div>
               )}
             </div>
           </Button>
@@ -426,7 +415,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
                   onClick={handleLogout}
                   className="flex items-center gap-2 w-full px-3 py-2 text-sm text-[#db5050] hover:bg-red-50 transition-colors"
                 >
-                  <LogOutIcon className="w-4 h-4" />
+                  <div className="w-4 h-4">🚪</div>
                   <span className="font-manrope-medium">Logout</span>
                 </button>
               </div>
