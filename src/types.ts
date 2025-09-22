@@ -13,3 +13,8 @@ export type LeadFilters = {
   status?: string[];
   limit?: Number;
 };
+
+export type CampaignFilters = {
+  status?: string[];
+  limit?: Number;
+};
