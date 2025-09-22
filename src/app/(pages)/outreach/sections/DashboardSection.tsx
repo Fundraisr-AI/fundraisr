@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
+  CampaignState,
   getCampaignMetricsByUserAsync,
   selectCampaign,
 } from "@/features/slices/CampaignSlice";
@@ -624,7 +625,7 @@ export const DashboardSection = (): JSX.Element => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {campaign.campaigns.map((campaign, index) => (
+              {campaign.campaigns.map((campaign: CampaignState, index) => (
                 <TableRow key={index} className="h-[72px] border-[#e9eaec]">
                   <TableCell className="w-[352px]">
                     <div className="flex flex-col gap-0.5">
