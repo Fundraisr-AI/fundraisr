@@ -292,30 +292,79 @@ export const DashboardSection = (): JSX.Element => {
             </div>
           </CardHeader>
           <CardContent className="relative">
-            <div className="absolute top-[20px] left-9 w-40 h-40">
-              {/* Donut Chart - Orange segment (40%) */}
-              <div className="absolute inset-0 rounded-full border-8 border-[#fc814a] border-r-transparent transform rotate-[-90deg]"></div>
-              {/* Blue segment (26%) */}
-              <div className="absolute inset-0 rounded-full border-8 border-transparent border-r-[#05668d] transform rotate-[54deg]"></div>
-              {/* Remaining segment (34%) */}
-              <div className="absolute inset-0 rounded-full border-8 border-transparent border-r-[#e5e7eb] transform rotate-[126deg]"></div>
-            </div>
-            <div className="absolute top-[55px] left-5 flex gap-[61px]">
-              <div className="flex items-center justify-center w-[38px] h-[38px] bg-white rounded-full border border-[#e0e0e0] shadow-lg">
-                <span className="text-xs font-semibold text-[#080808] [font-family:'Manrope',Helvetica] tracking-[-0.36px]">
-                  40%
-                </span>
+            <div className="absolute top-[20px] left-9 w-40 h-40 rounded-full">
+              {/* Proper Donut Chart using conic-gradient */}
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `conic-gradient(
+                    #fc814a 0% 40%,
+                    #05668d 40% 66%,
+                    #f1f1ef 66% 100%
+                  )`,
+                }}
+              />
+              {/* Inner white circle creates the donut hole */}
+              <div className="absolute inset-6 bg-white rounded-full flex flex-col items-center justify-center">
+                <div className="text-lg font-bold text-[#111111] [font-family:'Manrope',Helvetica] tracking-[-0.30px]">
+                  +23%
+                </div>
+                <div className="text-xs font-medium text-[#acb8c2] [font-family:'Manrope',Helvetica] tracking-[-0.18px] text-center">
+                  Increased from last year
+                </div>
               </div>
-              <div className="flex items-center justify-center w-[38px] h-[38px] bg-white rounded-full border border-[#e0e0e0] shadow-lg mt-[102px]">
-                <span className="text-xs font-semibold text-[#080808] [font-family:'Manrope',Helvetica] tracking-[-0.36px]">
-                  26%
-                </span>
-              </div>
             </div>
+            {/* Percentage labels positioned on arc midpoints */}
+            {(() => {
+              const centerX = 80; // Center of the 160px donut chart
+              const centerY = 80;
+              const radius = 60; // Outer radius of donut
+              const offset = 20; // Distance from arc edge
+              
+              // Chart data segments
+              const segments = [
+                { value: 40, percentage: '40%', color: '#fc814a' }, // Orange segment
+                { value: 26, percentage: '26%', color: '#05668d' }, // Blue segment
+              ];
+              
+              let currentAngle = 0; // Start from top (0 degrees)
+              
+              return segments.map((segment, index) => {
+                // Calculate midpoint angle for this segment
+                const startAngle = currentAngle;
+                const endAngle = currentAngle + (segment.value / 100) * 2 * Math.PI;
+                const labelAngle = startAngle + (segment.value / 100) * Math.PI; // Midpoint angle
+                
+                // Convert to Cartesian coordinates
+                // Note: CSS conic-gradient starts at 0° (top), so we adjust by -π/2
+                const adjustedAngle = labelAngle - Math.PI / 2;
+                const x = centerX + (radius + offset) * Math.cos(adjustedAngle);
+                const y = centerY + (radius + offset) * Math.sin(adjustedAngle);
+                
+                // Update current angle for next segment
+                currentAngle = endAngle;
+                
+                return (
+                  <div
+                    key={index}
+                    className="absolute w-[38px] h-[38px] bg-white rounded-full border border-[#EEEEEB] flex items-center justify-center"
+                    style={{
+                      left: `${x - 19}px`, // Center the 38px badge
+                      top: `${y - 19}px`,
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.12)'
+                    }}
+                  >
+                    <span className="text-xs font-bold text-[#111111] [font-family:'Manrope',Helvetica] tracking-[-0.36px]">
+                      {segment.percentage}
+                    </span>
+                  </div>
+                );
+              });
+            })()}
             <div className="absolute top-[43px] right-5 flex flex-col gap-5">
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-[#fc814a] rounded-sm" />
+                  <div className="w-3 h-3 bg-[#fc814a] rounded-md" />
                   <span className="text-sm font-medium text-[#84858b] tracking-[-0.28px] [font-family:'Manrope',Helvetica]">
                     Deck Request
                   </span>
@@ -326,7 +375,7 @@ export const DashboardSection = (): JSX.Element => {
               </div>
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-[#05668d] rounded-sm" />
+                  <div className="w-3 h-3 bg-[#05668d] rounded-md" />
                   <span className="text-sm font-medium text-[#84858b] tracking-[-0.28px] [font-family:'Manrope',Helvetica]">
                     Meeting Request
                   </span>
