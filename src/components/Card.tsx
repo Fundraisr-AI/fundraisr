@@ -1,0 +1,125 @@
+import image from "./image.svg";
+import line116 from "./line-116.svg";
+import vector from "./vector.svg";
+import { Button } from "./ui/button";
+
+export const Card = (): JSX.Element => {
+  // Data for the chart bars
+  const chartBars = Array.from({ length: 72 }, (_, index) => index);
+
+  return (
+    <div className="flex w-full items-start gap-10 p-5 relative bg-white rounded-[20px] overflow-hidden border border-solid border-[#eaeaea]">
+      <div className="flex flex-col w-[363px] items-start gap-4 relative">
+        <div className="relative w-[66px] h-16">
+          <div className="absolute top-0 left-0 w-16 h-16 bg-[#e5effa] rounded-xl aspect-[1]" />
+
+          <div className="absolute top-[calc(50.00%_-_24px)] left-[calc(50.00%_-_18px)] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-black text-[32px] tracking-[0] leading-[48px] whitespace-nowrap">
+            👋
+          </div>
+        </div>
+
+        <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
+          <div className="self-stretch mt-[-1.00px] text-[#4f5059] text-sm leading-[19.6px] relative [font-family:'Manrope-SemiBold',Helvetica] font-semibold tracking-[0]">
+            Monday, September 22
+          </div>
+
+          <div className="w-fit text-[#111111] text-[26px] leading-[39px] whitespace-nowrap relative [font-family:'Manrope-SemiBold',Helvetica] font-semibold tracking-[0]">
+            Good evening, Alessandro
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-start gap-4 relative flex-1 grow">
+        <div className="flex items-start justify-between relative self-stretch w-full flex-[0_0_auto]">
+          <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
+            <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
+              <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                Fundraising Target
+              </div>
+            </div>
+
+            <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
+              <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-3xl tracking-[-0.60px] leading-[45px] whitespace-nowrap">
+                $250,000
+              </div>
+
+              <div className="relative w-6 h-6 aspect-[1]">
+                <img
+                  className="absolute w-[78.12%] h-[78.13%] top-[9.37%] left-[12.50%]"
+                  alt="Vector"
+                  src={vector}
+                />
+              </div>
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            className="h-8 px-3 py-2 rounded-lg border-[0.5px] border-solid border-[#d9dadb] hover:bg-gray-50 transition-colors"
+          >
+            <span className="[font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px]">
+              See all
+            </span>
+          </Button>
+        </div>
+
+        <div className="flex items-start gap-4 relative self-stretch w-full flex-[0_0_auto]">
+          <div className="relative flex-1 grow h-[95px]">
+            <div className="absolute top-0 left-px w-[75%] h-[26px] bg-[#888ae8] border border-solid" />
+
+            <img
+              className="absolute top-[26px] left-0 w-0.5 h-[69px]"
+              alt="Line"
+              src={line116}
+            />
+
+            <div className="flex w-[197px] left-[17px] flex-col items-start justify-center gap-0.5 absolute top-[38px]">
+              <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                $187,500
+              </div>
+
+              <div className="inline-flex items-center justify-center gap-1 relative flex-[0_0_auto]">
+                <div className="relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                  Capital Committed
+                </div>
+
+                <div className="inline-flex h-5 items-center justify-center gap-2.5 px-1 py-0.5 relative flex-[0_0_auto] bg-[#b3bdbf29] rounded">
+                  <div className="relative w-fit mt-[-1.50px] mb-[-0.50px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#848986] text-xs text-center tracking-[0] leading-[18px] whitespace-nowrap">
+                    75%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative w-[221px] h-[95px]">
+            <div className="flex w-full items-start gap-[1.5px] absolute top-0 left-0">
+              {chartBars.map((_, index) => (
+                <div
+                  key={index}
+                  className="relative w-[1.5px] h-[26px] bg-[#EBEBEB]"
+                />
+              ))}
+            </div>
+
+            <img
+              className="absolute top-[26px] left-0 w-0.5 h-[69px]"
+              alt="Line"
+              src={image}
+            />
+
+            <div className="inline-flex -left-2 flex-col items-start justify-center gap-0.5 absolute top-[38px]">
+              <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                $62,500
+              </div>
+
+              <div className="relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                Remaining
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

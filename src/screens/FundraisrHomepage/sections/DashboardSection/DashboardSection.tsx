@@ -309,7 +309,7 @@ export const DashboardSection = (): JSX.Element => {
       </header>
 
       {/* Welcome Card */}
-      <Card className="mx-6 relative mt-6 card-elevated bg-gradient-to-br from-primary/5 to-brand-secondary/5">
+      <Card className="mx-6 relative mt-6 card-elevated bg-white">
         <CardContent className="flex items-start gap-10 p-6">
           <div className="flex flex-col w-[363px] items-start gap-4 relative">
             <div className="relative w-[66px] h-16">
@@ -358,11 +358,7 @@ export const DashboardSection = (): JSX.Element => {
             <div className="flex items-start gap-4 relative self-stretch w-full flex-[0_0_auto]">
               <div className="relative w-[460px] h-[95px]">
                 <div className="absolute top-0 left-px w-[460px] h-[26px] bg-[#888ae8]" />
-                <img
-                  className="top-[26px] w-0.5 h-[69px] absolute left-0"
-                  alt="Line"
-                  src="https://c.animaapp.com/mfqjua33FHoyZF/img/line-116.svg"
-                />
+                <div className="absolute top-[26px] left-0 w-0.5 h-[69px] bg-[#888ae8]" />
                 <div className="inline-flex flex-col items-start justify-center gap-0.5 absolute top-[38px] left-3">
                   <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
                     $187,500

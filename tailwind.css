@@ -138,7 +138,6 @@
     transform: translateY(calc(-100% - var(--gap)));
   }
 }
-
 @keyframes sidebar-expand {
   0% {
     width: 80px;
@@ -414,3 +413,4 @@
     }
   }
 }
+

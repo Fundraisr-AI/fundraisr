@@ -415,7 +415,6 @@ export const SharedSidebarNavigation = (): JSX.Element => {
                   onClick={handleLogout}
                   className="flex items-center gap-2 w-full px-3 py-2 text-sm text-[#db5050] hover:bg-red-50 transition-colors"
                 >
-                  <div className="w-4 h-4">🚪</div>
                   <span className="font-manrope-medium">Logout</span>
                 </button>
               </div>
