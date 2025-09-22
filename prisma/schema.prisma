@@ -127,6 +127,8 @@ model Lead {
 
   campaignId      String
   campaign        Campaign    @relation(fields: [campaignId], references: [id])
+
+  messages        MessageHistory[]
 }
 
 enum LeadStatus {
@@ -140,4 +142,22 @@ enum LeadStatus {
   WRONG_PERSON
   VC_MANUAL_APPLICATION
   MEETING_BOOKED
+}
+
+
+model MessageHistory {
+  id        String      @id @default(uuid())
+  from      String
+  to        String  
+  type      String
+  smartLeadsId  String
+  time        DateTime
+  email_body    String    @db.Text
+  subject       String
+  email_seq_number    String
+  open_count      Int
+  click_count     Int
+  // Foreign key to Lead
+  leadId          String
+  lead            Lead        @relation(fields: [leadId], references: [id])
 }
