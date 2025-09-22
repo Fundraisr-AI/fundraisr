@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowUpDownIcon,
   ChevronDownIcon,
@@ -12,19 +12,53 @@ import {
   PlusIcon,
   MessageSquareIcon,
 } from "lucide-react";
-import { Badge } from "../../../../components/ui/badge";
-import { Button } from "../../../../components/ui/button";
-import { Card, CardContent } from "../../../../components/ui/card";
-import { Input } from "../../../../components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "../../../../components/ui/tabs";
+  getLeadMetricsByUserIdAsync,
+  LeadState,
+  selectLead,
+} from "@/features/slices/LeadSlice";
+import { AppDispatch } from "@/store";
 
 export const DealPipelineSection = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("kanban");
+
+  const leads = useSelector(selectLead);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const statusColors: Record<string, string> = {
+    INFORMATION_REQUEST: "#17a34a",
+    NOT_INTERESTED: "#f59e0b",
+    DO_NOT_CONTACT: "#ef4444",
+    default: "#6b7280", // fallback
+  };
+
+  const kanbanFormatColumns = Object.entries(
+    leads.leads.reduce(
+      (acc, lead) => {
+        // create array bucket for each status
+        acc[lead.status] = acc[lead.status] || [];
+        acc[lead.status].push(lead);
+        return acc;
+      },
+      {} as Record<string, typeof leads>
+    )
+  ).map(([status, cards]) => ({
+    title: status,
+    count: cards.length,
+    color: statusColors[status] || statusColors.default,
+    cards, // the actual leads in that status
+  }));
+
+  console.log(kanbanFormatColumns);
+  useEffect(() => {
+    dispatch(getLeadMetricsByUserIdAsync());
+  }, []);
 
   const statsData = [
     {
@@ -534,67 +568,179 @@ export const DealPipelineSection = (): JSX.Element => {
 
       {/* Stats Section */}
       <section className="flex mx-5 gap-5 mt-6">
-        {statsData.map((stat, index) => (
-          <Card key={index} className="flex-1 card-elevated">
-            <CardContent className="flex flex-col h-[162px] justify-between p-4">
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col gap-0.5">
-                  <div className="flex items-center gap-2">
-                    <div className="font-bold text-[#111111] text-[32px] tracking-[-0.64px] leading-[35.2px]">
-                      {stat.value}
-                    </div>
-                  </div>
-                  <div className="text-[#4f5059] text-xs leading-[16.8px]">
-                    {stat.label}
+        <Card className="flex-1 card-elevated">
+          <CardContent className="flex flex-col h-[162px] justify-between p-4">
+            <div className="flex items-center gap-4">
+              <div className="flex flex-col gap-0.5">
+                <div className="flex items-center gap-2">
+                  <div className="font-bold text-[#111111] text-[32px] tracking-[-0.64px] leading-[35.2px]">
+                    {leads.interested}
                   </div>
                 </div>
+                <div className="text-[#4f5059] text-xs leading-[16.8px]">
+                  Interested
+                </div>
+              </div>
 
+              <div
+                className={`inline-flex items-center gap-1 px-1.5 py-1 rounded-full ${
+                  leads.interested > 0 ? "bg-green-50" : "bg-red-50"
+                }`}
+              >
                 <div
-                  className={`inline-flex items-center gap-1 px-1.5 py-1 rounded-full ${
-                    stat.isPositive ? "bg-green-50" : "bg-red-50"
+                  className={`flex items-center justify-center w-3.5 h-3.5 rounded-full ${
+                    leads.interested > 0 ? "bg-green-500" : "bg-red-500"
                   }`}
                 >
-                  <div
-                    className={`flex items-center justify-center w-3.5 h-3.5 rounded-full ${
-                      stat.isPositive ? "bg-green-500" : "bg-red-500"
-                    }`}
-                  >
-                    {stat.isPositive ? (
-                      <TrendingUpIcon className="w-2 h-2 text-white" />
-                    ) : (
-                      <TrendingDownIcon className="w-2 h-2 text-white" />
-                    )}
+                  {leads.interested > 0 ? (
+                    <TrendingUpIcon className="w-2 h-2 text-white" />
+                  ) : (
+                    <TrendingDownIcon className="w-2 h-2 text-white" />
+                  )}
+                </div>
+                <span
+                  className={`text-xs font-semibold ${
+                    leads.interested > 0 ? "text-green-700" : "text-red-700"
+                  }`}
+                >
+                  {""}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-end justify-between">
+              <div className="flex items-center gap-0.5">
+                <span className="font-semibold text-[#111111] text-xs">
+                  {""}
+                </span>
+                <span className="text-[#8d8e93] text-xs">{""}</span>
+              </div>
+              <div className="w-[111px] h-[49px]">
+                <img
+                  className="w-full h-full object-cover"
+                  alt="Chart"
+                  src={""}
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="flex-1 card-elevated">
+          <CardContent className="flex flex-col h-[162px] justify-between p-4">
+            <div className="flex items-center gap-4">
+              <div className="flex flex-col gap-0.5">
+                <div className="flex items-center gap-2">
+                  <div className="font-bold text-[#111111] text-[32px] tracking-[-0.64px] leading-[35.2px]">
+                    {leads.meeting_scheduled}
                   </div>
-                  <span
-                    className={`text-xs font-semibold ${
-                      stat.isPositive ? "text-green-700" : "text-red-700"
-                    }`}
-                  >
-                    {stat.change}
-                  </span>
+                </div>
+                <div className="text-[#4f5059] text-xs leading-[16.8px]">
+                  Meeting Scheduled
                 </div>
               </div>
 
-              <div className="flex items-end justify-between">
-                <div className="flex items-center gap-0.5">
-                  <span className="font-semibold text-[#111111] text-xs">
-                    {stat.lastPeriod}
-                  </span>
-                  <span className="text-[#8d8e93] text-xs">
-                    {stat.lastPeriodLabel}
-                  </span>
+              <div
+                className={`inline-flex items-center gap-1 px-1.5 py-1 rounded-full ${
+                  leads.meeting_scheduled > 0 ? "bg-green-50" : "bg-red-50"
+                }`}
+              >
+                <div
+                  className={`flex items-center justify-center w-3.5 h-3.5 rounded-full ${
+                    leads.meeting_scheduled > 0 ? "bg-green-500" : "bg-red-500"
+                  }`}
+                >
+                  {leads.meeting_scheduled > 0 ? (
+                    <TrendingUpIcon className="w-2 h-2 text-white" />
+                  ) : (
+                    <TrendingDownIcon className="w-2 h-2 text-white" />
+                  )}
                 </div>
-                <div className="w-[111px] h-[49px]">
-                  <img
-                    className="w-full h-full object-cover"
-                    alt="Chart"
-                    src={stat.chartSrc}
-                  />
+                <span
+                  className={`text-xs font-semibold ${
+                    leads.meeting_scheduled > 0
+                      ? "text-green-700"
+                      : "text-red-700"
+                  }`}
+                >
+                  {""}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-end justify-between">
+              <div className="flex items-center gap-0.5">
+                <span className="font-semibold text-[#111111] text-xs">
+                  {""}
+                </span>
+                <span className="text-[#8d8e93] text-xs">{""}</span>
+              </div>
+              <div className="w-[111px] h-[49px]">
+                <img
+                  className="w-full h-full object-cover"
+                  alt="Chart"
+                  src={""}
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="flex-1 card-elevated">
+          <CardContent className="flex flex-col h-[162px] justify-between p-4">
+            <div className="flex items-center gap-4">
+              <div className="flex flex-col gap-0.5">
+                <div className="flex items-center gap-2">
+                  <div className="font-bold text-[#111111] text-[32px] tracking-[-0.64px] leading-[35.2px]">
+                    {leads.interested}
+                  </div>
+                </div>
+                <div className="text-[#4f5059] text-xs leading-[16.8px]">
+                  "Meeting Scheduled"
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        ))}
+
+              <div
+                className={`inline-flex items-center gap-1 px-1.5 py-1 rounded-full ${
+                  leads.interested > 0 ? "bg-green-50" : "bg-red-50"
+                }`}
+              >
+                <div
+                  className={`flex items-center justify-center w-3.5 h-3.5 rounded-full ${
+                    leads.interested > 0 ? "bg-green-500" : "bg-red-500"
+                  }`}
+                >
+                  {leads.interested > 0 ? (
+                    <TrendingUpIcon className="w-2 h-2 text-white" />
+                  ) : (
+                    <TrendingDownIcon className="w-2 h-2 text-white" />
+                  )}
+                </div>
+                <span
+                  className={`text-xs font-semibold ${
+                    leads.interested > 0 ? "text-green-700" : "text-red-700"
+                  }`}
+                >
+                  {""}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-end justify-between">
+              <div className="flex items-center gap-0.5">
+                <span className="font-semibold text-[#111111] text-xs">
+                  {""}
+                </span>
+                <span className="text-[#8d8e93] text-xs">{""}</span>
+              </div>
+              <div className="w-[111px] h-[49px]">
+                <img
+                  className="w-full h-full object-cover"
+                  alt="Chart"
+                  src={""}
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </section>
 
       {/* Main Content Card */}
@@ -635,7 +781,7 @@ export const DealPipelineSection = (): JSX.Element => {
             >
               <TabsContent value="kanban" className="mt-0 h-full">
                 <div className="flex gap-2 h-full overflow-x-auto pb-4 pr-4">
-                  {kanbanColumns.map((column, columnIndex) => (
+                  {kanbanFormatColumns.map((column, columnIndex) => (
                     <div
                       key={columnIndex}
                       className="flex flex-col flex-1 min-w-[200px] max-w-[280px] h-full bg-muted/30 rounded-2xl border border-border p-3"
@@ -673,7 +819,7 @@ export const DealPipelineSection = (): JSX.Element => {
                       </div>
 
                       <div className="flex flex-col gap-3 overflow-y-auto flex-1 min-h-0">
-                        {column.cards.map((card) => (
+                        {column.cards.map((card: LeadState) => (
                           <Card key={card.id} className="p-4 flex-shrink-0">
                             <CardContent className="p-0">
                               <div className="flex items-center justify-between mb-3">
@@ -700,7 +846,7 @@ export const DealPipelineSection = (): JSX.Element => {
                                   {card.company}
                                 </h4>
                                 <p className="text-muted-foreground text-xs">
-                                  {card.contact}
+                                  {card.firstname + card.lastname}
                                 </p>
                               </div>
 
@@ -712,11 +858,11 @@ export const DealPipelineSection = (): JSX.Element => {
                                 </div>
                               )}
 
-                              {card.date && (
+                              {card.createdAt && (
                                 <div className="flex items-center gap-1 mb-3">
                                   <CalendarIcon className="w-3 h-3 text-muted-foreground" />
                                   <span className="text-muted-foreground text-xs">
-                                    {card.date}
+                                    {card.createdAt}
                                   </span>
                                 </div>
                               )}
@@ -726,13 +872,13 @@ export const DealPipelineSection = (): JSX.Element => {
                                   <div className="w-6 h-6 rounded-full overflow-hidden">
                                     <img
                                       src={card.avatar}
-                                      alt={card.contactName}
+                                      alt={card.firstname}
                                       className="w-full h-full object-cover"
                                     />
                                   </div>
                                   <div>
                                     <div className="font-semibold text-foreground text-xs">
-                                      {card.contactName}
+                                      {card.firstname + card.lastname}
                                     </div>
                                     <div className="text-muted-foreground text-xs">
                                       {card.contactRole}

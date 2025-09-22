@@ -32,6 +32,10 @@ const AllAPIRouteMapping = {
       apiPath: "/api/lead",
       method: "GET",
     },
+    getMetrics: {
+      apiPath: "/api/lead/metrics",
+      method: "GET",
+    },
   },
 };
 export const SmartLeadsAPIRouteMapping = {

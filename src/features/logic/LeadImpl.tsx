@@ -16,12 +16,34 @@ export default class LeadImpl implements LeadState {
   createdAt: string = "";
   updatedAt: string = "";
   campaignId: string = "";
+  interested: number = 0;
+  meeting_scheduled: number = 0;
+
+  setLeads(leads: LeadState[]) {
+    this.leads = leads;
+  }
+
+  setMetrics(interested: number, meeting_scheduled: number) {
+    this.interested = interested;
+    this.meeting_scheduled = meeting_scheduled;
+  }
 
   async getAllLeadsByUserId() {
     const axiosInstanceHandler = new axiosInstance();
     const response = await axiosInstanceHandler.makeCall(
       `${AllAPIRouteMapping.leads.getAll.apiPath}`,
       AllAPIRouteMapping.leads.getAll.method
+    );
+    if (response.success) {
+      return response.data;
+    }
+  }
+
+  async getLeadMetricsByUserId() {
+    const axiosInstanceHandler = new axiosInstance();
+    const response = await axiosInstanceHandler.makeCall(
+      `${AllAPIRouteMapping.leads.getMetrics.apiPath}`,
+      AllAPIRouteMapping.leads.getMetrics.method
     );
     if (response.success) {
       return response.data;

@@ -619,7 +619,7 @@ export const DashboardSection = (): JSX.Element => {
                             {campaign.name}
                           </div>
                           <div className="font-normal text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica] text-[#3b4c63]">
-                            {campaign.subtitle || ""}
+                            {""}
                           </div>
                         </div>
                       </div>
