@@ -26,6 +26,10 @@ const AllAPIRouteMapping = {
       apiPath: "/api/campaign",
       method: "GET",
     },
+    getMetrics: {
+      apiPath: "/api/campaign/metrics",
+      method: "GET",
+    },
   },
   leads: {
     getAll: {

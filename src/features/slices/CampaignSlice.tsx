@@ -13,6 +13,12 @@ export interface CampaignState {
   userDetailsId: string;
   loading: boolean;
   campaigns: CampaignState[];
+  totalActiveCampaigns: Number;
+  totalLeads: Number;
+  positiveReplied: Number;
+  meetingsBooked: Number;
+  replyRate: Number;
+  positive: Number;
 }
 
 const initialState: CampaignState = {
@@ -25,6 +31,12 @@ const initialState: CampaignState = {
   userDetailsId: "",
   loading: false,
   campaigns: [],
+  totalActiveCampaigns: 0,
+  totalLeads: 0,
+  positiveReplied: 0,
+  meetingsBooked: 0,
+  replyRate: 0,
+  positive: 0,
 };
 
 const campaignSlice = createSlice({
@@ -57,10 +69,27 @@ const campaignSlice = createSlice({
               ...campaignResponse,
               loading: false, // Default value for the 'loading' property of each CampaignState item
               campaigns: [], // Default value for the 'campaigns' property of each CampaignState item
+              totalActiveCampaigns: 0,
+              totalLeads: 0,
+              positiveReplied: 0,
+              meetingsBooked: 0,
+              replyRate: 0,
+              positive: 0,
             }));
           }
         }
-      );
+      )
+      .addCase(getCampaignMetricsByUserAsync.pending, (state) => {})
+      .addCase(
+        getCampaignMetricsByUserAsync.fulfilled,
+        (state, action: PayloadAction<CampaignState[]>) => {
+          state.loading = false;
+          Object.assign(state, action.payload);
+        }
+      )
+      .addCase(getCampaignMetricsByUserAsync.rejected, (state, action) => {
+        state.loading = false;
+      });
   },
 });
 
@@ -73,6 +102,26 @@ export const getAllCampaignStatusByUserAsync = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getCampaignMetricsByUserAsync = createAsyncThunk(
+  "lead/getCampaignMetricsByUser",
+  async (_, thunkAPI) => {
+    try {
+      // Assuming LeadImpl exists and has a method to fetch leads by campaign ID
+      const campaign = new CampaignImpl();
+      const data = await campaign.getCampaignMetricsByUser();
+      if (data) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue("No data received for leads");
+      }
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(
+        error.message || "An unknown error occurred while fetching leads"
+      );
     }
   }
 );

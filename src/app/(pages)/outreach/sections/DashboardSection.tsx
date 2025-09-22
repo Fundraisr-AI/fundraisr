@@ -1,18 +1,14 @@
+"use client";
 import {
   CalendarIcon,
   ChevronDownIcon,
   FilterIcon,
   SearchIcon,
 } from "lucide-react";
-import { Badge } from "../../../../components/ui/badge";
-import { Button } from "../../../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
-import { Input } from "../../../../components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -20,31 +16,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../../../components/ui/table";
-import { Tabs, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
+} from "@/components/ui/table";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  getCampaignMetricsByUserAsync,
+  selectCampaign,
+} from "@/features/slices/CampaignSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store";
+import { useEffect } from "react";
 
 export const DashboardSection = (): JSX.Element => {
-  const metricCards = [
-    {
-      value: "424",
-      label: "Active Campaigns",
-      gradient:
-        "bg-[linear-gradient(142deg,rgba(1,28,39,1)_0%,rgba(5,102,141,1)_100%)]",
-    },
-    {
-      value: "732",
-      label: "Total Prospects",
-      gradient:
-        "bg-[linear-gradient(36deg,rgba(32,33,81,1)_0%,rgba(137,139,232,1)_100%)]",
-    },
-    {
-      value: "265",
-      label: "Positive Replies",
-      gradient:
-        "bg-[linear-gradient(38deg,rgba(75,24,2,1)_0%,rgba(252,129,74,1)_100%)]",
-    },
-  ];
-
   const chartLabels = [
     "Jan-Feb",
     "Mar-Apr",
@@ -138,6 +120,34 @@ export const DashboardSection = (): JSX.Element => {
       positiveRate: "75%",
       status: "COMPLETED",
       lastSync: "04/09/2025",
+    },
+  ];
+
+  const campaign = useSelector(selectCampaign);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getCampaignMetricsByUserAsync());
+  }, []);
+
+  const metricCards = [
+    {
+      value: campaign?.totalActiveCampaigns,
+      label: "Active Campaigns",
+      gradient:
+        "bg-[linear-gradient(142deg,rgba(1,28,39,1)_0%,rgba(5,102,141,1)_100%)]",
+    },
+    {
+      value: campaign?.totalLeads,
+      label: "Total Prospects",
+      gradient:
+        "bg-[linear-gradient(36deg,rgba(32,33,81,1)_0%,rgba(137,139,232,1)_100%)]",
+    },
+    {
+      value: campaign?.positiveReplied,
+      label: "Positive Replies",
+      gradient:
+        "bg-[linear-gradient(38deg,rgba(75,24,2,1)_0%,rgba(252,129,74,1)_100%)]",
     },
   ];
 
@@ -364,7 +374,7 @@ export const DashboardSection = (): JSX.Element => {
             <div className="flex flex-col gap-3">
               <div className="flex items-end gap-0.5">
                 <span className="text-3xl font-bold text-[#111111] tracking-[-0.60px] [font-family:'Manrope',Helvetica]">
-                  8
+                  {campaign?.totalActiveCampaigns}
                 </span>
                 <span className="text-xs text-[#4f5059] [font-family:'Manrope',Helvetica]">
                   Active Campaigns
@@ -380,7 +390,7 @@ export const DashboardSection = (): JSX.Element => {
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="text-xl font-bold text-[#111111] tracking-[-0.40px] [font-family:'Manrope',Helvetica]">
-                      320
+                      {campaign.totalLeads}
                     </span>
                     <img
                       alt="Badge"
@@ -398,7 +408,7 @@ export const DashboardSection = (): JSX.Element => {
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="text-xl font-bold text-[#111111] tracking-[-0.40px] [font-family:'Manrope',Helvetica]">
-                      11.1%
+                      {campaign.positiveReplied}
                     </span>
                     <img
                       alt="Badge"
@@ -416,7 +426,7 @@ export const DashboardSection = (): JSX.Element => {
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="text-xl font-bold text-[#111111] tracking-[-0.40px] [font-family:'Manrope',Helvetica]">
-                      320
+                      {campaign.meetingsBooked}
                     </span>
                     <img
                       alt="Badge"
@@ -614,7 +624,7 @@ export const DashboardSection = (): JSX.Element => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {campaignData.map((campaign, index) => (
+              {campaign.campaigns.map((campaign, index) => (
                 <TableRow key={index} className="h-[72px] border-[#e9eaec]">
                   <TableCell className="w-[352px]">
                     <div className="flex flex-col gap-0.5">

@@ -55,7 +55,6 @@ export const DealPipelineSection = (): JSX.Element => {
     cards, // the actual leads in that status
   }));
 
-  console.log(kanbanFormatColumns);
   useEffect(() => {
     dispatch(getLeadMetricsByUserIdAsync());
   }, []);
