@@ -1,6 +1,7 @@
 import axiosInstance from "@/lib/axios";
 import { LeadState, LeadStatus } from "../slices/LeadSlice"; // Import Lead interface and LeadStatus enum
 import AllAPIRouteMapping from "@/utils/AllAPIRouteMapping";
+import { LeadFilters } from "@/types";
 
 export default class LeadImpl implements LeadState {
   id: string = "";
@@ -28,8 +29,9 @@ export default class LeadImpl implements LeadState {
     this.meeting_scheduled = meeting_scheduled;
   }
 
-  async getAllLeadsByUserId() {
+  async getAllLeadsByUserId(filters: LeadFilters) {
     const axiosInstanceHandler = new axiosInstance();
+    axiosInstanceHandler.setParams(filters);
     const response = await axiosInstanceHandler.makeCall(
       `${AllAPIRouteMapping.leads.getAll.apiPath}`,
       AllAPIRouteMapping.leads.getAll.method

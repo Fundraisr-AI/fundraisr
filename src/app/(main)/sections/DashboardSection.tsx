@@ -43,9 +43,14 @@ export const DashboardSection = (): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
   const campaigns = useSelector(selectCampaign);
   const leads = useSelector(selectLead);
+
   useEffect(() => {
     dispatch(getAllCampaignStatusByUserAsync());
-    dispatch(getAllLeadsByUserIdAsync());
+    dispatch(
+      getAllLeadsByUserIdAsync({
+        filters: { status: ["INFORMATION_REQUEST", "INTERESTED"], limit: 5 },
+      })
+    );
   }, []);
 
   const remainingBars = Array.from({ length: 72 }, (_, index) => ({

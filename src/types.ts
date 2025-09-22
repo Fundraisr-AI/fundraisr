@@ -8,3 +8,8 @@ export type CampaignMetrics = {
   meetings_booked: string;
   reply_rate: string;
 };
+
+export type LeadFilters = {
+  status?: string[];
+  limit?: Number;
+};

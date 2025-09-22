@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import LeadImpl from "../logic/LeadImpl"; // Assuming a LeadImpl class exists for API calls
 import { RootState } from "@/store";
+import { LeadFilters } from "@/types";
 
 // Define LeadStatus enum based on prisma/schema.prisma context
 export enum LeadStatus {
@@ -81,11 +82,11 @@ const leadSlice = createSlice({
 
 export const getAllLeadsByUserIdAsync = createAsyncThunk(
   "lead/getAllLeadsByUserId",
-  async (_, thunkAPI) => {
+  async (params: { filters: LeadFilters }, thunkAPI) => {
     try {
       // Assuming LeadImpl exists and has a method to fetch leads by campaign ID
       const leadImpl = new LeadImpl();
-      const data = await leadImpl.getAllLeadsByUserId();
+      const data = await leadImpl.getAllLeadsByUserId(params.filters);
       if (data) {
         return data;
       } else {

@@ -1,8 +1,9 @@
 import prisma from "@/lib/prisma";
+import { LeadFilters } from "@/types";
 export default class LeadDao {
-  async getAllLeadsByUserId(userId: string) {
+  async getAllLeadsByUserId(userId: string, filters?: LeadFilters) {
     try {
-      const leads = await prisma.lead.findMany({
+      const finalQuery: any = {
         where: {
           campaign: {
             userDetails: {
@@ -13,7 +14,27 @@ export default class LeadDao {
         orderBy: {
           updatedAt: "desc", // most recently updated first
         },
-      });
+      };
+
+      if (filters) {
+        if (filters.status?.length) {
+          finalQuery.where.status = { in: filters.status };
+        }
+
+        if (filters.limit) {
+          finalQuery.take = filters.limit;
+        }
+
+        // Example: add more filters easily
+        // if (filters.isReplied !== undefined) {
+        //   filterJson.isReplied = filters.isReplied;
+        // }
+        // if (filters.isBounced !== undefined) {
+        //   filterJson.isBounced = filters.isBounced;
+        // }
+      }
+
+      const leads = await prisma.lead.findMany(finalQuery);
 
       return leads;
     } catch (e) {
