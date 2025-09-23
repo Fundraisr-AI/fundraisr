@@ -638,13 +638,13 @@ export const DashboardSection = (): JSX.Element => {
                           <div className="absolute w-[70.83%] h-[45.83%] top-[47.92%] left-[14.58%] rounded-[5.67px/3.67px] border border-[#4f5059]" />
                         </div>
                         <span className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
-                          {campaign.owner}
+                          {""}
                         </span>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
-                    {campaign.sent}
+                    {""}
                   </TableCell>
                   <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
                     {campaign.replyRate}
@@ -653,7 +653,7 @@ export const DashboardSection = (): JSX.Element => {
                     {campaign.positive}
                   </TableCell>
                   <TableCell className="text-sm text-[#1b8441] tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
-                    {campaign.positiveRate}
+                    {""}
                   </TableCell>
                   <TableCell>
                     <Badge className="bg-[#e1ebfd] text-[#1b3e84] hover:bg-[#e1ebfd] rounded-full px-3 py-1 text-sm font-medium tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
@@ -661,7 +661,7 @@ export const DashboardSection = (): JSX.Element => {
                     </Badge>
                   </TableCell>
                   <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
-                    {campaign.lastSync}
+                    {""}
                   </TableCell>
                 </TableRow>
               ))}
