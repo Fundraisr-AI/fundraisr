@@ -949,13 +949,7 @@ export const DashboardSection = (): JSX.Element => {
                       )}`}
                     >
                       <div
-                        className={`w-1.5 h-1.5 rounded-[80px] ${
-                          lead.status === "closed"
-                            ? "bg-[#1b8441]"
-                            : lead.status === "pending"
-                              ? "bg-[#c2c8d0]"
-                              : "bg-[#d1a218]"
-                        }`}
+                        className={`w-1.5 h-1.5 rounded-[80px] ${"bg-[#d1a218]"}`}
                       />
                       <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
                         {lead.status}
