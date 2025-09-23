@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
 
 const getFileTypeIcon = (fileType: string) => {
   switch (fileType?.toLowerCase()) {
@@ -425,7 +426,9 @@ export const DealRoomSection = (): JSX.Element => {
 
             {isLoading ? (
               <div className="flex items-center justify-center py-8">
-                <div className="text-[#4f5059]">Loading documents...</div>
+                <div className="text-[#4f5059]">
+                  <Spinner variant="circle" key="circle" />
+                </div>
               </div>
             ) : documents.length === 0 ? (
               <div className="flex items-center justify-center py-8">
