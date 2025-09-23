@@ -1,5 +1,5 @@
 import { DashboardSection } from "./sections/DashboardSection";
-import { NavigationSection } from "./sections/NavigationSection";
+import { NavigationSection } from "@/components/sidebar/NavigationSection";
 
 export default function HomePage() {
   return (

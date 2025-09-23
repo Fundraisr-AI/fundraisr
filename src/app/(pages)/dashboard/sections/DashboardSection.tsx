@@ -79,7 +79,6 @@ export const DashboardSection = (): JSX.Element => {
     },
     {}
   );
-  console.log(totalsByInvestor);
 
   const total = Object.values(totalsByInvestor).reduce((a, b) => a + b, 0);
   const marketInsightsData = Object.entries(totalsByInvestor).map(
@@ -470,7 +469,7 @@ export const DashboardSection = (): JSX.Element => {
                       <TableCell className="w-[140px] p-4 border-r border-[#e9eaec]">
                         <div className="flex items-center gap-2">
                           <span className="text-lg">
-                            {getGeographyFlag(campaign.geography)}
+                            {getGeographyFlag(campaign.geography as string)}
                           </span>
                           <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
                             {campaign.geography}
