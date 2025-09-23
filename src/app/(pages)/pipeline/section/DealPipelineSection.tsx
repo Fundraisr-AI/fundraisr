@@ -51,13 +51,15 @@ export const DealPipelineSection = (): JSX.Element => {
 
       if (lead.status === "MEETING_BOOKED") {
         columnKey = "Meeting Schedule";
-      } else if (lead.status === "NO_SHOW") {
-        columnKey = "No Show";
-      } else if (lead.status === "DATAROOM_GRANTED") {
-        columnKey = "Dataroom Granted";
       } else {
         columnKey = "Prospect";
       }
+
+      // else if (lead.status === "NO_SHOW") {
+      //   columnKey = "No Show";
+      // } else if (lead.status === "DATAROOM_GRANTED") {
+      //   columnKey = "Dataroom Granted";
+      // }
 
       acc[columnKey].push(lead);
       return acc;
