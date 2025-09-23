@@ -5,16 +5,28 @@ export interface UserState {
   id: string;
   name: string;
   email: string;
-  tokens: number | undefined;
   loading: boolean;
+  emailVerified: boolean;
+  password?: string;
+  role?: string;
+  image?: string;
+  plan: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const initialState: UserState = {
   id: "",
   name: "",
   email: "",
-  tokens: undefined,
   loading: false,
+  emailVerified: false,
+  password: "",
+  role: "",
+  image: "",
+  plan: "",
+  createdAt: "",
+  updatedAt: "",
 };
 
 const userSlice = createSlice({

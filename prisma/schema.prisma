@@ -120,6 +120,7 @@ model Lead {
   companyName     String?
   phoneNumber     String?
   campaign        Campaign         @relation(fields: [campaignId], references: [id])
+  capitalCommitted  String?
   messages        MessageHistory[]
 }
 

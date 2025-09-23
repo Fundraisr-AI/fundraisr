@@ -3,16 +3,16 @@ import { CampaignMetrics } from "@/types";
 export default class CampaignDao {
   async getAllCampaignsByUserId(userId: string) {
     try {
-      const campaigns = await prisma.campaign.findMany({
-        where: {
-          userDetails: {
-            user: {
-              id: userId,
+      const campaigns = await prisma.user.findUnique({
+        where: { id: userId },
+        include: {
+          details: {
+            include: {
+              campaigns: {
+                orderBy: { updatedAt: "desc" },
+              },
             },
           },
-        },
-        orderBy: {
-          updatedAt: "desc", // most recently updated first
         },
       });
 

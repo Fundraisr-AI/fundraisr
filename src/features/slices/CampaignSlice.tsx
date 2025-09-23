@@ -5,6 +5,7 @@ import {
   GetAllCampaignStatusByUserResponse,
   GetCampaignInvestorTypeDistributionMetricsResponse,
 } from "@/response";
+import { UserResponse } from "@/dbtype";
 
 export interface CampaignState {
   id: string;
@@ -26,6 +27,7 @@ export interface CampaignState {
   leadList: String;
   investor: String;
   copy: String;
+  user?: UserResponse;
 }
 
 const initialState: CampaignState = {
@@ -71,23 +73,8 @@ const campaignSlice = createSlice({
       })
       .addCase(
         getAllCampaignStatusByUserAsync.fulfilled,
-        (
-          state,
-          action: PayloadAction<GetAllCampaignStatusByUserResponse[]>
-        ) => {
-          if (action.payload.length > 0) {
-            state.campaigns = action.payload.map((campaignResponse) => ({
-              ...campaignResponse,
-              loading: false, // Default value for the 'loading' property of each CampaignState item
-              campaigns: [], // Default value for the 'campaigns' property of each CampaignState item
-              totalActiveCampaigns: 0,
-              totalLeads: 0,
-              positiveReplied: 0,
-              meetingsBooked: 0,
-              replyRate: 0,
-              positive: 0,
-            }));
-          }
+        (state, action: PayloadAction<CampaignState>) => {
+          Object.assign(state, action.payload);
         }
       )
       .addCase(getCampaignMetricsByUserAsync.pending, (state) => {})

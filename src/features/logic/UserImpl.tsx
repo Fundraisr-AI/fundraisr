@@ -1,6 +1,8 @@
+import { UserDetails, UserResponse } from "@/dbtype";
 import stringUtils from "@/utils/stringUtils";
+import { UserState } from "../slices/UserSlice";
 
-export default class UserImpl {
+export default class UserImpl implements UserState {
   id: string = "";
   name: string = "";
   email: string = "";
@@ -8,6 +10,11 @@ export default class UserImpl {
   password?: string;
   role?: string;
   image?: string;
+  loading: boolean = false;
+  details?: UserDetails;
+  plan: string = "";
+  createdAt: string = "";
+  updatedAt: string = "";
 
   getId() {
     return this.id;
@@ -64,6 +71,36 @@ export default class UserImpl {
 
     if (!stringUtils.isUndefinedEmptyorNull(data.image)) {
       this.image = data.image;
+    }
+  }
+
+  initFromDB(data: UserResponse) {
+    if (data.id) {
+      this.id = data.id;
+    }
+
+    if (data.name) {
+      this.name = data.name;
+    }
+
+    if (data.email) {
+      this.email = data.email;
+    }
+
+    if (data.emailVerified) {
+      this.emailVerified = data.emailVerified;
+    }
+
+    if (data.image) {
+      this.image = data.image;
+    }
+
+    if (data.role) {
+      this.role = data.role;
+    }
+
+    if (data.details) {
+      this.details = data.details;
     }
   }
 

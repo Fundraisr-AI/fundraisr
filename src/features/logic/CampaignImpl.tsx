@@ -1,6 +1,10 @@
 import axiosInstance from "@/lib/axios";
 import { CampaignState } from "../slices/CampaignSlice";
 import AllAPIRouteMapping from "@/utils/AllAPIRouteMapping";
+import { Campaign, UserResponse } from "@/dbtype";
+import { UserDetailsState } from "../slices/UserDetailsSlice";
+import UserDetailsImpl from "./UserDetailsImpl";
+import UserImpl from "./UserImpl";
 
 export default class CampaignImpl implements CampaignState {
   id: string = "";
@@ -22,6 +26,7 @@ export default class CampaignImpl implements CampaignState {
   leadList: string = "";
   investor: string = "";
   copy: string = "";
+  user?: UserResponse;
 
   setId(id: string) {
     this.id = id;
@@ -45,6 +50,42 @@ export default class CampaignImpl implements CampaignState {
 
   setCampaigns(campaigns: CampaignState[]) {
     this.campaigns = campaigns;
+  }
+
+  initFromPrismaDB(data: UserResponse) {
+    if (data) {
+      const user = new UserImpl();
+      user.initFromDB(data);
+      this.user = user;
+    }
+
+    if (data?.details?.campaigns) {
+      this.campaigns = data.details.campaigns.map(
+        (c: Campaign): CampaignState => ({
+          id: c.id,
+          name: c.name,
+          status: c.status ?? "",
+          createdAt: c.createdAt,
+          updatedAt: c.updatedAt,
+          smartLeadsId: c.smartLeadsId,
+          userDetailsId: c.userDetailsId,
+          copy: c.copy ?? "",
+          geography: c.geography ?? "",
+          leadList: c.leadList ?? "",
+          investor: c.investor ?? "",
+
+          // Fields that aren’t present in the DB response
+          loading: false,
+          campaigns: [], // nested campaigns if you need them later
+          totalActiveCampaigns: 0,
+          totalLeads: 0,
+          positiveReplied: 0,
+          meetingsBooked: 0,
+          replyRate: 0,
+          positive: 0,
+        })
+      );
+    }
   }
 
   async getAllCampaignStatusByUser() {
@@ -79,4 +120,11 @@ export default class CampaignImpl implements CampaignState {
       return response.data;
     }
   }
+}
+function campaign(
+  value: Campaign,
+  index: number,
+  array: Campaign[]
+): CampaignState {
+  throw new Error("Function not implemented.");
 }

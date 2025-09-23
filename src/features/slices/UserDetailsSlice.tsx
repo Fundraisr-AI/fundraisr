@@ -5,4 +5,6 @@ export interface UserDetailsState {
   createdAt: string;
   updatedAt: string;
   loading: boolean;
+  fundraisingTarget: number;
+  capitalCommitted: number;
 }

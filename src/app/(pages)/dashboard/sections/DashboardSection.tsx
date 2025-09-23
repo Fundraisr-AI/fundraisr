@@ -368,10 +368,19 @@ export const DashboardSection = (): JSX.Element => {
 
             <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
               <div className="mt-[-1.00px] font-semibold leading-[19.6px] relative self-stretch [font-family:'Manrope',Helvetica] text-[#4f5059] text-sm tracking-[0]">
-                Monday, September 22
+                {new Date().toLocaleDateString("en-US", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric",
+                })}
               </div>
               <div className="relative w-fit [font-family:'Manrope',Helvetica] font-semibold text-[#111111] text-[26px] tracking-[0] leading-[39px] whitespace-nowrap">
-                Good evening, Alessandro
+                {(() => {
+                  const currentHour = new Date().getHours();
+                  const greeting =
+                    currentHour < 12 ? "Good morning" : "Good evening";
+                  return `${greeting}, ${campaigns.user?.name}`;
+                })()}
               </div>
             </div>
           </div>
@@ -386,7 +395,7 @@ export const DashboardSection = (): JSX.Element => {
                 </div>
                 <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
                   <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-3xl tracking-[-0.60px] leading-[45px] whitespace-nowrap">
-                    $250,000
+                    ${campaigns.user?.details?.fundraisingTarget}
                   </div>
                   <EditIcon className="relative w-6 h-6 text-[#4f5059]" />
                 </div>
@@ -412,14 +421,18 @@ export const DashboardSection = (): JSX.Element => {
                 />
                 <div className="inline-flex flex-col items-start justify-center gap-0.5 absolute top-[38px] left-3">
                   <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    $187,500
+                    ${campaigns?.user?.details?.capitalCommitted}
                   </div>
                   <div className="inline-flex items-center justify-center gap-1 relative flex-[0_0_auto]">
                     <div className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
                       Capital Committed
                     </div>
                     <Badge className="h-5 px-1 py-0.5 bg-[#b3bdbf29] text-[#848986] font-semibold text-xs">
-                      75%
+                      {((Number(campaigns.user?.details?.fundraisingTarget) -
+                        Number(campaigns.user?.details?.capitalCommitted)) /
+                        Number(campaigns.user?.details?.fundraisingTarget)) *
+                        100}
+                      %
                     </Badge>
                   </div>
                 </div>
@@ -441,7 +454,9 @@ export const DashboardSection = (): JSX.Element => {
                 />
                 <div className="inline-flex flex-col items-start justify-center gap-0.5 absolute top-[38px] left-3">
                   <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    $62,500
+                    $
+                    {Number(campaigns.user?.details?.fundraisingTarget) -
+                      Number(campaigns.user?.details?.capitalCommitted)}
                   </div>
                   <div className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
                     Remaining
