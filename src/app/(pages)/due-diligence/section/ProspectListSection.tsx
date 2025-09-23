@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import {
   ArrowUpDownIcon,
   CalendarIcon,
@@ -112,11 +113,14 @@ const prospects = [
 export const ProspectListSection = (): JSX.Element => {
   const leads = useSelector(selectLead);
   const dispatch = useDispatch<AppDispatch>();
-  dispatch(
-    getAllLeadsByUserIdAsync({
-      filters: { status: ["MEETING_BOOKED"] },
-    })
-  );
+
+  useEffect(() => {
+    dispatch(
+      getAllLeadsByUserIdAsync({
+        filters: { status: ["MEETING_BOOKED"] },
+      })
+    );
+  }, []);
 
   return (
     <section className="flex-1 flex flex-col bg-white rounded-[20px_0px_0px_0px] overflow-hidden border border-solid border-[#eaeaea]">
