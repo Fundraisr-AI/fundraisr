@@ -12,12 +12,12 @@ export default class CampaignImpl implements CampaignState {
   userDetailsId: string = "";
   loading: boolean = false;
   campaigns: CampaignState[] = [];
-  totalActiveCampaigns: Number = 0;
-  totalLeads: Number = 0;
-  positiveReplied: Number = 0;
-  meetingsBooked: Number = 0;
-  replyRate: Number = 0;
-  positive: Number = 0;
+  totalActiveCampaigns: number = 0;
+  totalLeads: number = 0;
+  positiveReplied: number = 0;
+  meetingsBooked: number = 0;
+  replyRate: number = 0;
+  positive: number = 0;
   geography: string = "";
   leadList: string = "";
   investor: string = "";
@@ -32,10 +32,10 @@ export default class CampaignImpl implements CampaignState {
   }
 
   setMetrics(
-    totalActiveCampaigns: Number,
-    totalLeads: Number,
-    positiveReplied: Number,
-    meetingsBooked: Number
+    totalActiveCampaigns: number,
+    totalLeads: number,
+    positiveReplied: number,
+    meetingsBooked: number
   ) {
     this.totalActiveCampaigns = totalActiveCampaigns;
     this.totalLeads = totalLeads;
