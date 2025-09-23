@@ -108,7 +108,7 @@ export const FundraisingAgentSection = (): JSX.Element => {
         </CardContent>
       </Card>
 
-      <Card className="flex mx-[19px] h-[177px] relative mt-[22px] rounded-[20px] overflow-hidden border border-solid border-[#dbdbdb]">
+      <Card className="flex mx-[19px] h-[177px] relative mt-5 rounded-[20px] overflow-hidden border border-solid border-[#dbdbdb]">
         <CardContent className="flex-col items-start gap-4 p-4 flex">
           <div className="flex items-center gap-3 relative self-stretch w-full flex-[0_0_auto]">
             <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">

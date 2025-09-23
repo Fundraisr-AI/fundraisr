@@ -2,12 +2,9 @@ import {
   ArrowUpDownIcon,
   CalendarIcon,
   FilterIcon,
-  MessageSquareIcon,
   MoreHorizontalIcon,
-  PlusIcon,
   SearchIcon,
 } from "lucide-react";
-import React from "react";
 import {
   Avatar,
   AvatarFallback,
@@ -146,7 +143,7 @@ export const PipelineSection = (): JSX.Element => {
             </div>
           </div>
 
-          <Button className="inline-flex h-10 items-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-[#09215e] rounded-lg border-[0.5px] border-solid border-[#fbfbfb] h-auto">
+          <Button className="inline-flex h-10 items-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-[#09215e] rounded-lg border-[0.5px] border-solid border-[#fbfbfb]">
             <span className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#fbfbfb] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
               Add Prosprect
             </span>
@@ -245,7 +242,7 @@ export const PipelineSection = (): JSX.Element => {
                 </div>
               </div>
 
-              <Button className="inline-flex h-10 items-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-[#09215e] rounded-lg border-[0.5px] border-solid border-[#fbfbfb] h-auto">
+              <Button className="inline-flex h-10 items-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-[#09215e] rounded-lg border-[0.5px] border-solid border-[#fbfbfb]">
                 <img
                   className="relative w-[10.5px] h-[10.5px]"
                   alt="Add icon"
@@ -294,7 +291,7 @@ export const PipelineSection = (): JSX.Element => {
             <div className="inline-flex gap-3 flex-[0_0_auto] items-center relative">
               <Button
                 variant="outline"
-                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb] h-auto"
+                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
               >
                 <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                   <ArrowUpDownIcon className="relative w-4 h-4" />
@@ -311,7 +308,7 @@ export const PipelineSection = (): JSX.Element => {
 
               <Button
                 variant="outline"
-                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb] h-auto"
+                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
               >
                 <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                   <FilterIcon className="relative w-4 h-4" />
@@ -328,7 +325,7 @@ export const PipelineSection = (): JSX.Element => {
 
               <Button
                 variant="outline"
-                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb] h-auto"
+                className="inline-flex h-10 items-center gap-3 px-3 py-2 relative flex-[0_0_auto] rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
               >
                 <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                   <CalendarIcon className="relative w-4 h-4" />
