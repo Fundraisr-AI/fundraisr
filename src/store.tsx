@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import UserReducer from "@/features/slices/UserSlice";
 import CampaignReducer from "@/features/slices/CampaignSlice";
 import LeadReducer from "@/features/slices/LeadSlice";
+import DocumentReducer from "@/features/slices/documentSlice";
 
 export const store = configureStore({
   reducer: {
     user: UserReducer,
     campaign: CampaignReducer,
     lead: LeadReducer,
+    documents: DocumentReducer,
   },
 });
 

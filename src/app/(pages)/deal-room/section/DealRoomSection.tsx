@@ -8,7 +8,13 @@ import {
   SearchIcon,
   UploadIcon,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "@/store";
+import {
+  fetchDocuments,
+  uploadDocument,
+} from "@/features/slices/documentSlice";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,108 +26,106 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const filesData = [
-  {
-    id: 1,
-    name: "Client_Onboarding_Checklist.xls",
-    size: "45 KB",
-    dateUploaded: "Sep 5, 2025",
-    shared: "3 People",
-    uploadedBy: {
-      name: "John Alessandro",
-      email: "john@fundraiser.com",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/profile-image.png",
-    },
-    fileType: "excel",
-  },
-  {
-    id: 2,
-    name: "MSA_Acme_Corp_Signed.pdf",
-    size: "850 KB",
-    dateUploaded: "Sep 15, 2025",
-    shared: "Private",
-    uploadedBy: {
-      name: "John Alessandro",
-      email: "john@fundraiser.com",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/profile-image.png",
-    },
-    fileType: "pdf",
-  },
-  {
-    id: 3,
-    name: "New_Logo_Final_Transparent.png",
-    size: "312 KB",
-    dateUploaded: "Sep 12, 2025",
-    shared: "2 People",
-    uploadedBy: {
-      name: "Lev Valetskiy",
-      email: "Lev@fundraiser.com",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/profile-image.png",
-    },
-    fileType: "image",
-  },
-  {
-    id: 4,
-    name: "August_2025_Performance_Report.xls",
-    size: "2.5 MB",
-    dateUploaded: "Sep 10, 2025",
-    shared: "Private",
-    uploadedBy: {
-      name: "John Alessandro",
-      email: "john@fundraiser.com",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/profile-image.png",
-    },
-    fileType: "excel",
-  },
-  {
-    id: 5,
-    name: "Project_Helios_Timeline.png",
-    size: "1.8 MB",
-    dateUploaded: "Sep 12, 2025",
-    shared: "4 People",
-    uploadedBy: {
-      name: "Sarah Chen",
-      email: "sarah.chen@a16z.com",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/profile-image.png",
-    },
-    fileType: "image",
-  },
-];
-
 const getFileTypeIcon = (fileType: string) => {
-  switch (fileType) {
-    case "excel":
+  switch (fileType?.toLowerCase()) {
+    case "xlsx":
+    case "xls":
+    case "csv":
       return "📊";
     case "pdf":
       return "📄";
-    case "image":
+    case "png":
+    case "jpg":
+    case "jpeg":
+    case "gif":
+    case "svg":
+    case "webp":
       return "🖼️";
+    case "doc":
+    case "docx":
+      return "📝";
+    case "txt":
+      return "📄";
+    case "zip":
+    case "rar":
+    case "7z":
+      return "📦";
+    case "mp4":
+    case "avi":
+    case "mov":
+      return "🎥";
+    case "mp3":
+    case "wav":
+    case "flac":
+      return "🎵";
     default:
       return "📄";
   }
 };
 
 const getFileTypeColor = (fileType: string) => {
-  switch (fileType) {
-    case "excel":
+  switch (fileType?.toLowerCase()) {
+    case "xlsx":
+    case "xls":
+    case "csv":
       return "bg-[#17a34a29] text-[#17a34a]";
     case "pdf":
       return "bg-[#5b21b629] text-[#5b21b6]";
-    case "image":
+    case "png":
+    case "jpg":
+    case "jpeg":
+    case "gif":
+    case "svg":
+    case "webp":
       return "bg-[#f59e0b29] text-[#f59e0b]";
+    case "doc":
+    case "docx":
+      return "bg-[#2563eb29] text-[#2563eb]";
+    case "txt":
+      return "bg-gray-100 text-gray-600";
+    case "zip":
+    case "rar":
+    case "7z":
+      return "bg-[#7c3aed29] text-[#7c3aed]";
+    case "mp4":
+    case "avi":
+    case "mov":
+      return "bg-[#dc262629] text-[#dc2626]";
+    case "mp3":
+    case "wav":
+    case "flac":
+      return "bg-[#059e6729] text-[#059669]";
     default:
       return "bg-gray-100 text-gray-600";
   }
 };
 
 export const DealRoomSection = (): JSX.Element => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { documents, isLoading, isUploading, error } = useSelector(
+    (state: RootState) => state.documents
+  );
+
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("all");
+
+  useEffect(() => {
+    dispatch(fetchDocuments());
+  }, [dispatch]);
+
+  const uploadFile = async (file: File) => {
+    try {
+      await dispatch(uploadDocument(file)).unwrap();
+    } catch (error) {
+      console.error("Upload error:", error);
+      alert("Failed to upload file. Please try again.");
+    }
+  };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
-      console.log("Files selected:", files);
+      Array.from(files).forEach(uploadFile);
     }
   };
 
@@ -133,7 +137,7 @@ export const DealRoomSection = (): JSX.Element => {
     event.preventDefault();
     const files = event.dataTransfer.files;
     if (files) {
-      console.log("Files dropped:", files);
+      Array.from(files).forEach(uploadFile);
     }
   };
 
@@ -181,14 +185,20 @@ export const DealRoomSection = (): JSX.Element => {
           </div>
 
           <div
-            className="flex flex-col items-center gap-6 px-8 py-12 relative self-stretch w-full flex-[0_0_auto] bg-[#fbfbfb] rounded-2xl overflow-hidden border border-dashed border-[#4f5059] cursor-pointer hover:bg-gray-50 transition-colors"
+            className={`flex flex-col items-center gap-6 px-8 py-12 relative self-stretch w-full flex-[0_0_auto] bg-[#fbfbfb] rounded-2xl overflow-hidden border border-dashed border-[#4f5059] transition-colors ${
+              isUploading
+                ? "cursor-not-allowed opacity-50"
+                : "cursor-pointer hover:bg-gray-50"
+            }`}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
-            onClick={() => document.getElementById("file-upload")?.click()}
+            onClick={() =>
+              !isUploading && document.getElementById("file-upload")?.click()
+            }
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
+              if (!isUploading && (e.key === "Enter" || e.key === " ")) {
                 document.getElementById("file-upload")?.click();
               }
             }}
@@ -199,7 +209,9 @@ export const DealRoomSection = (): JSX.Element => {
 
               <div className="flex flex-col items-center gap-2 relative self-stretch w-full flex-[0_0_auto]">
                 <p className="relative self-stretch mt-[-1.00px] [font-family:'Manrope',Helvetica] font-semibold text-[#111111] text-base text-center tracking-[-0.32px] leading-6">
-                  Drop File Here or Click To Upload
+                  {isUploading
+                    ? "Uploading..."
+                    : "Drop File Here or Click To Upload"}
                 </p>
 
                 <p className="w-fit whitespace-nowrap relative [font-family:'Manrope',Helvetica] font-normal text-[#4f5059] text-sm tracking-[0] leading-[21px]">
@@ -210,15 +222,18 @@ export const DealRoomSection = (): JSX.Element => {
 
             <Button
               type="button"
-              className="inline-flex h-10 items-center justify-center gap-2 px-3 py-2 relative bg-[#09215e] rounded-lg hover:bg-[#0a1a4a] transition-colors"
+              disabled={isUploading}
+              className="inline-flex h-10 items-center justify-center gap-2 px-3 py-2 relative bg-[#09215e] rounded-lg hover:bg-[#0a1a4a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={(e) => {
                 e.stopPropagation();
-                document.getElementById("file-upload")?.click();
+                if (!isUploading) {
+                  document.getElementById("file-upload")?.click();
+                }
               }}
             >
               <UploadIcon className="w-[18px] h-[18px] text-white" />
               <span className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-white text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-                Browse Files
+                {isUploading ? "Uploading..." : "Browse Files"}
               </span>
             </Button>
 
@@ -226,6 +241,7 @@ export const DealRoomSection = (): JSX.Element => {
               id="file-upload"
               type="file"
               multiple
+              disabled={isUploading}
               onChange={handleFileUpload}
               className="hidden"
               accept="*/*"
@@ -407,106 +423,116 @@ export const DealRoomSection = (): JSX.Element => {
               <div className="w-[59px] border border-solid border-[#d0d5dd] relative self-stretch" />
             </div>
 
-            {filesData.map((file) => (
-              <div
-                key={file.id}
-                className="flex h-[72px] items-center relative self-stretch w-full hover:bg-gray-50 transition-colors"
-              >
-                <div className="relative self-stretch w-[57.5px] flex items-center justify-center">
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                    aria-label={`Select ${file.name}`}
-                  />
-                </div>
-
-                <div className="flex items-center gap-3 px-4 py-0 relative flex-1 self-stretch grow border border-solid border-[#e9eaec]">
-                  <div
-                    className={`flex w-10 h-10 items-center justify-center gap-2.5 px-1.5 py-1 relative rounded-[100px] overflow-hidden text-xl ${getFileTypeColor(file.fileType)}`}
-                  >
-                    {getFileTypeIcon(file.fileType)}
-                  </div>
-
-                  <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
-                    <div className="relative flex items-center justify-center w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-semibold text-[#041824] text-base tracking-[0] leading-5 whitespace-nowrap">
-                      {file.name}
-                    </div>
-
-                    <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
-                      <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] whitespace-nowrap">
-                        {file.size}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex w-[137px] items-center gap-2.5 px-4 py-2.5 relative self-stretch border border-solid border-[#e9eaec]">
-                  <div className="[font-family:'Manrope',Helvetica] font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] relative w-fit whitespace-nowrap">
-                    {file.size}
-                  </div>
-                </div>
-
-                <div className="flex w-[137px] items-center gap-2.5 px-4 py-2.5 relative self-stretch border border-solid border-[#e9eaec]">
-                  <div className="[font-family:'Manrope',Helvetica] font-normal text-[#777777] text-sm tracking-[-0.56px] leading-[19.6px] relative w-fit whitespace-nowrap">
-                    {file.dateUploaded}
-                  </div>
-                </div>
-
-                <div className="flex w-[137px] items-center gap-2.5 px-4 py-2.5 relative self-stretch border border-solid border-[#e9eaec]">
-                  <div className="[font-family:'Manrope',Helvetica] font-normal text-[#777777] text-sm tracking-[-0.56px] leading-[19.6px] relative w-fit whitespace-nowrap">
-                    {file.shared}
-                  </div>
-                </div>
-
-                <div className="flex w-[238px] items-center gap-3 px-4 py-0 relative self-stretch border border-solid border-[#e9eaec]">
-                  <Avatar className="w-10 h-10">
-                    <AvatarImage
-                      src={file.uploadedBy.avatar}
-                      alt={`${file.uploadedBy.name} profile`}
-                      className="object-cover"
-                    />
-                    <AvatarFallback>
-                      {file.uploadedBy.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-
-                  <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
-                    <div className="relative flex items-center justify-center w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-medium text-[#111111] text-sm tracking-[0] leading-[21px] whitespace-nowrap">
-                      {file.uploadedBy.name}
-                    </div>
-
-                    <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
-                      <div className="mt-[-1.00px] [font-family:'Manrope',Helvetica] font-medium text-[#777777] text-xs tracking-[0] leading-[18px] relative w-fit whitespace-nowrap">
-                        {file.uploadedBy.email}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="w-[57.5px] relative self-stretch flex items-center justify-center">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="p-0 h-auto w-auto"
-                      >
-                        <MoreHorizontalIcon className="w-[18px] h-[18px] text-[#4f5059]" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <DropdownMenuItem>Download</DropdownMenuItem>
-                      <DropdownMenuItem>Share</DropdownMenuItem>
-                      <DropdownMenuItem>Rename</DropdownMenuItem>
-                      <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
+            {isLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="text-[#4f5059]">Loading documents...</div>
               </div>
-            ))}
+            ) : documents.length === 0 ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="text-[#4f5059]">No documents uploaded yet.</div>
+              </div>
+            ) : (
+              documents.map((file) => (
+                <div
+                  key={file.id}
+                  className="flex h-[72px] items-center relative self-stretch w-full hover:bg-gray-50 transition-colors"
+                >
+                  <div className="relative self-stretch w-[57.5px] flex items-center justify-center">
+                    <input
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                      aria-label={`Select ${file?.name}`}
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-3 px-4 py-0 relative flex-1 self-stretch grow border border-solid border-[#e9eaec]">
+                    <div
+                      className={`flex w-10 h-10 items-center justify-center gap-2.5 px-1.5 py-1 relative rounded-[100px] overflow-hidden text-xl ${getFileTypeColor(file?.fileType)}`}
+                    >
+                      {getFileTypeIcon(file?.fileType)}
+                    </div>
+
+                    <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
+                      <div className="relative flex items-center justify-center w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-semibold text-[#041824] text-base tracking-[0] leading-5 whitespace-nowrap">
+                        {file?.name}
+                      </div>
+
+                      <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
+                        <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] whitespace-nowrap">
+                          {file?.size}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex w-[137px] items-center gap-2.5 px-4 py-2.5 relative self-stretch border border-solid border-[#e9eaec]">
+                    <div className="[font-family:'Manrope',Helvetica] font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] relative w-fit whitespace-nowrap">
+                      {file?.size}
+                    </div>
+                  </div>
+
+                  <div className="flex w-[137px] items-center gap-2.5 px-4 py-2.5 relative self-stretch border border-solid border-[#e9eaec]">
+                    <div className="[font-family:'Manrope',Helvetica] font-normal text-[#777777] text-sm tracking-[-0.56px] leading-[19.6px] relative w-fit whitespace-nowrap">
+                      {file?.dateUploaded}
+                    </div>
+                  </div>
+
+                  <div className="flex w-[137px] items-center gap-2.5 px-4 py-2.5 relative self-stretch border border-solid border-[#e9eaec]">
+                    <div className="[font-family:'Manrope',Helvetica] font-normal text-[#777777] text-sm tracking-[-0.56px] leading-[19.6px] relative w-fit whitespace-nowrap">
+                      {file?.shared}
+                    </div>
+                  </div>
+
+                  <div className="flex w-[238px] items-center gap-3 px-4 py-0 relative self-stretch border border-solid border-[#e9eaec]">
+                    <Avatar className="w-10 h-10">
+                      <AvatarImage
+                        src={file?.uploadedBy?.avatar}
+                        alt={`${file.uploadedBy?.name} profile`}
+                        className="object-cover"
+                      />
+                      <AvatarFallback>
+                        {file?.uploadedBy?.name
+                          .split(" ")
+                          .map((n: string) => n[0])
+                          .join("")}
+                      </AvatarFallback>
+                    </Avatar>
+
+                    <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
+                      <div className="relative flex items-center justify-center w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-medium text-[#111111] text-sm tracking-[0] leading-[21px] whitespace-nowrap">
+                        {file?.uploadedBy?.name}
+                      </div>
+
+                      <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
+                        <div className="mt-[-1.00px] [font-family:'Manrope',Helvetica] font-medium text-[#777777] text-xs tracking-[0] leading-[18px] relative w-fit whitespace-nowrap">
+                          {file?.uploadedBy?.email}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-[57.5px] relative self-stretch flex items-center justify-center">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="p-0 h-auto w-auto"
+                        >
+                          <MoreHorizontalIcon className="w-[18px] h-[18px] text-[#4f5059]" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuItem>Download</DropdownMenuItem>
+                        <DropdownMenuItem>Share</DropdownMenuItem>
+                        <DropdownMenuItem>Rename</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </CardContent>
       </Card>
