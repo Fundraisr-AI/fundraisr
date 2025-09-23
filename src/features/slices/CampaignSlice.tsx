@@ -16,12 +16,12 @@ export interface CampaignState {
   userDetailsId: string;
   loading: boolean;
   campaigns: CampaignState[];
-  totalActiveCampaigns: Number;
-  totalLeads: Number;
-  positiveReplied: Number;
-  meetingsBooked: Number;
-  replyRate: Number;
-  positive: Number;
+  totalActiveCampaigns: number;
+  totalLeads: number;
+  positiveReplied: number;
+  meetingsBooked: number;
+  replyRate: number;
+  positive: number;
   geography: String;
   leadList: String;
   investor: String;
