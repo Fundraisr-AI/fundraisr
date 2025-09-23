@@ -109,7 +109,7 @@ export const FundraisingAgentSection = (): JSX.Element => {
       </Card>
 
       <Card className="flex mx-[19px] h-[177px] relative mt-[22px] rounded-[20px] overflow-hidden border border-solid border-[#dbdbdb]">
-        <CardContent className="flex-col items-start gap-[22px] p-5 flex">
+        <CardContent className="flex-col items-start gap-4 p-4 flex">
           <div className="flex items-center gap-3 relative self-stretch w-full flex-[0_0_auto]">
             <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
               <h2 className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">

@@ -147,7 +147,7 @@ const AddProspectForm = ({ onClose }: AddProspectFormProps) => {
       <form className="flex flex-col w-[760px] items-start gap-5 absolute top-[146px] left-5">
         <div className="flex items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
           <div className="flex flex-col items-start gap-2 relative flex-1 grow">
-            <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+            <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
               First Name
             </label>
             <div className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#dbdbdb] focus-within:border-[#09215e] transition-colors">
@@ -161,7 +161,7 @@ const AddProspectForm = ({ onClose }: AddProspectFormProps) => {
             </div>
           </div>
           <div className="flex flex-col items-start gap-2 relative flex-1 grow">
-            <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+            <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
               Last Name
             </label>
             <div className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#dbdbdb] focus-within:border-[#09215e] transition-colors">
@@ -177,7 +177,7 @@ const AddProspectForm = ({ onClose }: AddProspectFormProps) => {
         </div>
 
         <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-          <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+          <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
             Company Name
           </label>
           <div className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#dbdbdb] focus-within:border-[#09215e] transition-colors">
@@ -192,7 +192,7 @@ const AddProspectForm = ({ onClose }: AddProspectFormProps) => {
         </div>
 
         <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-          <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+          <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
             Email Address
           </label>
           <div className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#dbdbdb] focus-within:border-[#09215e] transition-colors">
@@ -207,7 +207,7 @@ const AddProspectForm = ({ onClose }: AddProspectFormProps) => {
         </div>
 
         <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-          <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+          <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
             Linkedin Profile URL
           </label>
           <div className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#dbdbdb] focus-within:border-[#09215e] transition-colors">
@@ -222,7 +222,7 @@ const AddProspectForm = ({ onClose }: AddProspectFormProps) => {
         </div>
 
         <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-          <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+          <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
             Category
           </label>
           <div className="relative">

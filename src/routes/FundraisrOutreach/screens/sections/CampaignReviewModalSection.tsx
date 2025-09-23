@@ -27,13 +27,13 @@ export const CampaignReviewModalSection = ({ onClose, currentStep, onNext, onPre
     {
       id: 2,
       label: "Draft Email",
-      icon: vector24,
+      icon: vector23,
       completed: true,
     },
     {
       id: 3,
       label: "Upload Lead List",
-      icon: vector25,
+      icon: vector23,
       completed: true,
     },
     {
@@ -42,6 +42,7 @@ export const CampaignReviewModalSection = ({ onClose, currentStep, onNext, onPre
       icon: null,
       completed: false,
       current: true,
+      number: "4",
     },
   ];
 
@@ -97,14 +98,7 @@ export const CampaignReviewModalSection = ({ onClose, currentStep, onNext, onPre
       aria-labelledby="modal-title"
       aria-modal="true"
     >
-      <header className="absolute w-full top-0 left-0 h-[60px] flex justify-between items-center border-b [border-bottom-style:solid] border-[#eaeaea]">
-        <h1
-          id="modal-title"
-          className="flex items-center justify-center h-7 w-[164px] ml-5 [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-xl tracking-[-0.36px] leading-7 whitespace-nowrap"
-        >
-          Create Campaign
-        </h1>
-
+      <header className="absolute w-full top-0 left-0 h-[60px] flex justify-end items-center border-b [border-bottom-style:solid] border-[#eaeaea]">
         <button
           className="h-6 w-6 mr-5 flex"
           aria-label="Close modal"
@@ -158,9 +152,9 @@ export const CampaignReviewModalSection = ({ onClose, currentStep, onNext, onPre
                       {step.id}
                     </span>
                   ) : (
-                    <div className="relative w-4 h-4 mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] mr-[-1.00px] aspect-[1]">
+                    <div className="relative w-[10.31px] h-[7.48px] mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] mr-[-1.00px]">
                       <img
-                        className="absolute w-[64.43%] h-[46.77%] top-[26.56%] left-[17.76%]"
+                        className="absolute w-full h-full top-0 left-0"
                         alt=""
                         src={step.icon}
                       />
@@ -185,7 +179,7 @@ export const CampaignReviewModalSection = ({ onClose, currentStep, onNext, onPre
         <div className="flex items-center gap-3 flex-[0_0_auto] relative self-stretch w-full">
           <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
             <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-              <h2 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-lg tracking-[-0.36px] leading-[27px] whitespace-nowrap">
+              <h2 className="relative w-fit mt-[-1.00px] font-semibold text-[#111111] text-xl leading-[30px] [font-family:'Manrope',Helvetica] tracking-[0] whitespace-nowrap">
                 Review
               </h2>
             </div>

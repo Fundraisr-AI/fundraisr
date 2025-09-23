@@ -186,7 +186,7 @@ export const NavigationSidebarSection = (): JSX.Element => {
                 <div
                   className={`flex-1 text-left relative ${
                     item.isActive ? "font-semibold" : "font-medium"
-                  } [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0] leading-[21px]`}
+                  } [font-family:'Manrope',Helvetica] text-[#111111] text-sm tracking-[0]`}
                 >
                   {item.label}
                 </div>

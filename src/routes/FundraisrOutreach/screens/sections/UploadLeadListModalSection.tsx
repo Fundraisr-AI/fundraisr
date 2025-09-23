@@ -4,6 +4,7 @@ import vector23 from "./vector-23.svg";
 import vector24 from "./vector-24.svg";
 import vector25 from "./vector-25.svg";
 import vector26 from "./vector-26.svg";
+import loadSvg from "./load.svg";
 import { Upload } from "lucide-react";
 
 export const UploadLeadListModalSection = ({ 
@@ -63,37 +64,36 @@ export const UploadLeadListModalSection = ({
       completed: currentStep > 1,
       active: currentStep === 1,
       icon: currentStep > 1 ? vector23 : undefined,
-    },
+      number: currentStep > 1 ? undefined : "1"    },
     {
       id: 2,
       label: "Draft Email",
       completed: currentStep > 2,
       active: currentStep === 2,
-      icon: currentStep > 2 ? vector24 : undefined,
+      icon: currentStep > 2 ? vector23 : undefined,
+      number: currentStep > 2 ? undefined : "2",
     },
     {
       id: 3,
       label: "Upload Lead List",
       completed: currentStep > 3,
       active: currentStep === 3,
-      number: "3",
+      icon: currentStep > 3 ? vector23 : undefined,
+      number: currentStep > 3 ? undefined : "3",
     },
     { 
       id: 4, 
       label: "Review", 
       completed: currentStep > 4,
-      active: currentStep === 4, 
-      number: "4" 
+      active: currentStep === 4,
+      icon: currentStep > 4 ? vector23 : undefined,
+      number: currentStep > 4 ? undefined : "4",
     },
   ];
 
   return (
     <div className="w-[800px] h-full bg-white">
-      <header className="absolute w-full top-0 left-0 h-[60px] flex justify-between items-center border-b [border-bottom-style:solid] border-[#eaeaea]">
-        <h1 className="flex items-center justify-center h-7 w-[164px] ml-5 [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-xl tracking-[-0.36px] leading-7 whitespace-nowrap">
-          Create Campaign
-        </h1>
-
+      <header className="absolute w-full top-0 left-0 h-[60px] flex justify-end items-center border-b [border-bottom-style:solid] border-[#eaeaea]">
         <button
           className="h-6 w-6 mr-5 flex"
           onClick={handleClose}
@@ -154,9 +154,9 @@ export const UploadLeadListModalSection = ({
                   }`}
                 >
                   {step.icon ? (
-                    <div className="relative w-4 h-4 mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] mr-[-1.00px] aspect-[1]">
+                    <div className="relative w-[10.31px] h-[7.48px] mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] mr-[-1.00px]">
                       <img
-                        className="absolute w-[64.43%] h-[46.77%] top-[26.56%] left-[17.76%]"
+                        className="absolute w-full h-full top-0 left-0"
                         alt={`${step.label} icon`}
                         src={step.icon}
                       />
@@ -199,7 +199,7 @@ export const UploadLeadListModalSection = ({
         <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
           <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
             <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-              <h2 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-lg tracking-[-0.36px] leading-[27px] whitespace-nowrap">
+              <h2 className="relative w-fit mt-[-1.00px] font-semibold text-[#111111] text-xl leading-[30px] [font-family:'Manrope',Helvetica] tracking-[0] whitespace-nowrap">
                 Lead List
               </h2>
             </div>
@@ -280,15 +280,9 @@ export const UploadLeadListModalSection = ({
         <div className="inline-flex flex-col items-center justify-center gap-2 relative flex-[0_0_auto]">
           <div className="relative w-6 h-6 rounded-[5px] overflow-hidden">
             <img
-              className="absolute w-[83.33%] h-[54.16%] top-[34.38%] left-[5.21%]"
+              className="absolute w-full h-full top-0 left-0"
               alt="Upload icon"
-              src={vector25}
-            />
-
-            <img
-              className="absolute w-[25.00%] h-[54.17%] top-[5.21%] left-[34.38%]"
-              alt="File icon"
-              src={vector26}
+              src={loadSvg}
             />
           </div>
 

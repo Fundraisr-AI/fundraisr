@@ -509,55 +509,79 @@ export const DashboardSection = (): JSX.Element => {
               </Tabs>
             </div>
           </CardHeader>
-          <CardContent className="p-4">
-            {/* Top Performer - Healthcare Focused */}
-            <div className="flex flex-col items-center mb-4">
-              <div className="relative mb-2">
-                <img
-                  className="w-[52px] h-[52px]"
-                  alt="Group"
-                  src="https://c.animaapp.com/mfqpait0Qdrcn2/img/group-1171275502.png"
-                />
-                <div className="absolute -top-2 -right-1 w-[25px] h-[23px]">
-                  <div className="bg-[#e6c334] border-[#a29250] w-[23px] h-[23px] rounded-full border flex items-center justify-center">
-                    <span className="text-sm font-bold text-[#4c3e07] [font-family:'Manrope',Helvetica] tracking-[-0.28px]">
-                      1
+          <CardContent className="p-6">
+            <div className="flex gap-3">
+              {/* Left side - Main performer (Healthcare Focused) - positioned higher */}
+              <div className="flex flex-col items-center flex-1 pt-2">
+                <div className="relative mb-2">
+                  <img
+                    className="w-[52px] h-[52px]"
+                    alt="Group"
+                    src="https://c.animaapp.com/mfqpait0Qdrcn2/img/group-1171275502.png"
+                  />
+                  <div className="absolute -top-2 -right-1 w-[25px] h-[23px]">
+                    <div className="bg-[#e6c334] border-[#a29250] w-[23px] h-[23px] rounded-full border flex items-center justify-center">
+                      <span className="text-sm font-bold text-[#4c3e07] [font-family:'Manrope',Helvetica] tracking-[-0.28px]">
+                        1
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-lg px-4 py-3 border border-[#ececec] shadow-sm text-center w-full max-w-[176px]">
+                  <div className="text-base font-semibold text-[#111111] tracking-[-0.32px] [font-family:'Manrope',Helvetica] mb-1">
+                    Healthcare Focused
+                  </div>
+                  <div className="text-xs text-[#84858b] tracking-[-0.24px] [font-family:'Manrope',Helvetica] mb-2">
+                    Healthcare Innovation
+                  </div>
+                  <div className="flex items-center justify-center gap-1">
+                    <span className="text-xs font-semibold text-[#111111] tracking-[-0.24px] [font-family:'Manrope',Helvetica]">
+                      12 meetings
+                    </span>
+                    <span className="text-[11px] font-semibold text-[#1b8341] [font-family:'Manrope',Helvetica]">
+                      15.0%
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="bg-white rounded-lg px-4 py-3 border border-[#ececec] shadow-sm text-center w-full max-w-[280px]">
-                <div className="text-base font-semibold text-[#111111] tracking-[-0.32px] [font-family:'Manrope',Helvetica] mb-1">
-                  Healthcare Focused
-                </div>
-                <div className="text-xs text-[#84858b] tracking-[-0.24px] [font-family:'Manrope',Helvetica] mb-2">
-                  Healthcare Innovation
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <span className="text-xs font-semibold text-[#111111] tracking-[-0.24px] [font-family:'Manrope',Helvetica]">
-                    12 meetings
-                  </span>
-                  <span className="text-[11px] font-semibold text-[#1b8341] [font-family:'Manrope',Helvetica]">
-                    15.0%
-                  </span>
-                </div>
-              </div>
-            </div>
 
-            {/* Other Performers */}
-            <div className="flex flex-col gap-2">
-              {topPerformers.map((performer, index) => (
-                <div key={index} className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div className="flex items-center gap-3 flex-1">
-                    <div className="relative">
-                      <img
-                        className="w-7 h-7"
-                        alt="Group"
-                        src={performer.image}
-                      />
-                      <div className="absolute -top-1 -right-1 w-[20px] h-[20px]">
+              {/* Right side - Other performers positioned closer to left and flush right */}
+              <div className="flex flex-col gap-3 w-[420px] justify-start">
+                {topPerformers.map((performer, index) => (
+                  <div key={index} className="flex items-center justify-between p-3 bg-white rounded-lg border border-[#ececec] shadow-sm w-full h-[100px]">
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className="relative">
+                        <img
+                          className="w-[28px] h-[28px]"
+                          alt="Group"
+                          src={performer.image}
+                        />
+                      </div>
+                      
+                      <div className="flex-1">
+                        <div className="text-sm font-medium text-[#111111] tracking-[-0.28px] [font-family:'Manrope',Helvetica]">
+                          {performer.name}
+                        </div>
+                        <div className="text-xs text-[#84858b] tracking-[-0.24px] [font-family:'Manrope',Helvetica]">
+                          {performer.category}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                      <div className="text-right">
+                        <div className="text-[11px] font-medium text-[#84858b] tracking-[-0.22px] [font-family:'Manrope',Helvetica]">
+                          {performer.meetings}
+                        </div>
+                        <div className="text-[11px] font-semibold text-[#1b8341] [font-family:'Manrope',Helvetica]">
+                          {performer.rate}
+                        </div>
+                      </div>
+                      
+                      {/* Rank badge moved to the right side */}
+                      <div className="w-[23px] h-[23px]">
                         <div
-                          className={`${performer.rankBg} w-[20px] h-[20px] rounded-full border flex items-center justify-center`}
+                          className={`${performer.rankBg} w-[23px] h-[23px] rounded-full border flex items-center justify-center`}
                         >
                           <span
                             className={`text-xs font-bold ${performer.rankText} [font-family:'Manrope',Helvetica] tracking-[-0.28px]`}
@@ -567,31 +591,19 @@ export const DashboardSection = (): JSX.Element => {
                         </div>
                       </div>
                     </div>
-                    
-                    <div className="flex-1">
-                      <div className="text-sm font-medium text-[#111111] tracking-[-0.28px] [font-family:'Manrope',Helvetica] truncate">
-                        {performer.name}
-                      </div>
-                      <div className="text-xs text-[#84858b] tracking-[-0.24px] [font-family:'Manrope',Helvetica]">
-                        {performer.category}
-                      </div>
-                    </div>
                   </div>
-                  
-                  <div className="text-right">
-                    <div className="text-[11px] font-medium text-[#84858b] tracking-[-0.22px] [font-family:'Manrope',Helvetica]">
-                      {performer.meetings}
-                    </div>
-                    <div className="text-[11px] font-semibold text-[#1b8341] [font-family:'Manrope',Helvetica]">
-                      {performer.rate}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </CardContent>
         </Card>
       </section>
+
+      {/* Spacing after Campaign Overview section */}
+      <div className="mt-6"></div>
+
+      {/* Spacing between sections */}
+      <div className="mt-8"></div>
 
       <Card className="border-[#eaeaea]">
         <CardHeader>

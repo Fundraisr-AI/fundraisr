@@ -206,7 +206,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
               )}
             </div>
             {showLabels && item.badge && (
-              <Badge className="bg-[#17a34a29] text-[#17a34a] hover:bg-[#17a34a29] rounded px-2 py-1 text-xs font-medium [font-family:'Inter',Helvetica]">
+              <Badge className={`bg-[#17a34a29] text-[#17a34a] hover:bg-[#17a34a29] rounded px-2 py-1 text-xs font-medium [font-family:'Inter',Helvetica] ${item.label === "Fundraising Agent" ? "ml-6" : ""}`}>
                 {item.badge}
               </Badge>
             )}

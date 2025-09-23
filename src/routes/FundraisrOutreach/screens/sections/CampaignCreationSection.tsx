@@ -47,6 +47,10 @@ export const CampaignCreationSection = ({
   const [distributionStrategy, setDistributionStrategy] = useState("");
   const [abTestEnabled, setAbTestEnabled] = useState(false);
   const [followUpEnabled, setFollowUpEnabled] = useState(false);
+  const [abTestVariants, setAbTestVariants] = useState([
+    { id: 1, name: "Variant A", subject: "", content: "" },
+    { id: 2, name: "Variant B", subject: "", content: "" }
+  ]);
 
   const stepData = [
     { 
@@ -55,27 +59,31 @@ export const CampaignCreationSection = ({
       completed: currentStep > 1,
       active: currentStep === 1,
       icon: currentStep > 1 ? vector23 : undefined,
+      number: currentStep > 1 ? undefined : "1",
     },
     { 
       id: 2, 
       label: "Draft Email", 
       completed: currentStep > 2,
       active: currentStep === 2,
-      icon: currentStep > 2 ? Upload : undefined,
+      icon: currentStep > 2 ? vector23 : undefined,
+      number: currentStep > 2 ? undefined : "2",
     },
     { 
       id: 3, 
       label: "Upload Lead List", 
       completed: currentStep > 3,
       active: currentStep === 3,
-      number: "3",
+      icon: currentStep > 3 ? vector23 : undefined,
+      number: currentStep > 3 ? undefined : "3",
     },
     { 
       id: 4, 
       label: "Review", 
       completed: currentStep > 4,
       active: currentStep === 4,
-      number: "4",
+      icon: currentStep > 4 ? vector23 : undefined,
+      number: currentStep > 4 ? undefined : "4",
     },
   ];
 
@@ -163,6 +171,16 @@ export const CampaignCreationSection = ({
 
   const toggleFollowUp = () => {
     setFollowUpEnabled(!followUpEnabled);
+  };
+
+  const addAbTestVariant = () => {
+    const newVariant = {
+      id: abTestVariants.length + 1,
+      name: `Variant ${String.fromCharCode(65 + abTestVariants.length)}`,
+      subject: "",
+      content: ""
+    };
+    setAbTestVariants([...abTestVariants, newVariant]);
   };
 
   const renderToolbarButton = (button: (typeof toolbarButtons)[0], index: number) => {
@@ -362,13 +380,15 @@ export const CampaignCreationSection = ({
               <div className="flex flex-col items-start justify-center gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                 <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
                   <button
-                    className="inline-flex items-start p-0.5 relative flex-[0_0_auto] bg-[#dedede] rounded-[100px] focus:outline-none focus:ring-2 focus:ring-[#05587a]"
+                    className={`inline-flex items-start p-0.5 relative flex-[0_0_auto] rounded-[100px] focus:outline-none focus:ring-2 focus:ring-[#05587a] transition-all duration-200 ease-in-out ${
+                      abTestEnabled ? "bg-[#05587a]" : "bg-[#dedede]"
+                    }`}
                     onClick={toggleAbTest}
                     aria-pressed={abTestEnabled}
                     aria-label="Toggle A/B test"
                   >
                     <div
-                      className={`relative w-4 h-4 ${abTestEnabled ? "bg-white" : "bg-transparent"} rounded-lg shadow-[0px_2px_4px_#0000001a] transition-colors`}
+                      className={`relative w-4 h-4 ${abTestEnabled ? "bg-white" : "bg-transparent"} rounded-lg shadow-[0px_2px_4px_#0000001a] transition-all duration-200 ease-in-out`}
                     />
                     <div className="relative w-4 h-4 rounded-lg" />
                   </button>
@@ -390,7 +410,11 @@ export const CampaignCreationSection = ({
                   <h4 className="relative w-fit [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
                     A/B Test Variants
                   </h4>
-                  <button className="inline-flex h-8 items-center justify-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#eaeaea] hover:bg-gray-50 transition-colors">
+                  <button 
+                    className="inline-flex h-8 items-center justify-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#eaeaea] hover:bg-gray-50 transition-colors"
+                    onClick={addAbTestVariant}
+                    aria-label="Add A/B test variant"
+                  >
                     <span className="relative w-fit mt-[-2.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
                       +
                     </span>
@@ -435,13 +459,15 @@ export const CampaignCreationSection = ({
               <div className="flex flex-col items-start justify-center gap-1.5 relative flex-1 grow">
                 <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
                   <button
-                    className="inline-flex items-start p-0.5 relative flex-[0_0_auto] bg-[#dedede] rounded-[100px] focus:outline-none focus:ring-2 focus:ring-[#05587a]"
+                    className={`inline-flex items-start p-0.5 relative flex-[0_0_auto] rounded-[100px] focus:outline-none focus:ring-2 focus:ring-[#05587a] transition-all duration-200 ease-in-out ${
+                      followUpEnabled ? "bg-[#05587a]" : "bg-[#dedede]"
+                    }`}
                     onClick={toggleFollowUp}
                     aria-pressed={followUpEnabled}
                     aria-label="Toggle follow-up email"
                   >
                     <div
-                      className={`relative w-4 h-4 ${followUpEnabled ? "bg-white" : "bg-transparent"} rounded-lg shadow-[0px_2px_4px_#0000001a] transition-colors`}
+                      className={`relative w-4 h-4 ${followUpEnabled ? "bg-white" : "bg-transparent"} rounded-lg shadow-[0px_2px_4px_#0000001a] transition-all duration-200 ease-in-out`}
                     />
                     <div className="relative w-4 h-4 rounded-lg" />
                   </button>
@@ -503,11 +529,7 @@ export const CampaignCreationSection = ({
 
   return (
     <div className="w-[800px] h-full bg-white relative overflow-hidden">
-      <header className="absolute w-full top-0 left-0 h-[60px] flex justify-between items-center border-b [border-bottom-style:solid] border-[#eaeaea]">
-        <h1 className="flex items-center justify-center h-7 w-[164px] ml-5 [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-xl tracking-[-0.36px] leading-7 whitespace-nowrap">
-          Create Campaign
-        </h1>
-
+      <header className="absolute w-full top-0 left-0 h-[60px] flex justify-end items-center border-b [border-bottom-style:solid] border-[#eaeaea]">
         <button className="h-6 w-6 mr-5 flex" aria-label="Close" onClick={onClose}>
           <img className="mt-1.5 w-3 h-3 ml-1.5" alt="Close" src={vector22} />
         </button>
@@ -571,9 +593,9 @@ export const CampaignCreationSection = ({
                   }`}
                 >
                   {step.icon ? (
-                    <div className="relative w-4 h-4 mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] mr-[-1.00px] aspect-[1]">
+                    <div className="relative w-[10.31px] h-[7.48px] mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] mr-[-1.00px]">
                       <img
-                        className="absolute w-[64.43%] h-[46.77%] top-[26.56%] left-[17.76%]"
+                        className="absolute w-full h-full top-0 left-0"
                         alt={`${step.label} icon`}
                         src={step.icon}
                       />
@@ -616,7 +638,7 @@ export const CampaignCreationSection = ({
         <div className="flex items-center gap-3 relative self-stretch w-full flex-[0_0_auto]">
           <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
             <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-              <h2 className="relative w-fit mt-[-1.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-lg tracking-[-0.36px] leading-[27px] whitespace-nowrap">
+              <h2 className="font-semibold text-[#111111] text-xl leading-[30px] [font-family:'Manrope',Helvetica] tracking-[0]">
                 {currentStep === 1 && "Configure Campaign"}
                 {currentStep === 2 && "Email Sequences"}
                 {currentStep === 3 && "Upload Lead List"}
@@ -624,7 +646,7 @@ export const CampaignCreationSection = ({
               </h2>
               {currentStep === 2 && (
                 <div className="inline-flex items-center justify-center gap-1 px-3 py-1 relative flex-[0_0_auto] bg-[#efefef] rounded-[100px]">
-                  <div className="relative w-1.5 h-1.5 bg-[#c2c8d0] rounded-[var(--spacing-80)]" />
+                  <div className="relative w-1.5 h-1.5 bg-[#c2c8d0] rounded-full" />
                   <span className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] whitespace-nowrap overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical]">
                     Initial Email
                   </span>

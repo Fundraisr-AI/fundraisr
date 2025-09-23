@@ -18,6 +18,7 @@ import {
 import { Badge } from "../../../../components/ui/badge";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent, CardHeader } from "../../../../components/ui/card";
+import { Card as WelcomeCard } from "../../../../components/Card";
 import { Input } from "../../../../components/ui/input";
 import {
   Table,
@@ -274,13 +275,14 @@ export const DashboardSection = (): JSX.Element => {
     switch (type) {
       case "approved":
       case "closed":
-        return "badge-success";
+        return "bg-[#ECF8F1] text-[#1B8441] hover:bg-[#ECF8F1] hover:text-[#1B8441]";
       case "completed":
-        return "badge-info";
+        return "bg-[#D11818]/[0.16] text-[#D11818] hover:bg-[#D11818]/[0.16] hover:text-[#D11818]";
       case "in-progress":
-        return "badge-warning";
+        return "bg-[#D1A318]/[0.16] text-[#D1A318] hover:bg-[#D1A318]/[0.16] hover:text-[#D1A318]";
       case "draft":
       case "pending":
+        return "bg-[#EFEFEF] text-[#3B4C63] hover:bg-[#EFEFEF] hover:text-[#3B4C63]";
       default:
         return "badge-neutral";
     }
@@ -309,98 +311,9 @@ export const DashboardSection = (): JSX.Element => {
       </header>
 
       {/* Welcome Card */}
-      <Card className="mx-6 relative mt-6 card-elevated bg-white">
-        <CardContent className="flex items-start gap-10 p-6">
-          <div className="flex flex-col w-[363px] items-start gap-4 relative">
-            <div className="relative w-[66px] h-16">
-              <div className="absolute top-0 left-0 w-16 h-16 bg-[#e5effa] rounded-xl" />
-              <div className="absolute top-[calc(50.00%_-_24px)] left-[calc(50.00%_-_18px)] [font-family:'Manrope',Helvetica] font-semibold text-black text-[32px] tracking-[0] leading-[48px] whitespace-nowrap">
-                👋
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
-              <div className="mt-[-1.00px] font-semibold leading-[19.6px] relative self-stretch [font-family:'Manrope',Helvetica] text-[#4f5059] text-sm tracking-[0]">
-                Monday, September 22
-              </div>
-              <div className="relative w-fit [font-family:'Manrope',Helvetica] font-semibold text-[#111111] text-[26px] tracking-[0] leading-[39px] whitespace-nowrap">
-                Good evening, Alessandro
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-start gap-4 relative flex-1 grow">
-            <div className="flex items-start justify-between relative self-stretch w-full flex-[0_0_auto]">
-              <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
-                <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    Fundraising Target
-                  </div>
-                </div>
-                <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-3xl tracking-[-0.60px] leading-[45px] whitespace-nowrap">
-                    $250,000
-                  </div>
-                  <EditIcon className="relative w-6 h-6 text-[#4f5059]" />
-                </div>
-              </div>
-
-              <Button
-                variant="outline"
-                className="h-8 px-3 py-2 rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
-              >
-                <span className="[font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px]">
-                  See all
-                </span>
-              </Button>
-            </div>
-
-            <div className="flex items-start gap-4 relative self-stretch w-full flex-[0_0_auto]">
-              <div className="relative w-[460px] h-[95px]">
-                <div className="absolute top-0 left-px w-[460px] h-[26px] bg-[#888ae8]" />
-                <div className="absolute top-[26px] left-0 w-0.5 h-[69px] bg-[#888ae8]" />
-                <div className="inline-flex flex-col items-start justify-center gap-0.5 absolute top-[38px] left-3">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    $187,500
-                  </div>
-                  <div className="inline-flex items-center justify-center gap-1 relative flex-[0_0_auto]">
-                    <div className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-                      Capital Committed
-                    </div>
-                    <Badge className="h-5 px-1 py-0.5 bg-[#b3bdbf29] text-[#848986] font-semibold text-xs">
-                      75%
-                    </Badge>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative w-[221px] h-[95px]">
-                <div className="flex w-[221px] items-start gap-[1.5px] absolute top-0 left-0">
-                  {remainingBars.map((bar, index) => (
-                    <div
-                      key={index}
-                      className={`relative ${bar.width} ${bar.height} ${bar.bgColor} ${bar.marginLeft}`}
-                    />
-                  ))}
-                </div>
-                <img
-                  className="top-[26px] w-0.5 h-[69px] absolute left-0"
-                  alt="Line"
-                  src="https://c.animaapp.com/mfqjua33FHoyZF/img/line-116.svg"
-                />
-                <div className="inline-flex flex-col items-start justify-center gap-0.5 absolute top-[38px] left-3">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    $62,500
-                  </div>
-                  <div className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-                    Remaining
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="mx-6 relative mt-6">
+        <WelcomeCard />
+      </div>
 
       {/* Market Insights Section */}
       <Card className="mx-[19px] flex-1 max-h-[404px] mt-[18px] rounded-[20px] border border-solid border-[#eaeaea] translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:600ms]">
@@ -630,7 +543,7 @@ export const DashboardSection = (): JSX.Element => {
                         className={`inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[100px] ${getStatusBadgeStyles(campaign.status.type)}`}
                       >
                         <div
-                          className={`w-1.5 h-1.5 rounded-[80px] ${campaign.status.type === "approved" || campaign.status.type === "closed" ? "bg-[#1b8441]" : campaign.status.type === "draft" || campaign.status.type === "pending" ? "bg-[#c2c8d0]" : campaign.status.type === "completed" ? "bg-[#d11818]" : "bg-[#d1a218]"}`}
+                          className={`w-1.5 h-1.5 rounded-[80px] ${campaign.status.type === "approved" || campaign.status.type === "closed" ? "bg-[#1B8441]" : campaign.status.type === "draft" || campaign.status.type === "pending" ? "bg-[#C3C8D0]" : campaign.status.type === "completed" ? "bg-[#D11818]" : campaign.status.type === "in-progress" ? "bg-[#D1A318]" : "bg-[#d1a218]"}`}
                         />
                         <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
                           {campaign.status.label}
@@ -658,7 +571,7 @@ export const DashboardSection = (): JSX.Element => {
                 </p>
               </div>
 
-              <Button className="h-8 px-3 py-1 bg-white rounded-lg border-[0.5px] border-solid border-[#09215e] text-[#09215e] hover:bg-[#09215e] hover:text-white">
+              <Button className="h-8 px-3 py-1 bg-white rounded-lg border-[0.5px] border-solid border-[#09215e] text-[#09215e]">
                 <span className="[font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px]">
                   Add Event
                 </span>
@@ -874,7 +787,7 @@ export const DashboardSection = (): JSX.Element => {
                     </Badge>
                   </TableCell>
                   <TableCell className="flex-1 p-4 border-r border-[#e9eaec]">
-                    <div className="flex items-center gap-2.5 cursor-pointer hover:opacity-70 transition-opacity">
+                    <div className="flex items-center gap-2.5 cursor-pointer">
                       <EyeIcon className="w-4 h-4 text-[#3b4c63]" />
                       <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
                         View

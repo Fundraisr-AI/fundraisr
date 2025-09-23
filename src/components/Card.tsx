@@ -8,8 +8,8 @@ export const Card = (): JSX.Element => {
   const chartBars = Array.from({ length: 72 }, (_, index) => index);
 
   return (
-    <div className="flex w-full items-start gap-10 p-5 relative bg-white rounded-[20px] overflow-hidden border border-solid border-[#eaeaea]">
-      <div className="flex flex-col w-[363px] items-start gap-4 relative">
+    <div className="flex w-full max-w-none items-start gap-10 p-5 relative bg-[#FBFBFB] rounded-[20px] overflow-hidden border border-solid border-[#EBEBEB]">
+      <div className="flex flex-col w-[500px] items-start gap-4 relative">
         <div className="relative w-[66px] h-16">
           <div className="absolute top-0 left-0 w-16 h-16 bg-[#e5effa] rounded-xl aspect-[1]" />
 
@@ -55,7 +55,7 @@ export const Card = (): JSX.Element => {
 
           <Button
             variant="outline"
-            className="h-8 px-3 py-2 rounded-lg border-[0.5px] border-solid border-[#d9dadb] hover:bg-gray-50 transition-colors"
+            className="h-8 px-3 py-2 rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
           >
             <span className="[font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px]">
               See all
@@ -64,8 +64,8 @@ export const Card = (): JSX.Element => {
         </div>
 
         <div className="flex items-start gap-4 relative self-stretch w-full flex-[0_0_auto]">
-          <div className="relative flex-1 grow h-[95px]">
-            <div className="absolute top-0 left-px w-[75%] h-[26px] bg-[#888ae8] border border-solid" />
+          <div className="relative w-[75%] h-[95px]">
+            <div className="absolute top-0 left-0 w-full h-[26px] bg-[#888ae8] border border-solid" />
 
             <img
               className="absolute top-[26px] left-0 w-0.5 h-[69px]"
@@ -92,12 +92,12 @@ export const Card = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="relative w-[221px] h-[95px]">
+          <div className="relative w-[25%] h-[95px]">
             <div className="flex w-full items-start gap-[1.5px] absolute top-0 left-0">
               {chartBars.map((_, index) => (
                 <div
                   key={index}
-                  className="relative w-[1.5px] h-[26px] bg-[#EBEBEB]"
+                  className="relative w-[1.5px] h-[26px] bg-[#50a57c]"
                 />
               ))}
             </div>
@@ -108,7 +108,7 @@ export const Card = (): JSX.Element => {
               src={image}
             />
 
-            <div className="inline-flex -left-2 flex-col items-start justify-center gap-0.5 absolute top-[38px]">
+            <div className="inline-flex left-3 flex-col items-start justify-center gap-0.5 absolute top-[38px]">
               <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Bold',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
                 $62,500
               </div>
