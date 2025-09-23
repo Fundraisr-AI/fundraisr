@@ -28,7 +28,7 @@ export const SupportSection = (): JSX.Element => {
     {
       question: "How Do I Create A New Capital Campaign?",
       answer:
-        "To create a new capital campaign, navigate to the Capital Campaigns page and click the 'Create Campaign' button. Fill in the required information including campaign name, client ID, and status.",
+        "To create a new capital campaign, navigate to the Capital Campaigns page and click the &#39;Create Campaign&#39; button. Fill in the required information including campaign name, client ID, and status.",
     },
     {
       question: "How Can I Track Campaign Performance?",
