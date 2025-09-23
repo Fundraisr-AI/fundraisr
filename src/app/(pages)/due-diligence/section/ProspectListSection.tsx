@@ -1,3 +1,4 @@
+"use client";
 import {
   ArrowUpDownIcon,
   CalendarIcon,
@@ -19,6 +20,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  getAllLeadsByUserIdAsync,
+  LeadState,
+  selectLead,
+} from "@/features/slices/LeadSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store";
 
 const prospects = [
   {
@@ -102,6 +110,14 @@ const prospects = [
 ];
 
 export const ProspectListSection = (): JSX.Element => {
+  const leads = useSelector(selectLead);
+  const dispatch = useDispatch<AppDispatch>();
+  dispatch(
+    getAllLeadsByUserIdAsync({
+      filters: { status: ["MEETING_BOOKED"] },
+    })
+  );
+
   return (
     <section className="flex-1 flex flex-col bg-white rounded-[20px_0px_0px_0px] overflow-hidden border border-solid border-[#eaeaea]">
       <header className="flex mx-5 h-[53px] relative mt-5 items-center justify-between bg-transparent">
@@ -202,15 +218,15 @@ export const ProspectListSection = (): JSX.Element => {
       </div>
 
       <div className="flex mx-[19px] relative mt-[17px] flex-wrap items-start gap-[16px_16px]">
-        {prospects.map((prospect) => (
+        {leads.leads.map((lead: LeadState) => (
           <Card
-            key={prospect.id}
+            key={lead.id}
             className="flex flex-col w-[371px] items-center gap-3.5 p-4 relative bg-white rounded-2xl overflow-hidden border border-solid border-[#eaeaea]"
           >
             <CardContent className="p-0 w-full">
               <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
                 <Badge className="inline-flex items-center justify-center gap-2.5 px-3 py-1 relative flex-[0_0_auto] bg-[#17a34a29] rounded-[100px] text-[#17a34a] hover:bg-[#17a34a29] [font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-3">
-                  {prospect.category}
+                  {lead.status}
                 </Badge>
 
                 <DropdownMenu>
@@ -234,14 +250,14 @@ export const ProspectListSection = (): JSX.Element => {
               <div className="relative w-[111px] h-[111px] bg-white rounded-[100px] overflow-hidden mx-auto mt-3.5">
                 <Avatar className="w-[111px] h-[111px]">
                   <AvatarImage
-                    src={prospect.avatar}
-                    alt={prospect.name}
+                    src={""}
+                    alt={lead.firstname + " " + lead.lastname}
                     className="object-cover"
                   />
                   <AvatarFallback className="text-2xl">
-                    {prospect.name
+                    {lead.firstname
                       .split(" ")
-                      .map((n) => n[0])
+                      .map((n: string) => n[0])
                       .join("")}
                   </AvatarFallback>
                 </Avatar>
@@ -249,12 +265,12 @@ export const ProspectListSection = (): JSX.Element => {
 
               <div className="flex flex-col items-center gap-2 relative self-stretch w-full flex-[0_0_auto] mt-3.5">
                 <h3 className="self-stretch font-semibold text-[#111111] text-xl leading-[30px] relative mt-[-1.00px] [font-family:'Manrope',Helvetica] text-center tracking-[0]">
-                  {prospect.name}
+                  {lead.firstname + " " + lead.lastname}
                 </h3>
 
                 <Badge className="gap-1.5 bg-[#09215e29] inline-flex items-center justify-center px-3 py-1 relative flex-[0_0_auto] rounded-[100px] text-[#09215e] hover:bg-[#09215e29] [font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-3">
                   <MailIcon className="w-4 h-4" />
-                  {prospect.email}
+                  {lead.email}
                 </Badge>
 
                 <div className="flex items-start justify-center gap-2 relative self-stretch w-full flex-[0_0_auto]">
@@ -264,14 +280,14 @@ export const ProspectListSection = (): JSX.Element => {
                     src="https://c.animaapp.com/mfr96fgpUpNNmx/img/star.svg"
                   />
                   <span className="w-fit font-medium text-[#4f5059] text-xs leading-[18px] whitespace-nowrap relative mt-[-1.00px] [font-family:'Manrope',Helvetica] text-center tracking-[0]">
-                    {prospect.rating}
+                    {lead.interested}
                   </span>
                 </div>
               </div>
 
               <div className="flex items-center justify-center gap-2.5 relative self-stretch w-full flex-[0_0_auto] mt-3.5">
                 <p className="flex-1 mt-[-1.00px] font-normal text-sm text-center leading-[21px] relative [font-family:'Manrope',Helvetica] text-[#4f5059] tracking-[0] whitespace-pre-line">
-                  {prospect.description}
+                  {lead.description}
                 </p>
               </div>
 
@@ -284,7 +300,7 @@ export const ProspectListSection = (): JSX.Element => {
                   />
                   <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                     <span className="mt-[-1.00px] text-center leading-[15.6px] relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] whitespace-pre-line">
-                      {prospect.location}
+                      {lead.location}
                     </span>
                   </div>
                 </div>
@@ -297,7 +313,7 @@ export const ProspectListSection = (): JSX.Element => {
                   />
                   <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                     <span className="mt-[-1.00px] text-center leading-[15.6px] relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] whitespace-pre-line">
-                      {prospect.company}
+                      {lead.companyName}
                     </span>
                   </div>
                 </div>
@@ -335,7 +351,7 @@ export const ProspectListSection = (): JSX.Element => {
                   </span>
                 </div>
                 <span className="w-fit mt-[-1.00px] font-medium text-xs leading-[18px] whitespace-nowrap relative [font-family:'Manrope',Helvetica] text-[#4f5059] tracking-[0]">
-                  {prospect.meetingDate}
+                  {lead.meetingDate}
                 </span>
               </div>
 

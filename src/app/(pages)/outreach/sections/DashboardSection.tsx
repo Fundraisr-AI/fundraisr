@@ -26,6 +26,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
 import { useEffect } from "react";
+import { Bar, BarChart, Tooltip } from "recharts";
 
 export const DashboardSection = (): JSX.Element => {
   const chartLabels = [
@@ -230,48 +231,28 @@ export const DashboardSection = (): JSX.Element => {
             </div>
           </CardHeader>
           <CardContent className="relative pt-4 pb-6">
-            <div className="relative w-full h-[200px]">
-              {/* Y-axis labels */}
-              <div className="absolute left-0 top-0 bottom-8 w-8 flex flex-col justify-between items-end">
-                {yAxisLabels.map((label, index) => (
-                  <div
-                    key={index}
-                    className="text-xs font-medium text-[#767e84] text-right tracking-[-0.18px] [font-family:'Manrope',Helvetica]"
-                  >
-                    {label}
-                  </div>
-                ))}
-              </div>
-
-              {/* Chart area */}
-              <div className="absolute left-10 right-0 top-0 bottom-8">
-                {/* Grid lines */}
-                <div className="absolute inset-0 flex flex-col justify-between">
-                  {[...Array(4)].map((_, index) => (
-                    <div key={index} className="w-full h-px bg-[#e5e7eb]" />
-                  ))}
-                </div>
-
-                {/* Chart bars */}
-                <img
-                  className="absolute inset-0 w-full h-full object-contain"
-                  alt="Chart"
-                  src="https://c.animaapp.com/mfqpait0Qdrcn2/img/chart.svg"
-                />
-              </div>
-
-              {/* X-axis labels */}
-              <div className="absolute left-10 right-0 bottom-0 h-8 flex items-center justify-between">
-                {chartLabels.map((label, index) => (
-                  <div
-                    key={index}
-                    className="text-xs font-medium text-[#767e84] tracking-[-0.18px] [font-family:'Manrope',Helvetica]"
-                  >
-                    {label}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <BarChart
+              width={700}
+              height={200}
+              data={[
+                { name: "Page A", uv: 590 },
+                { name: "Page B", uv: 290 },
+                { name: "Page C", uv: 868 },
+              ]}
+            >
+              <Tooltip
+                trigger="click"
+                content={() => null}
+                cursor={false}
+                shared={false}
+              />
+              <Bar
+                dataKey="uv"
+                stackId="a"
+                fill="green"
+                activeBar={{ stroke: "black", strokeWidth: 7 }}
+              />
+            </BarChart>
           </CardContent>
         </Card>
 
