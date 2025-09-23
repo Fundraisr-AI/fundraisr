@@ -78,6 +78,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "Manrope",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
@@ -86,6 +87,25 @@ const config: Config = {
           '"Segoe UI Symbol"',
           '"Noto Color Emoji"',
         ],
+        manrope: ["Manrope", "sans-serif"],
+      },
+      fontWeight: {
+        normal: "400",
+        medium: "500",
+        semibold: "600",
+        bold: "700",
+      },
+      fontSize: {
+        xs: ["12px", "150%"],
+        sm: ["14px", "150%"],
+        base: ["16px", "150%"],
+        lg: ["18px", "150%"],
+        xl: ["20px", "150%"],
+        "2xl": ["24px", "150%"],
+        "3xl": ["30px", "150%"],
+        "4xl": ["36px", "150%"],
+        "5xl": ["48px", "150%"],
+        "6xl": ["60px", "150%"],
       },
       keyframes: {
         "accordion-down": {
@@ -107,4 +127,5 @@ const config: Config = {
   plugins: [],
   darkMode: ["class"],
 };
+
 export default config;

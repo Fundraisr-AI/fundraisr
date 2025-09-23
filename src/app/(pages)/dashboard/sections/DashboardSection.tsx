@@ -37,8 +37,11 @@ import {
 import {
   getAllLeadsByUserIdAsync,
   LeadState,
+  LeadStatus,
   selectLead,
 } from "@/features/slices/LeadSlice";
+
+import { WelcomeCard } from "./WelcomeCard";
 
 export const DashboardSection = (): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
@@ -114,87 +117,6 @@ export const DashboardSection = (): JSX.Element => {
     },
   ];
 
-  // Campaign performance data
-  const campaignData = [
-    {
-      title: "Healthcare Innovation",
-      subtitle: "Healthcare Focused",
-      geography: {
-        flag: "https://c.animaapp.com/mfqjua33FHoyZF/img/united-states-of-america--us-.svg",
-        location: "United States",
-      },
-      leadList: "Healthcare VCs",
-      copy: "Healthcare Focused",
-      status: { type: "approved", label: "Approved" },
-    },
-    {
-      title: "European Growth Fund",
-      subtitle: "Growth Equity",
-      geography: {
-        flag: "https://c.animaapp.com/mfqjua33FHoyZF/img/united-arab-emirates--ae-.svg",
-        location: "Middle East",
-      },
-      leadList: "Healthcare VCs",
-      copy: "Healthcare Focused",
-      status: { type: "draft", label: "Draft" },
-    },
-    {
-      title: "Healthcare Innovation",
-      subtitle: "Healthcare Focused",
-      geography: {
-        flag: "https://c.animaapp.com/mfqjua33FHoyZF/img/china--cn-.svg",
-        location: "Asia",
-      },
-      leadList: "Healthcare VCs",
-      copy: "Healthcare Focused",
-      status: { type: "completed", label: "Completed" },
-    },
-    {
-      title: "European Growth Fund",
-      subtitle: "Growth Equity",
-      geography: {
-        flag: "https://c.animaapp.com/mfqjua33FHoyZF/img/europe--eu-.svg",
-        location: "Europe",
-      },
-      leadList: "Healthcare VCs",
-      copy: "Healthcare Focused",
-      status: { type: "in-progress", label: "In Progress" },
-    },
-    {
-      title: "Healthcare Innovation",
-      subtitle: "Healthcare Focused",
-      geography: {
-        flag: "https://c.animaapp.com/mfqjua33FHoyZF/img/brazil--br-.svg",
-        location: "Latin America",
-      },
-      leadList: "Healthcare VCs",
-      copy: "Healthcare Focused",
-      status: { type: "approved", label: "Approved" },
-    },
-    {
-      title: "Tech Venture Outreach Q4",
-      subtitle: "Venture Capital",
-      geography: {
-        flag: "https://c.animaapp.com/mfqjua33FHoyZF/img/australia--au-.svg",
-        location: "Oceania",
-      },
-      leadList: "Healthcare VCs",
-      copy: "Healthcare Focused",
-      status: { type: "in-progress", label: "In Progress" },
-    },
-    {
-      title: "Healthcare Innovation",
-      subtitle: "Healthcare Focused",
-      geography: {
-        flag: "https://c.animaapp.com/mfqjua33FHoyZF/img/twemoji-flag-australia.svg",
-        location: "United States",
-      },
-      leadList: "Healthcare VCs",
-      copy: "Healthcare Focused",
-      status: { type: "approved", label: "Approved" },
-    },
-  ];
-
   // Upcoming calls data
   const upcomingCallsData = [
     {
@@ -259,64 +181,6 @@ export const DashboardSection = (): JSX.Element => {
     },
   ];
 
-  // Recent leads data
-  const recentLeadsData = [
-    {
-      name: "Leslie Alexander",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/rectangle-1.png",
-      date: "2024-01-15",
-      email: "lesliealex@mail.com",
-      phone: "1-566-581-9703 x039",
-      company: "TechVentures Capital",
-      status: { type: "in-progress", label: "In Progress" },
-    },
-    {
-      name: "Carmen Gottlieb",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/rectangle-2.png",
-      date: "2024-01-15",
-      email: "lesliealex@mail.com",
-      phone: "1-566-581-9703 x039",
-      company: "TechVentures Capital",
-      status: { type: "pending", label: "Pending" },
-    },
-    {
-      name: "Sam Bauch",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/rectangle-2-1.png",
-      date: "2024-01-15",
-      email: "lesliealex@mail.com",
-      phone: "1-566-581-9703 x039",
-      company: "TechVentures Capital",
-      status: { type: "pending", label: "Pending" },
-    },
-    {
-      name: "Gwendolyn Schulist",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/rectangle-2-2.png",
-      date: "2024-01-15",
-      email: "lesliealex@mail.com",
-      phone: "1-566-581-9703 x039",
-      company: "TechVentures Capital",
-      status: { type: "closed", label: "Closed" },
-    },
-    {
-      name: "Candice Becker",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/rectangle-1-1.png",
-      date: "2024-01-15",
-      email: "lesliealex@mail.com",
-      phone: "1-566-581-9703 x039",
-      company: "TechVentures Capital",
-      status: { type: "in-progress", label: "In Progress" },
-    },
-    {
-      name: "Aubrey Kuhn",
-      avatar: "https://c.animaapp.com/mfqjua33FHoyZF/img/rectangle-1-2.png",
-      date: "2024-01-15",
-      email: "lesliealex@mail.com",
-      phone: "1-566-581-9703 x039",
-      company: "TechVentures Capital",
-      status: { type: "closed", label: "Closed" },
-    },
-  ];
-
   const getStatusBadgeStyles = (type: string) => {
     switch (type) {
       case "approved":
@@ -333,6 +197,46 @@ export const DashboardSection = (): JSX.Element => {
     }
   };
 
+  const getGeographyFlag = (geography: string) => {
+    const flagMap: Record<string, string> = {
+      "United States": "🇺🇸",
+      USA: "🇺🇸",
+      Canada: "🇨🇦",
+      "United Kingdom": "🇬🇧",
+      UK: "🇬🇧",
+      Germany: "🇩🇪",
+      France: "🇫🇷",
+      Japan: "🇯🇵",
+      Australia: "🇦🇺",
+      Singapore: "🇸🇬",
+      "Hong Kong": "🇭🇰",
+      Switzerland: "🇨🇭",
+      Netherlands: "🇳🇱",
+      Sweden: "🇸🇪",
+      Norway: "🇳🇴",
+      Denmark: "🇩🇰",
+      Finland: "🇫🇮",
+      Ireland: "🇮🇪",
+      Belgium: "🇧🇪",
+      Austria: "🇦🇹",
+      Luxembourg: "🇱🇺",
+      Italy: "🇮🇹",
+      Spain: "🇪🇸",
+      Portugal: "🇵🇹",
+      Europe: "🇪🇺", // European Union flag for Europe
+      Brazil: "🇧🇷",
+      Mexico: "🇲🇽",
+      India: "🇮🇳",
+      China: "🇨🇳",
+      "South Korea": "🇰🇷",
+      Israel: "🇮🇱",
+      UAE: "🇦🇪",
+      "Saudi Arabia": "🇸🇦",
+    };
+
+    return flagMap[geography] || "🌍";
+  };
+
   return (
     <div className="w-full h-full flex flex-col content-section animate-fade-in-up">
       {/* Header Section */}
@@ -346,130 +250,26 @@ export const DashboardSection = (): JSX.Element => {
           </p>
         </div>
 
-        <div className="relative flex items-center gap-3 px-4 py-2.5 bg-background rounded-lg border border-input input-enhanced max-w-sm">
-          <SearchIcon className="w-4 h-4 text-muted-foreground" />
+        <div className="relative">
+          <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#4f5059]" />
           <Input
             placeholder="Search transactions, campaigns..."
-            className="border-none p-0 bg-transparent focus-visible:ring-0 text-sm placeholder:text-muted-foreground"
+            className="w-[332px] h-[37px] pl-10 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px]"
           />
         </div>
       </header>
 
       {/* Welcome Card */}
-      <Card className="mx-6 relative mt-6 card-elevated bg-gradient-to-br from-primary/5 to-brand-secondary/5">
-        <CardContent className="flex items-start gap-10 p-6">
-          <div className="flex flex-col w-[363px] items-start gap-4 relative">
-            <div className="relative w-[66px] h-16">
-              <div className="absolute top-0 left-0 w-16 h-16 bg-[#e5effa] rounded-xl" />
-              <div className="absolute top-[calc(50.00%_-_24px)] left-[calc(50.00%_-_18px)] [font-family:'Manrope',Helvetica] font-semibold text-black text-[32px] tracking-[0] leading-[48px] whitespace-nowrap">
-                👋
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
-              <div className="mt-[-1.00px] font-semibold leading-[19.6px] relative self-stretch [font-family:'Manrope',Helvetica] text-[#4f5059] text-sm tracking-[0]">
-                {new Date().toLocaleDateString("en-US", {
-                  weekday: "long",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="relative w-fit [font-family:'Manrope',Helvetica] font-semibold text-[#111111] text-[26px] tracking-[0] leading-[39px] whitespace-nowrap">
-                {(() => {
-                  const currentHour = new Date().getHours();
-                  const greeting =
-                    currentHour < 12 ? "Good morning" : "Good evening";
-                  return `${greeting}, ${campaigns.user?.name}`;
-                })()}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-start gap-4 relative flex-1 grow">
-            <div className="flex items-start justify-between relative self-stretch w-full flex-[0_0_auto]">
-              <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
-                <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    Fundraising Target
-                  </div>
-                </div>
-                <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-3xl tracking-[-0.60px] leading-[45px] whitespace-nowrap">
-                    ${campaigns.user?.details?.fundraisingTarget}
-                  </div>
-                  <EditIcon className="relative w-6 h-6 text-[#4f5059]" />
-                </div>
-              </div>
-
-              <Button
-                variant="outline"
-                className="h-8 px-3 py-2 rounded-lg border-[0.5px] border-solid border-[#d9dadb]"
-              >
-                <span className="[font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px]">
-                  See all
-                </span>
-              </Button>
-            </div>
-
-            <div className="flex items-start gap-4 relative self-stretch w-full flex-[0_0_auto]">
-              <div className="relative w-[460px] h-[95px]">
-                <div className="absolute top-0 left-px w-[460px] h-[26px] bg-[#888ae8]" />
-                <img
-                  className="top-[26px] w-0.5 h-[69px] absolute left-0"
-                  alt="Line"
-                  src="https://c.animaapp.com/mfqjua33FHoyZF/img/line-116.svg"
-                />
-                <div className="inline-flex flex-col items-start justify-center gap-0.5 absolute top-[38px] left-3">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    ${campaigns?.user?.details?.capitalCommitted}
-                  </div>
-                  <div className="inline-flex items-center justify-center gap-1 relative flex-[0_0_auto]">
-                    <div className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-                      Capital Committed
-                    </div>
-                    <Badge className="h-5 px-1 py-0.5 bg-[#b3bdbf29] text-[#848986] font-semibold text-xs">
-                      {((Number(campaigns.user?.details?.fundraisingTarget) -
-                        Number(campaigns.user?.details?.capitalCommitted)) /
-                        Number(campaigns.user?.details?.fundraisingTarget)) *
-                        100}
-                      %
-                    </Badge>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative w-[221px] h-[95px]">
-                <div className="flex w-[221px] items-start gap-[1.5px] absolute top-0 left-0">
-                  {remainingBars.map((bar, index) => (
-                    <div
-                      key={index}
-                      className={`relative ${bar.width} ${bar.height} ${bar.bgColor} ${bar.marginLeft}`}
-                    />
-                  ))}
-                </div>
-                <img
-                  className="top-[26px] w-0.5 h-[69px] absolute left-0"
-                  alt="Line"
-                  src="https://c.animaapp.com/mfqjua33FHoyZF/img/line-116.svg"
-                />
-                <div className="inline-flex flex-col items-start justify-center gap-0.5 absolute top-[38px] left-3">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    $
-                    {Number(campaigns.user?.details?.fundraisingTarget) -
-                      Number(campaigns.user?.details?.capitalCommitted)}
-                  </div>
-                  <div className="relative w-fit [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-                    Remaining
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="mx-6 relative mt-6">
+        <WelcomeCard
+          name={campaigns.user?.name || ""}
+          fundraisingTarget={campaigns.user?.details?.fundraisingTarget || 0}
+          committedCapital={campaigns.user?.details?.capitalCommitted || 0}
+        />
+      </div>
 
       {/* Market Insights Section */}
-      <Card className="mx-[19px] flex-1 max-h-[404px] mt-[18px] rounded-[20px] border border-solid border-[#eaeaea] translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:600ms]">
+      <Card className="mx-[19px] flex-1 h-full mt-[18px] rounded-[20px] border border-solid border-[#eaeaea] translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:600ms]">
         <CardContent className="flex flex-col gap-2.5 p-5">
           <div className="flex flex-col items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
             <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
@@ -526,7 +326,7 @@ export const DashboardSection = (): JSX.Element => {
             <div className="flex flex-col items-start gap-4 relative self-stretch w-full flex-[0_0_auto]">
               <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
                 <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-3xl tracking-[-0.60px] leading-[33px] whitespace-nowrap">
-                  {campaigns.totalActiveCampaigns}
+                  {campaigns.totalLeads}
                 </div>
                 <Badge className="inline-flex items-center gap-1 pl-1 pr-1.5 py-1 bg-[#17a34a14] text-[#1b8341] rounded-[100px]">
                   <img
@@ -647,76 +447,61 @@ export const DashboardSection = (): JSX.Element => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {campaigns.campaigns.map((campaign: CampaignState, index) => (
-                  <TableRow
-                    key={index}
-                    className="h-[72px] border-b border-[#e9eaec]"
-                  >
-                    <TableCell className="w-[220px] pl-5 pr-4 py-4 border-r border-[#e9eaec]">
-                      <div className="flex items-center gap-2">
-                        <img
-                          className="relative flex-[0_0_auto]"
-                          alt="Frame"
-                          src="https://c.animaapp.com/mfqjua33FHoyZF/img/frame-1171275486.svg"
-                        />
-                        <div className="inline-flex flex-col items-start justify-center">
-                          <div className="font-semibold text-[#192330] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                            {campaign.name}
-                          </div>
-                          <div className="font-normal text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica] text-[#3b4c63]">
-                            {""}
+                {campaigns.campaigns.map(
+                  (campaign: CampaignState, index: number) => (
+                    <TableRow
+                      key={index}
+                      className="h-[72px] border-b border-[#e9eaec]"
+                    >
+                      <TableCell className="w-[220px] pl-5 pr-4 py-4 border-r border-[#e9eaec]">
+                        <div className="flex items-center gap-2">
+                          <img
+                            className="relative flex-[0_0_auto]"
+                            alt="Frame"
+                            src="https://c.animaapp.com/mfqjua33FHoyZF/img/frame-1171275486.svg"
+                          />
+                          <div className="inline-flex flex-col items-start justify-center">
+                            <div className="font-semibold text-[#192330] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
+                              {campaign.name}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </TableCell>
-                    <TableCell className="w-[140px] p-4 border-r border-[#e9eaec]">
-                      <div className="flex items-center gap-2">
-                        <img
-                          className="relative w-5 h-[15px]"
-                          alt="Flag"
-                          src={""}
-                        />
+                      </TableCell>
+                      <TableCell className="w-[140px] p-4 border-r border-[#e9eaec]">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">
+                            {getGeographyFlag(campaign.geography)}
+                          </span>
+                          <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
+                            {campaign.geography}
+                          </span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="w-[105px] p-4 border-r border-[#e9eaec]">
                         <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                          {campaign.geography}
+                          {campaign.investor}
                         </span>
-                      </div>
-                    </TableCell>
-                    <TableCell className="w-[105px] p-4 border-r border-[#e9eaec]">
-                      <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                        {campaign.leadList}
-                      </span>
-                    </TableCell>
-                    <TableCell className="w-[100px] p-4 border-r border-[#e9eaec]">
-                      <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                        {campaign.copy}
-                      </span>
-                    </TableCell>
-                    <TableCell className="w-[145px] p-4 border-r border-[#e9eaec]">
-                      <Badge
-                        className={`inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[100px] ${getStatusBadgeStyles(
-                          campaign.status || ""
-                        )}`}
-                      >
-                        <div
-                          className={`w-1.5 h-1.5 rounded-[80px] ${
-                            campaign.status === "approved" ||
-                            campaign.status === "closed"
-                              ? "bg-[#1b8441]"
-                              : campaign.status === "draft" ||
-                                  campaign.status === "pending"
-                                ? "bg-[#c2c8d0]"
-                                : campaign.status === "completed"
-                                  ? "bg-[#d11818]"
-                                  : "bg-[#d1a218]"
-                          }`}
-                        />
-                        <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                          {campaign.status}
+                      </TableCell>
+                      <TableCell className="w-[100px] p-4 border-r border-[#e9eaec]">
+                        <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
+                          {campaign.copy}
                         </span>
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                      </TableCell>
+                      <TableCell className="w-[145px] p-4 border-r border-[#e9eaec]">
+                        <Badge
+                          className={`inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[100px] ${getStatusBadgeStyles(campaign.status || "")}`}
+                        >
+                          <div
+                            className={`w-1.5 h-1.5 rounded-[80px] ${campaign.status === "approved" || campaign.status === "closed" ? "bg-[#1B8441]" : campaign.status === "draft" || campaign.status === "pending" ? "bg-[#C3C8D0]" : campaign.status === "completed" ? "bg-[#D11818]" : campaign.status === "in-progress" ? "bg-[#D1A318]" : "bg-[#d1a218]"}`}
+                          />
+                          <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
+                            {campaign.status}
+                          </span>
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
               </TableBody>
             </Table>
             <div className="absolute w-[calc(100%_-_2px)] left-0 bottom-0.5 h-[65px] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_100%)]" />
@@ -736,7 +521,7 @@ export const DashboardSection = (): JSX.Element => {
                 </p>
               </div>
 
-              <Button className="h-8 px-3 py-1 bg-white rounded-lg border-[0.5px] border-solid border-[#09215e] text-[#09215e] hover:bg-[#09215e] hover:text-white">
+              <Button className="h-8 px-3 py-1 bg-white rounded-lg border-[0.5px] border-solid border-[#09215e] text-[#09215e]">
                 <span className="[font-family:'Manrope',Helvetica] font-medium text-xs tracking-[-0.24px] leading-[18px]">
                   Add Event
                 </span>
@@ -774,27 +559,17 @@ export const DashboardSection = (): JSX.Element => {
                 {upcomingCallsData.map((call, index) => (
                   <Card
                     key={index}
-                    className={`relative self-stretch w-full h-[103px] rounded-[10px] overflow-hidden border border-solid ${
-                      call.isActive ? "border-[#4e7fe3]" : "border-[#eaeaea]"
-                    }`}
+                    className={`relative self-stretch w-full h-[103px] rounded-[10px] overflow-hidden border border-solid ${call.isActive ? "border-[#4e7fe3]" : "border-[#eaeaea]"}`}
                   >
                     <CardContent className="p-0 relative h-full">
                       <div className="inline-flex flex-col items-center justify-center gap-2 pl-0 pr-3 py-0 absolute top-[15px] left-[15px] border-r border-[#eaeaea]">
                         <div
-                          className={`w-[60px] text-center relative mt-[-0.50px] [font-family:'Manrope',Helvetica] text-sm tracking-[-0.28px] leading-[19.6px] ${
-                            call.isActive
-                              ? "font-semibold text-[#272a34]"
-                              : "font-normal text-[#272a34b2]"
-                          }`}
+                          className={`w-[60px] text-center relative mt-[-0.50px] [font-family:'Manrope',Helvetica] text-sm tracking-[-0.28px] leading-[19.6px] ${call.isActive ? "font-semibold text-[#272a34]" : "font-normal text-[#272a34b2]"}`}
                         >
                           {call.day}
                         </div>
                         <div
-                          className={`relative self-stretch [font-family:'Manrope',Helvetica] text-3xl text-center tracking-[0] leading-[normal] ${
-                            call.isActive
-                              ? "font-semibold text-[#111111]"
-                              : "font-normal text-[#030512b2]"
-                          }`}
+                          className={`relative self-stretch [font-family:'Manrope',Helvetica] text-3xl text-center tracking-[0] leading-[normal] ${call.isActive ? "font-semibold text-[#111111]" : "font-normal text-[#030512b2]"}`}
                         >
                           {call.date}
                         </div>
@@ -825,9 +600,7 @@ export const DashboardSection = (): JSX.Element => {
                             {call.participants.map((participant, pIndex) => (
                               <Avatar
                                 key={pIndex}
-                                className={`w-6 h-6 ${
-                                  pIndex > 0 ? "-ml-3" : ""
-                                }`}
+                                className={`w-6 h-6 ${pIndex > 0 ? "-ml-3" : ""}`}
                               >
                                 <AvatarImage
                                   src={participant}
@@ -906,7 +679,7 @@ export const DashboardSection = (): JSX.Element => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {leads.leads.map((lead: LeadState, index) => (
+              {leads.leads.map((lead: LeadState, index: number) => (
                 <TableRow
                   key={index}
                   className="h-[72px] border-b border-[#e9eaec]"
@@ -914,9 +687,12 @@ export const DashboardSection = (): JSX.Element => {
                   <TableCell className="w-[282px] pl-5 pr-4 py-4 border-r border-[#e9eaec]">
                     <div className="flex items-center gap-2">
                       <Avatar className="w-9 h-9">
-                        <AvatarImage src={""} alt={lead.firstname} />
+                        <AvatarImage
+                          src={""}
+                          alt={lead.firstname + " " + lead.lastname}
+                        />
                         <AvatarFallback>
-                          {lead.firstname.charAt(0)}
+                          {lead.firstname.charAt(0) + lead.lastname.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
                       <div className="inline-flex flex-col items-start justify-center gap-0.5">
@@ -926,7 +702,17 @@ export const DashboardSection = (): JSX.Element => {
                         <div className="inline-flex items-center gap-1">
                           <ClockIcon className="w-4 h-4 text-[#3b4c63]" />
                           <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
-                            {lead.createdAt}
+                            {new Date(lead.createdAt).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                                hour: "numeric",
+                                minute: "numeric",
+                                hour12: true,
+                              }
+                            )}
                           </span>
                         </div>
                       </div>
@@ -959,12 +745,10 @@ export const DashboardSection = (): JSX.Element => {
                   </TableCell>
                   <TableCell className="flex-1 p-4 border-r border-[#e9eaec]">
                     <Badge
-                      className={`inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[100px] ${getStatusBadgeStyles(
-                        lead.status
-                      )}`}
+                      className={`inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[100px] ${getStatusBadgeStyles(lead.status as string)}`}
                     >
                       <div
-                        className={`w-1.5 h-1.5 rounded-[80px] ${"bg-[#d1a218]"}`}
+                        className={`w-1.5 h-1.5 rounded-[80px] ${lead.status === LeadStatus.DO_NOT_CONTACT || LeadStatus.NOT_INTERESTED ? "bg-[#1b8441]" : lead.status === LeadStatus.INFORMATION_REQUEST || LeadStatus.MEETING_REQUESTED ? "bg-[#c2c8d0]" : "bg-[#d1a218]"}`}
                       />
                       <span className="font-medium text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
                         {lead.status}
@@ -972,7 +756,7 @@ export const DashboardSection = (): JSX.Element => {
                     </Badge>
                   </TableCell>
                   <TableCell className="flex-1 p-4 border-r border-[#e9eaec]">
-                    <div className="flex items-center gap-2.5 cursor-pointer hover:opacity-70 transition-opacity">
+                    <div className="flex items-center gap-2.5 cursor-pointer">
                       <EyeIcon className="w-4 h-4 text-[#3b4c63]" />
                       <span className="font-normal text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] [font-family:'Manrope',Helvetica]">
                         View
