@@ -283,7 +283,7 @@ export const CampaignOverviewSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className={`absolute ${card.id === 2 ? 'top-[65px] left-[226px] w-[124px] h-[51px]' : 'left-[242px] bottom-4 w-[111px] h-[49px] flex bg-[url(/image.png)] bg-[100%_100%]'}`}>
+                <div className={`absolute ${card.id === 2 ? 'top-[65px] left-[226px] w-[124px] h-[51px]' : 'left-[242px] bottom-4 w-[111px] h-[49px] flex bg-gray-100'}`}>
                   {card.id === 2 && (
                     <img
                       className="absolute w-[calc(100%_+_5px)] h-[calc(100%_+_67px)] top-0 left-0"

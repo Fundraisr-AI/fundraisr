@@ -363,7 +363,7 @@ export const CampaignCreationSection = ({
                     className="relative flex items-start justify-start w-full h-full mt-[-1.00px] [font-family:'Manrope-Regular',Helvetica] font-normal text-base tracking-[-0.29px] leading-[normal] placeholder:text-[#a1a1a1] bg-transparent border-none outline-none resize-none"
                   />
                   <div className="absolute right-1.5 bottom-1 w-2 h-2">
-                    <div className="absolute h-full top-0 right-0 w-2 flex bg-[url(/image-2.svg)] bg-[100%_100%]">
+                    <div className="absolute h-full top-0 right-0 w-2 flex bg-gray-200">
                       <img
                         className="mt-[1.6px] w-[6.35px] h-[6.35px] ml-[1.6px]"
                         alt="Resize handle"
