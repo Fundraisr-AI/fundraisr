@@ -848,10 +848,10 @@ export const DealPipelineSection = (): JSX.Element => {
                               <div className="flex items-center justify-between mb-3">
                                 <Badge
                                   className="px-3 py-1 text-xs font-medium rounded-full"
-                                  style={{
-                                    backgroundColor: `${card.statusColor}29`,
-                                    color: card.statusColor,
-                                  }}
+                                  // style={{
+                                  //   backgroundColor: `${card.statusColor}29`,
+                                  //   color: card.statusColor,
+                                  // }}
                                 >
                                   {card.status}
                                 </Badge>
@@ -866,20 +866,20 @@ export const DealPipelineSection = (): JSX.Element => {
 
                               <div className="mb-3">
                                 <h4 className="font-semibold text-foreground text-sm mb-1">
-                                  {card.company}
+                                  {/* {card.company} */}
                                 </h4>
                                 <p className="text-muted-foreground text-xs">
                                   {card.firstname + card.lastname}
                                 </p>
                               </div>
 
-                              {card.description && (
+                              {/* {card.description && (
                                 <div className="mb-2">
                                   <p className="text-muted-foreground text-xs">
                                     {card.description}
                                   </p>
                                 </div>
-                              )}
+                              )} */}
 
                               {card.createdAt && (
                                 <div className="flex items-center gap-1 mb-3">
@@ -894,7 +894,7 @@ export const DealPipelineSection = (): JSX.Element => {
                                 <div className="flex items-center gap-2">
                                   <div className="w-6 h-6 rounded-full overflow-hidden">
                                     <img
-                                      src={card.avatar}
+                                      src={""}
                                       alt={card.firstname}
                                       className="w-full h-full object-cover"
                                     />
@@ -904,7 +904,7 @@ export const DealPipelineSection = (): JSX.Element => {
                                       {card.firstname + card.lastname}
                                     </div>
                                     <div className="text-muted-foreground text-xs">
-                                      {card.contactRole}
+                                      {/* {card.contactRole} */}
                                     </div>
                                   </div>
                                 </div>
@@ -920,7 +920,7 @@ export const DealPipelineSection = (): JSX.Element => {
                                     </svg>
                                   </div>
                                   <span className="text-muted-foreground text-xs">
-                                    {card.messageCount}
+                                    {/* {card.messageCount} */}
                                   </span>
                                 </div>
                               </div>
