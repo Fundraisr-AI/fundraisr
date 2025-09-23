@@ -108,7 +108,7 @@ export const SupportSection = (): JSX.Element => {
                 Contact Support
               </h2>
               <p className="text-muted-foreground text-xs">
-                Submit A Support Ticket And We'll Get Back To You
+                Submit A Support Ticket And We&apos;ll Get Back To You
               </p>
             </div>
 
@@ -275,7 +275,7 @@ export const SupportSection = (): JSX.Element => {
                   No support tickets
                 </h3>
                 <p className="text-muted-foreground text-sm text-center">
-                  You Haven't Submitted Any Support Tickets Yet
+                  You Haven&apos;t Submitted Any Support Tickets Yet
                 </p>
               </div>
             </div>
