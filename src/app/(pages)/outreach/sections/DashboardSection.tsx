@@ -184,28 +184,48 @@ export const DashboardSection = (): JSX.Element => {
               </div>
             </CardHeader>
             <CardContent className="relative pt-4 pb-6">
-              <BarChart
-                width={700}
-                height={200}
-                data={[
-                  { name: "Page A", uv: 590 },
-                  { name: "Page B", uv: 290 },
-                  { name: "Page C", uv: 868 },
-                ]}
-              >
-                <Tooltip
-                  trigger="click"
-                  content={() => null}
-                  cursor={false}
-                  shared={false}
-                />
-                <Bar
-                  dataKey="uv"
-                  stackId="a"
-                  fill="green"
-                  activeBar={{ stroke: "black", strokeWidth: 7 }}
-                />
-              </BarChart>
+              <div className="relative w-full h-[200px]">
+                {/* Y-axis labels */}
+                <div className="absolute left-0 top-0 bottom-8 w-8 flex flex-col justify-between items-end">
+                  {yAxisLabels.map((label, index) => (
+                    <div
+                      key={index}
+                      className="text-xs font-medium text-[#767e84] text-right tracking-[-0.18px] [font-family:'Manrope',Helvetica]"
+                    >
+                      {label}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Chart area */}
+                <div className="absolute left-10 right-0 top-0 bottom-8">
+                  {/* Grid lines */}
+                  <div className="absolute inset-0 flex flex-col justify-between">
+                    {[...Array(4)].map((_, index) => (
+                      <div key={index} className="w-full h-px bg-[#e5e7eb]" />
+                    ))}
+                  </div>
+
+                  {/* Chart bars */}
+                  <img
+                    className="absolute inset-0 w-full h-full object-contain"
+                    alt="Chart"
+                    src="https://c.animaapp.com/mfqpait0Qdrcn2/img/chart.svg"
+                  />
+                </div>
+
+                {/* X-axis labels */}
+                <div className="absolute left-10 right-0 bottom-0 h-8 flex items-center justify-between">
+                  {chartLabels.map((label, index) => (
+                    <div
+                      key={index}
+                      className="text-xs font-medium text-[#767e84] tracking-[-0.18px] [font-family:'Manrope',Helvetica]"
+                    >
+                      {label}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </CardContent>
           </Card>
 
@@ -221,42 +241,83 @@ export const DashboardSection = (): JSX.Element => {
               </div>
             </CardHeader>
             <CardContent className="relative">
-              <div className="absolute top-[20px] left-9 w-40 h-40 bg-[url(https://c.animaapp.com/mfqpait0Qdrcn2/img/ellipse-2055.svg)] bg-[100%_100%]">
-                <img
-                  className="absolute top-[111px] left-[35px] w-[111px] h-[49px]"
-                  alt="Ellipse"
-                  src="https://c.animaapp.com/mfqpait0Qdrcn2/img/ellipse-2052.svg"
+              <div className="absolute top-[20px] left-9 w-40 h-40 rounded-full">
+                {/* Proper Donut Chart using conic-gradient */}
+                <div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: `conic-gradient(
+                    #fc814a 0% 40%,
+                    #05668d 40% 66%,
+                    #f1f1ef 66% 100%
+                  )`,
+                  }}
                 />
-                <img
-                  className="absolute top-px left-0 w-20 h-[143px]"
-                  alt="Ellipse"
-                  src="https://c.animaapp.com/mfqpait0Qdrcn2/img/ellipse-2053.svg"
-                />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-0.5">
-                  <div className="text-xl font-bold text-[#111111] tracking-[-0.30px] [font-family:'Manrope',Helvetica]">
+                {/* Inner white circle creates the donut hole */}
+                <div className="absolute inset-6 bg-white rounded-full flex flex-col items-center justify-center">
+                  <div className="text-lg font-bold text-[#111111] [font-family:'Manrope',Helvetica] tracking-[-0.30px]">
                     +23%
                   </div>
-                  <div className="text-xs font-medium text-[#acb8c2] text-center tracking-[-0.18px] [font-family:'Manrope',Helvetica]">
+                  <div className="text-xs font-medium text-[#acb8c2] [font-family:'Manrope',Helvetica] tracking-[-0.18px] text-center">
                     Increased from last year
                   </div>
                 </div>
               </div>
-              <div className="absolute top-[55px] left-5 flex gap-[61px]">
-                <div className="flex items-center justify-center w-[38px] h-[38px] bg-white rounded-full border border-[#e0e0e0] shadow-lg">
-                  <span className="text-xs font-semibold text-[#080808] [font-family:'Manrope',Helvetica] tracking-[-0.36px]">
-                    40%
-                  </span>
-                </div>
-                <div className="flex items-center justify-center w-[38px] h-[38px] bg-white rounded-full border border-[#e0e0e0] shadow-lg mt-[102px]">
-                  <span className="text-xs font-semibold text-[#080808] [font-family:'Manrope',Helvetica] tracking-[-0.36px]">
-                    26%
-                  </span>
-                </div>
-              </div>
+              {/* Percentage labels positioned on arc midpoints */}
+              {(() => {
+                const centerX = 80; // Center of the 160px donut chart
+                const centerY = 80;
+                const radius = 60; // Outer radius of donut
+                const offset = 20; // Distance from arc edge
+
+                // Chart data segments
+                const segments = [
+                  { value: 40, percentage: "40%", color: "#fc814a" }, // Orange segment
+                  { value: 26, percentage: "26%", color: "#05668d" }, // Blue segment
+                ];
+
+                let currentAngle = 0; // Start from top (0 degrees)
+
+                return segments.map((segment, index) => {
+                  // Calculate midpoint angle for this segment
+                  const startAngle = currentAngle;
+                  const endAngle =
+                    currentAngle + (segment.value / 100) * 2 * Math.PI;
+                  const labelAngle =
+                    startAngle + (segment.value / 100) * Math.PI; // Midpoint angle
+
+                  // Convert to Cartesian coordinates
+                  // Note: CSS conic-gradient starts at 0° (top), so we adjust by -π/2
+                  const adjustedAngle = labelAngle - Math.PI / 2;
+                  const x =
+                    centerX + (radius + offset) * Math.cos(adjustedAngle);
+                  const y =
+                    centerY + (radius + offset) * Math.sin(adjustedAngle);
+
+                  // Update current angle for next segment
+                  currentAngle = endAngle;
+
+                  return (
+                    <div
+                      key={index}
+                      className="absolute w-[38px] h-[38px] bg-white rounded-full border border-[#EEEEEB] flex items-center justify-center"
+                      style={{
+                        left: `${x - 19}px`, // Center the 38px badge
+                        top: `${y - 19}px`,
+                        boxShadow: "0 1px 3px rgba(0,0,0,0.12)",
+                      }}
+                    >
+                      <span className="text-xs font-bold text-[#111111] [font-family:'Manrope',Helvetica] tracking-[-0.36px]">
+                        {segment.percentage}
+                      </span>
+                    </div>
+                  );
+                });
+              })()}
               <div className="absolute top-[43px] right-5 flex flex-col gap-5">
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-[#fc814a] rounded-sm" />
+                    <div className="w-3 h-3 bg-[#fc814a] rounded-md" />
                     <span className="text-sm font-medium text-[#84858b] tracking-[-0.28px] [font-family:'Manrope',Helvetica]">
                       Deck Request
                     </span>
@@ -267,7 +328,7 @@ export const DashboardSection = (): JSX.Element => {
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-[#05668d] rounded-sm" />
+                    <div className="w-3 h-3 bg-[#05668d] rounded-md" />
                     <span className="text-sm font-medium text-[#84858b] tracking-[-0.28px] [font-family:'Manrope',Helvetica]">
                       Meeting Request
                     </span>
@@ -309,7 +370,7 @@ export const DashboardSection = (): JSX.Element => {
               <div className="flex flex-col gap-3">
                 <div className="flex items-end gap-0.5">
                   <span className="text-3xl font-bold text-[#111111] tracking-[-0.60px] [font-family:'Manrope',Helvetica]">
-                    {campaign?.totalActiveCampaigns}
+                    {campaign.totalActiveCampaigns}
                   </span>
                   <span className="text-xs text-[#4f5059] [font-family:'Manrope',Helvetica]">
                     Active Campaigns
@@ -401,58 +462,82 @@ export const DashboardSection = (): JSX.Element => {
                 </Tabs>
               </div>
             </CardHeader>
-            <CardContent className="p-4">
-              {/* Top Performer - Healthcare Focused */}
-              <div className="flex flex-col items-center mb-4">
-                <div className="relative mb-2">
-                  <img
-                    className="w-[52px] h-[52px]"
-                    alt="Group"
-                    src="https://c.animaapp.com/mfqpait0Qdrcn2/img/group-1171275502.png"
-                  />
-                  <div className="absolute -top-2 -right-1 w-[25px] h-[23px]">
-                    <div className="bg-[#e6c334] border-[#a29250] w-[23px] h-[23px] rounded-full border flex items-center justify-center">
-                      <span className="text-sm font-bold text-[#4c3e07] [font-family:'Manrope',Helvetica] tracking-[-0.28px]">
-                        1
+            <CardContent className="p-6">
+              <div className="flex gap-3">
+                {/* Left side - Main performer (Healthcare Focused) - positioned higher */}
+                <div className="flex flex-col items-center flex-1 pt-2">
+                  <div className="relative mb-2">
+                    <img
+                      className="w-[52px] h-[52px]"
+                      alt="Group"
+                      src="https://c.animaapp.com/mfqpait0Qdrcn2/img/group-1171275502.png"
+                    />
+                    <div className="absolute -top-2 -right-1 w-[25px] h-[23px]">
+                      <div className="bg-[#e6c334] border-[#a29250] w-[23px] h-[23px] rounded-full border flex items-center justify-center">
+                        <span className="text-sm font-bold text-[#4c3e07] [font-family:'Manrope',Helvetica] tracking-[-0.28px]">
+                          1
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg px-4 py-3 border border-[#ececec] shadow-sm text-center w-full max-w-[176px]">
+                    <div className="text-base font-semibold text-[#111111] tracking-[-0.32px] [font-family:'Manrope',Helvetica] mb-1">
+                      Healthcare Focused
+                    </div>
+                    <div className="text-xs text-[#84858b] tracking-[-0.24px] [font-family:'Manrope',Helvetica] mb-2">
+                      Healthcare Innovation
+                    </div>
+                    <div className="flex items-center justify-center gap-1">
+                      <span className="text-xs font-semibold text-[#111111] tracking-[-0.24px] [font-family:'Manrope',Helvetica]">
+                        12 meetings
+                      </span>
+                      <span className="text-[11px] font-semibold text-[#1b8341] [font-family:'Manrope',Helvetica]">
+                        15.0%
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="bg-white rounded-lg px-4 py-3 border border-[#ececec] shadow-sm text-center w-full max-w-[280px]">
-                  <div className="text-base font-semibold text-[#111111] tracking-[-0.32px] [font-family:'Manrope',Helvetica] mb-1">
-                    Healthcare Focused
-                  </div>
-                  <div className="text-xs text-[#84858b] tracking-[-0.24px] [font-family:'Manrope',Helvetica] mb-2">
-                    Healthcare Innovation
-                  </div>
-                  <div className="flex items-center justify-center gap-1">
-                    <span className="text-xs font-semibold text-[#111111] tracking-[-0.24px] [font-family:'Manrope',Helvetica]">
-                      12 meetings
-                    </span>
-                    <span className="text-[11px] font-semibold text-[#1b8341] [font-family:'Manrope',Helvetica]">
-                      15.0%
-                    </span>
-                  </div>
-                </div>
-              </div>
 
-              {/* Other Performers */}
-              <div className="flex flex-col gap-2">
-                {topPerformers.map((performer, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors"
-                  >
-                    <div className="flex items-center gap-3 flex-1">
-                      <div className="relative">
-                        <img
-                          className="w-7 h-7"
-                          alt="Group"
-                          src={performer.image}
-                        />
-                        <div className="absolute -top-1 -right-1 w-[20px] h-[20px]">
+                {/* Right side - Other performers positioned closer to left and flush right */}
+                <div className="flex flex-col gap-3 w-[420px] justify-start">
+                  {topPerformers.map((performer, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 bg-white rounded-lg border border-[#ececec] shadow-sm w-full h-[100px]"
+                    >
+                      <div className="flex items-center gap-4 flex-1">
+                        <div className="relative">
+                          <img
+                            className="w-[28px] h-[28px]"
+                            alt="Group"
+                            src={performer.image}
+                          />
+                        </div>
+
+                        <div className="flex-1">
+                          <div className="text-sm font-medium text-[#111111] tracking-[-0.28px] [font-family:'Manrope',Helvetica]">
+                            {performer.name}
+                          </div>
+                          <div className="text-xs text-[#84858b] tracking-[-0.24px] [font-family:'Manrope',Helvetica]">
+                            {performer.category}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-4">
+                        <div className="text-right">
+                          <div className="text-[11px] font-medium text-[#84858b] tracking-[-0.22px] [font-family:'Manrope',Helvetica]">
+                            {performer.meetings}
+                          </div>
+                          <div className="text-[11px] font-semibold text-[#1b8341] [font-family:'Manrope',Helvetica]">
+                            {performer.rate}
+                          </div>
+                        </div>
+
+                        {/* Rank badge moved to the right side */}
+                        <div className="w-[23px] h-[23px]">
                           <div
-                            className={`${performer.rankBg} w-[20px] h-[20px] rounded-full border flex items-center justify-center`}
+                            className={`${performer.rankBg} w-[23px] h-[23px] rounded-full border flex items-center justify-center`}
                           >
                             <span
                               className={`text-xs font-bold ${performer.rankText} [font-family:'Manrope',Helvetica] tracking-[-0.28px]`}
@@ -462,31 +547,19 @@ export const DashboardSection = (): JSX.Element => {
                           </div>
                         </div>
                       </div>
-
-                      <div className="flex-1">
-                        <div className="text-sm font-medium text-[#111111] tracking-[-0.28px] [font-family:'Manrope',Helvetica] truncate">
-                          {performer.name}
-                        </div>
-                        <div className="text-xs text-[#84858b] tracking-[-0.24px] [font-family:'Manrope',Helvetica]">
-                          {performer.category}
-                        </div>
-                      </div>
                     </div>
-
-                    <div className="text-right">
-                      <div className="text-[11px] font-medium text-[#84858b] tracking-[-0.22px] [font-family:'Manrope',Helvetica]">
-                        {performer.meetings}
-                      </div>
-                      <div className="text-[11px] font-semibold text-[#1b8341] [font-family:'Manrope',Helvetica]">
-                        {performer.rate}
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
         </section>
+
+        {/* Spacing after Campaign Overview section */}
+        <div className="mt-6"></div>
+
+        {/* Spacing between sections */}
+        <div className="mt-8"></div>
 
         <Card className="border-[#eaeaea]">
           <CardHeader>
@@ -569,15 +642,13 @@ export const DashboardSection = (): JSX.Element => {
                         <div className="font-semibold text-[#041824] text-base [font-family:'Manrope',Helvetica]">
                           {campaign.name}
                         </div>
-                        <div className="flex items-center gap-1">
+                        {/* <div className="flex items-center gap-1">
                           <div className="w-4 h-4 relative">
                             <div className="absolute w-[45.83%] h-[45.83%] top-[2.08%] left-[27.08%] rounded-[3.67px] border border-[#4f5059]" />
                             <div className="absolute w-[70.83%] h-[45.83%] top-[47.92%] left-[14.58%] rounded-[5.67px/3.67px] border border-[#4f5059]" />
                           </div>
-                          <span className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
-                            {""}
-                          </span>
-                        </div>
+                          <span className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope',Helvetica]"></span>
+                        </div> */}
                       </div>
                     </TableCell>
                     <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
@@ -590,7 +661,7 @@ export const DashboardSection = (): JSX.Element => {
                       {campaign.positive}
                     </TableCell>
                     <TableCell className="text-sm text-[#1b8441] tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
-                      {""}
+                      {campaign.positiveReplied}
                     </TableCell>
                     <TableCell>
                       <Badge className="bg-[#e1ebfd] text-[#1b3e84] hover:bg-[#e1ebfd] rounded-full px-3 py-1 text-sm font-medium tracking-[-0.56px] [font-family:'Manrope',Helvetica]">
