@@ -1,12 +1,12 @@
-import { NextAuthOptions } from "next-auth";
+import type { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 import configEnv from "@/config";
-import UserDao from "@/dao/UserDao"; // adjust path
-import UserImpl from "@/features/logic/UserImpl"; // adjust path
+import UserDao from "@/dao/UserDao";
+import UserImpl from "@/features/logic/UserImpl";
 
-export const authConfig: NextAuthOptions = {
+export const authConfig: NextAuthConfig = {
   providers: [
     GoogleProvider({
       clientId: configEnv.google.clientId,
@@ -18,15 +18,11 @@ export const authConfig: NextAuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
+      async authorize(credentials: any) {
+        if (!credentials?.email || !credentials?.password) return null;
 
-        const userControllerHandler = new UserDao();
-        const userDB = await userControllerHandler.getUserByEmail(
-          credentials.email
-        );
+        const userDao = new UserDao();
+        const userDB = await userDao.getUserByEmail(credentials.email);
         if (!userDB) return null;
 
         const user = new UserImpl();
@@ -35,14 +31,13 @@ export const authConfig: NextAuthOptions = {
         const hashedPassword = user.getPassword();
         if (!hashedPassword) return null;
 
-        const isPasswordValid = await bcrypt.compare(
+        const isValid = await bcrypt.compare(
           credentials.password,
           hashedPassword
         );
+        if (!isValid) return null;
 
-        if (!isPasswordValid) return null;
-
-        return user.toJson();
+        return user.toJson(); // Must be a plain object (id/email/etc.)
       },
     }),
   ],
@@ -50,7 +45,7 @@ export const authConfig: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/auth/signin", // optional: custom sign-in page
+    signIn: "/auth/signin",
   },
   secret: process.env.AUTH_SECRET,
 };
