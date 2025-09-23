@@ -14,12 +14,14 @@ import { Input } from "@/components/ui/input";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { loginFormSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { startTransition, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { Spinner } from "../ui/shadcn-io/spinner";
 
 // const loginFormSchema = z.object({
 //     email: z.string().email(),
@@ -29,6 +31,7 @@ import { z } from "zod";
 export default function LoginForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [loader, setLoader] = useState<boolean>(false);
   const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
@@ -52,13 +55,16 @@ export default function LoginForm() {
     // ✅ This will be type-safe and validated.
     setError("");
     setSuccess("");
+    setLoader(true);
     startTransition(() => {
       login(values).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
+
         // TODO: Add when we add 2FA
         if (data?.success) {
-          router.push(callbackUrl ?? "/workflows");
+          setLoader(false);
+          router.push(callbackUrl ?? "/dashboard");
         }
       });
     });
@@ -136,7 +142,7 @@ export default function LoginForm() {
 
             {/* Submit Button */}
             <Button type="submit" className="w-full">
-              Sign In
+              {loader ? <Spinner key={"circle"} variant="circle" /> : "Sign In"}
             </Button>
 
             <div className={`text-center ${success ? "text-green-500" : ""}`}>
