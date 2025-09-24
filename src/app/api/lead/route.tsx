@@ -23,6 +23,11 @@ export async function GET(req: NextRequest, res: NextResponse) {
       }
     }
 
+    const sortParam = searchParams.get("sort") || "asc";
+    if (sortParam) {
+      filters.sort = sortParam;
+    }
+
     const leadDao = new LeadDao();
 
     const leads = await leadDao.getAllLeadsByUserId(

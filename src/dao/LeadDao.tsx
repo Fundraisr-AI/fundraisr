@@ -25,6 +25,12 @@ export default class LeadDao {
           finalQuery.take = filters.limit;
         }
 
+        if (filters.sort) {
+          finalQuery.orderBy = {
+            updatedAt: filters.sort as "asc" | "desc",
+          };
+        }
+
         // Example: add more filters easily
         // if (filters.isReplied !== undefined) {
         //   filterJson.isReplied = filters.isReplied;

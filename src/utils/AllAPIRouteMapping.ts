@@ -34,6 +34,14 @@ const AllAPIRouteMapping = {
       apiPath: "/api/campaign/metrics/investor-type-distribution",
       method: "GET",
     },
+    getMetricsGeographyDistribution: {
+      apiPath: "/api/campaign/metrics/geography-distribution",
+      method: "GET",
+    },
+    getLeadStatusBreakdown: {
+      apiPath: "/api/campaign/lead-status-breakdown",
+      method: "GET",
+    },
   },
   leads: {
     getAll: {

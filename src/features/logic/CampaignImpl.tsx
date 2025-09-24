@@ -5,6 +5,7 @@ import { Campaign, UserResponse } from "@/dbtype";
 import { UserDetailsState } from "../slices/UserDetailsSlice";
 import UserDetailsImpl from "./UserDetailsImpl";
 import UserImpl from "./UserImpl";
+import { CampaignFilters } from "@/types";
 
 export default class CampaignImpl implements CampaignState {
   id: string = "";
@@ -27,6 +28,16 @@ export default class CampaignImpl implements CampaignState {
   investor: string = "";
   copy: string = "";
   user?: UserResponse;
+  geographyDistribution?: {
+    [key: string]: number;
+  };
+  positiveReplyMetrics?: {
+    [key: string]: number;
+  };
+
+  setPositiveReplyMetrics(positiveReplyMetrics: { [key: string]: number }) {
+    this.positiveReplyMetrics = positiveReplyMetrics;
+  }
 
   setId(id: string) {
     this.id = id;
@@ -88,8 +99,9 @@ export default class CampaignImpl implements CampaignState {
     }
   }
 
-  async getAllCampaignStatusByUser() {
+  async getAllCampaignStatusByUser(filters: CampaignFilters) {
     const axiosInstanceHandler = new axiosInstance();
+    axiosInstanceHandler.setParams(filters);
     const response = await axiosInstanceHandler.makeCall(
       `${AllAPIRouteMapping.campaigns.getAll.apiPath}`,
       AllAPIRouteMapping.campaigns.getAll.method

@@ -6,6 +6,7 @@ import {
   GetCampaignInvestorTypeDistributionMetricsResponse,
 } from "@/response";
 import { UserResponse } from "@/dbtype";
+import { CampaignFilters } from "@/types";
 
 export interface CampaignState {
   id: string;
@@ -28,6 +29,9 @@ export interface CampaignState {
   investor: String;
   copy: String;
   user?: UserResponse;
+  geographyDistribution?: {
+    [key: string]: number;
+  };
 }
 
 const initialState: CampaignState = {
@@ -50,6 +54,7 @@ const initialState: CampaignState = {
   leadList: "",
   investor: "",
   copy: "",
+  geographyDistribution: {},
 };
 
 const campaignSlice = createSlice({
@@ -118,10 +123,10 @@ const campaignSlice = createSlice({
 
 export const getAllCampaignStatusByUserAsync = createAsyncThunk(
   "campaign/getAllCampaignStatusByUser",
-  async (_, thunkAPI) => {
+  async (filters: CampaignFilters, thunkAPI) => {
     try {
       const campaign = new CampaignImpl();
-      const data = await campaign.getAllCampaignStatusByUser();
+      const data = await campaign.getAllCampaignStatusByUser(filters);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

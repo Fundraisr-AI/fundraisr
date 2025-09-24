@@ -12,9 +12,11 @@ export type CampaignMetrics = {
 export type LeadFilters = {
   status?: string[];
   limit?: Number;
+  sort?: string;
 };
 
 export type CampaignFilters = {
   status?: string[];
   limit?: Number;
+  geography?: string[];
 };

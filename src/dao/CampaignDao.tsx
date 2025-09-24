@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
-import { CampaignMetrics } from "@/types";
+import { CampaignFilters, CampaignMetrics } from "@/types";
 export default class CampaignDao {
-  async getAllCampaignsByUserId(userId: string) {
+  async getAllCampaignsByUserId(userId: string, filters: CampaignFilters) {
     try {
       const campaigns = await prisma.user.findUnique({
         where: { id: userId },
@@ -9,6 +9,19 @@ export default class CampaignDao {
           details: {
             include: {
               campaigns: {
+                where: {
+                  ...(filters?.status
+                    ? { status: { in: filters.status, mode: "insensitive" } }
+                    : {}),
+                  ...(filters?.geography
+                    ? {
+                        geography: {
+                          in: filters.geography,
+                          mode: "insensitive",
+                        },
+                      }
+                    : {}),
+                },
                 orderBy: { updatedAt: "desc" },
               },
             },
@@ -90,6 +103,7 @@ export default class CampaignDao {
               id: true,
               status: true,
               investor: true,
+              geography: true,
               // metrics across all leads of this campaign
               _count: {
                 select: {
@@ -112,6 +126,98 @@ export default class CampaignDao {
     } catch (e) {
       console.error(e);
       throw e; // better than returning e for type safety
+    }
+  }
+
+  async getGeographyDistributionMetrics(userId: string) {
+    try {
+      const campaigns = await prisma.userDetails.findMany({
+        select: {
+          id: true,
+          companyName: true,
+
+          // number of campaigns for this investor
+          _count: {
+            select: { campaigns: true },
+          },
+
+          campaigns: {
+            select: {
+              id: true,
+              status: true,
+              geography: true,
+              // metrics across all leads of this campaign
+              _count: {
+                select: {
+                  leads: true, // total contacts
+                },
+              },
+            },
+          },
+        },
+        where: {
+          user: { id: userId },
+        },
+      });
+
+      return campaigns;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
+  async getCampaignLeadStatusBreakdown(userId: string) {
+    try {
+      const campaigns = await prisma.campaign.findMany({
+        where: { userDetails: { userId } },
+        orderBy: { updatedAt: "desc" },
+        select: {
+          id: true,
+          name: true,
+          status: true,
+          geography: true,
+          investor: true,
+        },
+      });
+
+      const campaignIds = campaigns.map((c) => c.id);
+
+      if (campaignIds.length === 0) return [];
+
+      // Step 2: Group leads by campaignId and status
+      const leadGroups = await prisma.lead.groupBy({
+        by: ["campaignId", "status"],
+        where: { campaignId: { in: campaignIds } },
+        _count: { _all: true }, // count of leads for each campaignId + status
+      });
+
+      // Step 3: Map grouped leads into a structured object per campaign
+      const campaignStats = campaigns.map((c) => {
+        // filter all leadGroups for this campaign
+        const leadsForCampaign = leadGroups.filter(
+          (lg) => lg.campaignId === c.id
+        );
+
+        // map status -> count
+        const statusCounts: Record<string, number> = {};
+        leadsForCampaign.forEach((lg) => {
+          statusCounts[lg.status] = lg._count._all;
+        });
+
+        return {
+          ...c,
+          totalLeads: leadsForCampaign.reduce(
+            (sum, lg) => sum + lg._count._all,
+            0
+          ),
+          leadsByStatus: statusCounts,
+        };
+      });
+      return campaignStats;
+    } catch (e) {
+      console.error(e);
+      throw e;
     }
   }
 }
