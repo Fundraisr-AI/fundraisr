@@ -3,6 +3,7 @@ import UserReducer from "@/features/slices/UserSlice";
 import CampaignReducer from "@/features/slices/CampaignSlice";
 import LeadReducer from "@/features/slices/LeadSlice";
 import DocumentReducer from "@/features/slices/documentSlice";
+import UserDetailsReducer from "@/features/slices/UserDetailsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     campaign: CampaignReducer,
     lead: LeadReducer,
     documents: DocumentReducer,
+    userDetails: UserDetailsReducer,
   },
 });
 
