@@ -25,7 +25,7 @@ export const FundraisingAgentSection = (): JSX.Element => {
           </p>
         </div>
 
-        <Badge className="badge-success px-4 py-2 text-sm font-medium">
+        <Badge className="bg-[#17a34a29] text-[#17a34a] hover:bg-[#17a34a29] rounded px-4 py-2 text-sm font-medium">
           Admin Access
         </Badge>
       </header>

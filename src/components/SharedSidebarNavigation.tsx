@@ -170,13 +170,13 @@ export const SharedSidebarNavigation = (): JSX.Element => {
           <Button
             variant={isActive ? "secondary" : "ghost"}
             onClick={item.onClick}
-            className={`flex items-center relative w-full transition-all duration-200 ${
+            className={`flex items-center relative w-full transition-all duration-200 overflow-hidden ${
               showLabels 
                 ? `h-[46px] px-4 py-3 justify-start ${isActive ? "ml-[-1.00px] mr-[-1.00px] bg-white rounded-xl border border-solid border-[#eaeaea]" : "h-11"}`
                 : "h-[52px] px-4 py-3 justify-center"
             }`}
           >
-            <div className={`flex items-center gap-2 relative ${showLabels ? "flex-1 grow" : ""}`}>
+            <div className={`flex items-center gap-2 relative ${showLabels ? "flex-1 grow min-w-0" : ""}`}>
               {item.iconSrc ? (
                 <img src={item.iconSrc} alt={item.label} className="relative w-6 h-6 flex-shrink-0" />
               ) : IconComponent ? (
@@ -197,16 +197,16 @@ export const SharedSidebarNavigation = (): JSX.Element => {
               )}
               {showLabels && (
                 <div
-                  className={`flex-1 text-left relative ${
+                  className={`flex-1 text-left relative overflow-hidden min-w-0 ${
                     isActive ? "font-manrope-semibold" : "font-manrope-medium"
                   } text-[#111111] text-sm tracking-[0]`}
                 >
-                  {item.label}
+                  <span className="truncate block">{item.label}</span>
                 </div>
               )}
             </div>
             {showLabels && item.badge && (
-              <Badge className={`bg-[#17a34a29] text-[#17a34a] hover:bg-[#17a34a29] rounded px-2 py-1 text-xs font-medium [font-family:'Inter',Helvetica] ${item.label === "Fundraising Agent" ? "ml-6" : ""}`}>
+              <Badge className={`bg-[#17a34a29] text-[#17a34a] hover:bg-[#17a34a29] rounded px-2 py-1 text-xs font-medium [font-family:'Inter',Helvetica] flex-shrink-0 ${item.label === "Fundraising Agent" ? "ml-2" : ""}`}>
                 {item.badge}
               </Badge>
             )}
@@ -227,7 +227,7 @@ export const SharedSidebarNavigation = (): JSX.Element => {
 
   return (
     <nav 
-      className={`flex flex-col h-full items-start justify-between transition-all duration-300 ease-in-out ${
+      className={`flex flex-col h-full items-start justify-between transition-all duration-300 ease-in-out overflow-hidden ${
         isCollapsed && !isHovered ? "w-[80px] p-3" : "w-[260px] p-6"
       } bg-[#fbfbfb]`}
       onMouseEnter={() => {

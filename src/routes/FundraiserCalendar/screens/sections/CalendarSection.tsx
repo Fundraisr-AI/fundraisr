@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   CalendarIcon,
   ClockIcon,
@@ -13,10 +14,54 @@ import {
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
 import { ToggleGroup, ToggleGroupItem } from "../../components/ui/toggle-group";
+import { EventModalSection } from "./EventModalSection.tsx";
 
 export const CalendarSection = (): JSX.Element => {
+  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
+  const [editingEvent, setEditingEvent] = useState<any>(null);
+  const [createdEvents, setCreatedEvents] = useState<any[]>([]);
   const weekDays = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+
+  // Event management functions
+  const handleCreateEvent = (eventData: any) => {
+    const newEvent = {
+      id: Date.now().toString(),
+      ...eventData,
+      createdAt: new Date().toISOString(),
+    };
+    setCreatedEvents(prev => [...prev, newEvent]);
+    setIsEventModalOpen(false);
+    setEditingEvent(null);
+  };
+
+  const handleEditEvent = (eventData: any) => {
+    setCreatedEvents(prev => prev.map(event => 
+      event.id === editingEvent.id ? { ...event, ...eventData } : event
+    ));
+    setIsEventModalOpen(false);
+    setEditingEvent(null);
+  };
+
+  const handleDeleteEvent = (eventId: string) => {
+    setCreatedEvents(prev => prev.filter(event => event.id !== eventId));
+  };
+
+  const openEditModal = (event: any) => {
+    setEditingEvent(event);
+    setIsEventModalOpen(true);
+  };
+
+  const openCreateModal = () => {
+    setEditingEvent(null);
+    setIsEventModalOpen(true);
+  };
+
+  // Helper function to get events for a specific date
+  const getEventsForDate = (date: string) => {
+    return createdEvents.filter(event => event.date === date);
+  };
 
   const calendarDates = [
     { date: "31", isCurrentMonth: false, isSelected: false },
@@ -135,11 +180,12 @@ export const CalendarSection = (): JSX.Element => {
         </div>
 
         <div className="inline-flex items-center gap-4 flex-[0_0_auto]">
-          <div className="relative flex items-center gap-3 px-4 py-2.5 bg-background rounded-lg border border-input input-enhanced max-w-sm">
-            <SearchIcon className="w-4 h-4 text-muted-foreground" />
-            <div className="text-muted-foreground text-sm">
-              Search...
-            </div>
+          <div className="relative">
+            <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#4f5059]" />
+            <Input
+              placeholder="Search..."
+              className="w-[332px] h-[37px] pl-10 [font-family:'Manrope',Helvetica] font-medium text-[#4f5059] text-sm tracking-[-0.31px]"
+            />
           </div>
 
           <Button variant="outline" className="gap-2 px-4 py-2">
@@ -147,7 +193,10 @@ export const CalendarSection = (): JSX.Element => {
             Sync Calendar
           </Button>
 
-          <Button className="btn-primary gap-2 px-4 py-2">
+          <Button 
+            className="btn-primary gap-2 px-4 py-2"
+            onClick={openCreateModal}
+          >
             Add Event
           </Button>
         </div>
@@ -196,7 +245,7 @@ export const CalendarSection = (): JSX.Element => {
                 {Array.from({ length: 6 }, (_, weekIndex) => (
                   <div
                     key={weekIndex}
-                    className="flex h-[45px] items-center justify-between w-full"
+                    className="flex h-[60px] items-start justify-between w-full"
                   >
                     {Array.from({ length: 7 }, (_, dayIndex) => {
                       const dateIndex = weekIndex * 7 + dayIndex;
@@ -204,26 +253,71 @@ export const CalendarSection = (): JSX.Element => {
 
                       if (!dateData) return null;
 
+                      const dateEvents = getEventsForDate(dateData.date);
+                      
                       return (
                         <div
                           key={dayIndex}
-                          className="flex items-center justify-center gap-2 flex-1 grow border-0 border-none"
+                          className="flex flex-col items-center justify-start gap-1 flex-1 grow border-0 border-none h-[60px] p-1 cursor-pointer hover:bg-gray-50 transition-colors"
+                          onClick={() => {
+                            if (dateData.isCurrentMonth && dateEvents.length === 0) {
+                              // Set the selected date for the new event
+                              const newEventData = {
+                                eventTitle: "",
+                                description: "",
+                                date: dateData.date,
+                                time: "09:00",
+                                eventType: "Please select",
+                                location: "",
+                                attendees: "",
+                              };
+                              setEditingEvent({ ...newEventData, id: null });
+                              setIsEventModalOpen(true);
+                            }
+                          }}
                         >
+                          {/* Date Number */}
                           {dateData.isSelected ? (
-                            <div className="flex w-8 h-8 items-center justify-center gap-2.5 bg-[#587cd7] rounded-[100px]">
-                              <div className="w-8 [font-family:'Manrope',Helvetica] font-semibold text-[#fbfbfb] text-sm text-center tracking-[-0.28px] leading-[21px]">
+                            <div className="flex w-6 h-6 items-center justify-center gap-2.5 bg-[#587cd7] rounded-[100px]">
+                              <div className="w-6 [font-family:'Manrope',Helvetica] font-semibold text-[#fbfbfb] text-xs text-center tracking-[-0.28px] leading-[21px]">
                                 {dateData.date}
                               </div>
                             </div>
                           ) : (
                             <div
-                              className={`w-8 [font-family:'Manrope',Helvetica] font-semibold text-sm text-center tracking-[-0.28px] leading-[21px] ${
+                              className={`w-6 h-6 flex items-center justify-center [font-family:'Manrope',Helvetica] font-semibold text-xs text-center tracking-[-0.28px] leading-[21px] ${
                                 dateData.isCurrentMonth
                                   ? "text-[#111111]"
                                   : "text-[#e9423566]"
                               }`}
                             >
                               {dateData.date}
+                            </div>
+                          )}
+                          
+                          {/* Events */}
+                          {dateEvents.length > 0 && (
+                            <div className="flex flex-col gap-0.5 w-full">
+                              {dateEvents.slice(0, 2).map((event) => (
+                                <div
+                                  key={event.id}
+                                  className="w-full h-2 bg-[#09215e] rounded text-white text-[8px] px-1 overflow-hidden cursor-pointer hover:bg-[#0a1a4f] transition-colors"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    openEditModal(event);
+                                  }}
+                                  title={`${event.eventTitle} - ${event.time}`}
+                                >
+                                  <span className="truncate block text-[8px] leading-2">
+                                    {event.eventTitle}
+                                  </span>
+                                </div>
+                              ))}
+                              {dateEvents.length > 2 && (
+                                <div className="w-full h-2 bg-gray-400 rounded text-white text-[8px] px-1 text-center">
+                                  +{dateEvents.length - 2}
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>
@@ -235,8 +329,8 @@ export const CalendarSection = (): JSX.Element => {
             </CardContent>
           </Card>
 
-          <Card className="p-4 w-full mb-[-1.00px] ml-[-1.00px] mr-[-1.00px] bg-white rounded-[14px] overflow-hidden border border-solid border-[#eaeaea]">
-            <CardContent className="p-0 space-y-4">
+          <Card className="w-[356px] h-[280px] p-4 mb-[-1.00px] ml-[-1.00px] mr-[-1.00px] bg-white rounded-[14px] overflow-hidden border border-solid border-[#eaeaea]">
+            <CardContent className="p-0 space-y-4 h-full flex flex-col justify-between">
               <div className="flex flex-col items-start gap-3 w-full flex-[0_0_auto]">
                 <div className="flex items-center justify-between w-full flex-[0_0_auto]">
                   <div className="flex-1 mt-[-1.00px] [font-family:'Manrope',Helvetica] font-bold text-[#111111] text-xl tracking-[-0.40px] leading-[24.0px]">
@@ -466,21 +560,27 @@ export const CalendarSection = (): JSX.Element => {
                       >
                         {event && (
                           <div className="flex flex-col items-center gap-2 pt-3 pb-0 px-3">
-                            <div className="flex items-center gap-2 px-2 py-1 w-full flex-[0_0_auto] bg-white rounded-md overflow-hidden shadow-[0px_1px_2px_#00000014]">
+                            <div 
+                              className="flex items-center gap-2 px-2 py-1 relative bg-white rounded-md overflow-hidden shadow-[0px_1px_2px_#00000014]"
+                              role="listitem"
+                              aria-label={`Contact: ${event.name}, Status: ${event.type}`}
+                            >
                               <div
-                                className="w-1 h-7 rounded-[100px]"
-                                style={{ backgroundColor: event.color }}
+                                className="relative w-1 h-7 bg-[#f00000] rounded-[100px]"
+                                aria-hidden="true"
                               />
-                              <div className="w-[110px] h-8 mr-[-8.00px] relative">
-                                <div className="absolute top-0 left-4 w-[90px] [font-family:'Manrope',Helvetica] font-semibold text-[#111111] text-xs tracking-[-0.24px] leading-[18px]">
+                              <div className="relative w-[110px] h-8 mr-[-8.00px]">
+                                <div className="absolute top-0 left-4 w-[90px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-xs tracking-[-0.24px] leading-[18px] overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical]">
                                   {event.name}
                                 </div>
-                                <img
-                                  className="absolute top-1 left-0 w-3 h-3"
-                                  alt="Envelope open"
-                                  src="https://c.animaapp.com/mfr7q8re1bUnxi/img/envelopeopen.svg"
-                                />
-                                <div className="absolute top-[18px] left-px [font-family:'Manrope',Helvetica] font-normal text-[#4f5059] text-[10px] tracking-[0] leading-[14px] whitespace-nowrap">
+                                <div className="absolute top-1 left-0 w-3 h-3 aspect-[1]">
+                                  <img
+                                    className="absolute w-[81.25%] h-[75.00%] top-[9.37%] left-[9.38%]"
+                                    alt="Email icon"
+                                    src="https://c.animaapp.com/mfr7q8re1bUnxi/img/envelopeopen.svg"
+                                  />
+                                </div>
+                                <div className="absolute top-[18px] left-px [font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] text-[10px] tracking-[0] leading-[14.0px] whitespace-nowrap">
                                   {event.type}
                                 </div>
                               </div>
@@ -496,6 +596,31 @@ export const CalendarSection = (): JSX.Element => {
           </CardContent>
         </Card>
       </main>
+
+      {/* Modal Overlay */}
+      {isEventModalOpen && (
+        <div className="fixed inset-0 z-50">
+          {/* Transparent backdrop that shows whatever is behind */}
+          <div 
+            className="absolute inset-0 bg-black bg-opacity-20 backdrop-blur-sm"
+            onClick={() => setIsEventModalOpen(false)}
+          />
+          
+          {/* Modal content */}
+          <div 
+            className="absolute top-0 right-0 w-[800px] h-full bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <EventModalSection 
+              onClose={() => setIsEventModalOpen(false)}
+              editingEvent={editingEvent}
+              onCreateEvent={handleCreateEvent}
+              onEditEvent={handleEditEvent}
+              onDeleteEvent={handleDeleteEvent}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

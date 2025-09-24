@@ -1,5 +1,4 @@
 import { ChevronUpIcon } from "lucide-react";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Avatar,
@@ -62,7 +61,7 @@ export const SidebarSection = (): JSX.Element => {
       isActive: false,
       badge: null,
       fontWeight: "font-medium",
-      onClick: () => {},
+      onClick: () => navigate("/due-diligence"),
     },
     {
       icon: "https://c.animaapp.com/mfr6q2vwdnm9gO/img/user-square.svg",
@@ -70,7 +69,7 @@ export const SidebarSection = (): JSX.Element => {
       isActive: false,
       badge: null,
       fontWeight: "font-medium",
-      onClick: () => {},
+      onClick: () => navigate("/deal-room"),
     },
   ];
 
@@ -82,7 +81,7 @@ export const SidebarSection = (): JSX.Element => {
       badge: null,
       hasRedDot: true,
       fontWeight: "font-medium",
-      onClick: () => {},
+      onClick: () => navigate("/notifications"),
     },
     {
       icon: "https://c.animaapp.com/mfr6q2vwdnm9gO/img/linear---essentional--ui---help.svg",
@@ -90,7 +89,7 @@ export const SidebarSection = (): JSX.Element => {
       isActive: false,
       badge: null,
       fontWeight: "font-medium",
-      onClick: () => {},
+      onClick: () => navigate("/support"),
     },
     {
       icon: "https://c.animaapp.com/mfr6q2vwdnm9gO/img/linear---settings--fine-tuning---settings.svg",
@@ -98,7 +97,7 @@ export const SidebarSection = (): JSX.Element => {
       isActive: false,
       badge: null,
       fontWeight: "font-medium",
-      onClick: () => {},
+      onClick: () => navigate("/settings"),
     },
   ];
 
@@ -190,7 +189,7 @@ export const SidebarSection = (): JSX.Element => {
                   key={`tools-${index}`}
                   variant="ghost"
                   onClick={item.onClick}
-                  className="flex h-11 items-center px-4 py-3 relative self-stretch w-full justify-start gap-2 h-auto"
+                  className="flex h-11 items-center px-4 py-3 relative self-stretch w-full justify-start gap-2"
                 >
                   <img
                     className="relative w-5 h-5"
@@ -225,7 +224,7 @@ export const SidebarSection = (): JSX.Element => {
                   key={`account-${index}`}
                   variant="ghost"
                   onClick={item.onClick}
-                  className="flex h-11 items-center px-4 py-3 relative self-stretch w-full justify-start gap-2 h-auto"
+                  className="flex h-11 items-center px-4 py-3 relative self-stretch w-full justify-start gap-2"
                 >
                   <img
                     className="relative w-5 h-5"
@@ -263,7 +262,7 @@ export const SidebarSection = (): JSX.Element => {
                   key={`admin-${index}`}
                   variant="ghost"
                   onClick={item.onClick}
-                  className="flex h-11 items-center px-4 py-3 relative self-stretch w-full justify-start gap-2 h-auto"
+                  className="flex h-11 items-center px-4 py-3 relative self-stretch w-full justify-start gap-2"
                 >
                   {item.hasCustomIcon ? (
                     <div className="relative w-5 h-5">
@@ -282,7 +281,7 @@ export const SidebarSection = (): JSX.Element => {
                     <img
                       className="relative w-5 h-5"
                       alt={item.label}
-                      src={item.icon}
+                      src={item.icon || ""}
                     />
                   )}
                   <div

@@ -10,6 +10,9 @@ import { FundraiserDealRoom } from "./routes/FundraiserDealRoom/screens/Fundrais
 import { FundraiserNotifications } from "./routes/FundraiserNotifications/screens/FundraiserNotifications";
 import { FundraiserSupport } from "./routes/FundraiserSupport/screens/FundraiserSupport";
 import { FundraiserSettings } from "./routes/FundraiserSettings/screens/FundraiserSettings";
+import { FundraiserSignIn } from "./routes/Auth/screens/FundraiserSignIn";
+import { FundraiserSignUp } from "./routes/Auth/screens/FundraiserSignUp";
+import { FundraiserReset } from "./routes/Auth/screens/FundraiserReset";
 import { LoadingScreen } from "./components/LoadingScreen";
 
 // Component to handle loading state within Router context
@@ -33,6 +36,9 @@ const AppRoutes = (): JSX.Element => {
     <>
       <LoadingScreen isLoading={isLoading} />
       <Routes>
+        <Route path="/login" element={<FundraiserSignIn />} />
+        <Route path="/signup" element={<FundraiserSignUp />} />
+        <Route path="/reset" element={<FundraiserReset />} />
         <Route path="/" element={<FundraisrHomepage />} />
         <Route path="/outreach" element={<FundraisrOutreach />} />
         <Route path="/pipeline" element={<FundraiserDeal />} />
