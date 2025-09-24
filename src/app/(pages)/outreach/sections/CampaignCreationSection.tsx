@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import vector22 from "./vector-22.svg";
 import vector23 from "./vector-23.svg";
 import Upload from "./Upload.svg";
@@ -30,14 +30,8 @@ export const CampaignCreationSection = ({
 }): JSX.Element => {
   const [formData, setFormData] = useState({
     campaignName: "",
-    numberOfLeads: "",
-    location: "",
-    investorType: "",
-  });
-
-  const [dropdownStates, setDropdownStates] = useState({
-    location: false,
-    investorType: false,
+    locations: [] as string[],
+    investorTypes: [] as string[],
   });
 
   // Email editor state
@@ -49,6 +43,45 @@ export const CampaignCreationSection = ({
   const [abTestVariants, setAbTestVariants] = useState([
     { id: 1, name: "Variant A", subject: "", content: "" },
     { id: 2, name: "Variant B", subject: "", content: "" },
+  ]);
+
+  const [followUps, setFollowUps] = useState([
+    { id: 1, subject: "", body: "", delayDays: 3 },
+  ]);
+
+  // Save campaign form data to session storage whenever it changes
+  useEffect(() => {
+    sessionStorage.setItem("campaignFormData", JSON.stringify(formData));
+    console.log("Campaign form data saved to session storage:", formData);
+  }, [formData]);
+
+  // Save email sequence data to session storage whenever it changes
+  useEffect(() => {
+    const emailSequenceData = {
+      subjectLine,
+      emailBody,
+      abTestEnabled,
+      abTestVariants,
+      followUpEnabled,
+      followUps,
+      distributionStrategy,
+    };
+    sessionStorage.setItem(
+      "emailSequenceData",
+      JSON.stringify(emailSequenceData)
+    );
+    console.log(
+      "Email sequence data saved to session storage:",
+      emailSequenceData
+    );
+  }, [
+    subjectLine,
+    emailBody,
+    abTestEnabled,
+    abTestVariants,
+    followUpEnabled,
+    followUps,
+    distributionStrategy,
   ]);
 
   const stepData = [
@@ -87,19 +120,26 @@ export const CampaignCreationSection = ({
   ];
 
   const locationOptions = [
-    "New York, NY",
-    "Los Angeles, CA",
-    "Chicago, IL",
-    "Houston, TX",
-    "Phoenix, AZ",
+    "Global",
+    "United States",
+    "Europe",
+    "Asia",
+    "Latin America",
+    "Oceania",
   ];
 
   const investorTypeOptions = [
-    "Angel Investor",
+    "Broad Investors",
     "Venture Capital",
     "Private Equity",
-    "Institutional Investor",
-    "Individual Investor",
+    "Family Offices",
+    "Angel Investor",
+    "Funds of Funds",
+    "Corporate VC",
+    "Accelerator/Incubator",
+    "Sovereign",
+    "Insurance Company",
+    "Bank",
   ];
 
   const toolbarButtons = [
@@ -117,37 +157,64 @@ export const CampaignCreationSection = ({
     { component: Quote, group: "quote" },
   ];
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+  const handleLocationToggle = (location: string) => {
+    setFormData((prev) => {
+      const newLocations = prev.locations.includes(location)
+        ? prev.locations.filter((l) => l !== location)
+        : [...prev.locations, location];
+
+      const newCampaignName = generateCampaignName(
+        newLocations,
+        prev.investorTypes
+      );
+
+      return {
+        ...prev,
+        locations: newLocations,
+        campaignName: newCampaignName,
+      };
+    });
   };
 
-  const handleDropdownToggle = (dropdown: string) => {
-    setDropdownStates((prev) => ({
-      ...prev,
-      [dropdown]: !prev[dropdown as keyof typeof prev],
-    }));
+  const handleInvestorTypeToggle = (investorType: string) => {
+    setFormData((prev) => {
+      const newInvestorTypes = prev.investorTypes.includes(investorType)
+        ? prev.investorTypes.filter((t) => t !== investorType)
+        : [...prev.investorTypes, investorType];
+
+      const newCampaignName = generateCampaignName(
+        prev.locations,
+        newInvestorTypes
+      );
+
+      return {
+        ...prev,
+        investorTypes: newInvestorTypes,
+        campaignName: newCampaignName,
+      };
+    });
   };
 
-  const handleOptionSelect = (field: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-    setDropdownStates((prev) => ({
-      ...prev,
-      [field]: false,
-    }));
+  const generateCampaignName = (
+    locations: string[],
+    investorTypes: string[]
+  ): string => {
+    const locationPart =
+      locations.length > 0 ? locations.join(" & ") : "Global";
+    const investorPart =
+      investorTypes.length > 0 ? investorTypes.join(" & ") : "Broad Investors";
+    const timestamp = new Date().toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    });
+    return `${locationPart} ${investorPart} Campaign - ${timestamp}`;
   };
 
   const handleCancel = () => {
     setFormData({
       campaignName: "",
-      numberOfLeads: "",
-      location: "",
-      investorType: "",
+      locations: [],
+      investorTypes: [],
     });
   };
 
@@ -181,6 +248,34 @@ export const CampaignCreationSection = ({
       content: "",
     };
     setAbTestVariants([...abTestVariants, newVariant]);
+  };
+
+  const addFollowUp = () => {
+    setFollowUps((prev) => [
+      ...prev,
+      {
+        id: prev.length + 1,
+        subject: "",
+        body: "",
+        delayDays: (prev.length + 1) * 3,
+      },
+    ]);
+  };
+
+  const removeFollowUp = (id: number) => {
+    setFollowUps((prev) =>
+      prev.length > 1 ? prev.filter((f) => f.id !== id) : prev
+    );
+  };
+
+  const updateFollowUp = (
+    id: number,
+    field: "subject" | "body" | "delayDays",
+    value: string | number
+  ) => {
+    setFollowUps((prev) =>
+      prev.map((f) => (f.id === id ? { ...f, [field]: value } : f))
+    );
   };
 
   const renderToolbarButton = (
@@ -218,107 +313,61 @@ export const CampaignCreationSection = ({
         return (
           <>
             <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-              <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
-                Campaign Name
+              <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+                Campaign Name (Auto-Generated)
               </label>
               <input
                 type="text"
                 value={formData.campaignName}
-                onChange={(e) =>
-                  handleInputChange("campaignName", e.target.value)
-                }
-                placeholder="Enter campaign name"
-                className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#dbdbdb] [font-family:'Manrope-Regular',Helvetica] font-normal text-base tracking-[-0.29px] leading-[normal] placeholder:text-[#a1a1a1] focus:outline-none focus:border-[#05587a] transition-colors"
+                readOnly
+                placeholder="Select locations and investor types to generate name"
+                className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-gray-50 rounded-lg border border-solid border-[#dbdbdb] [font-family:'Manrope-Regular',Helvetica] font-normal text-base tracking-[-0.29px] leading-[normal] placeholder:text-[#a1a1a1] cursor-not-allowed"
               />
             </div>
-            <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-              <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
-                Number of Leads
+            <div className="flex flex-col items-start gap-3 relative self-stretch w-full flex-[0_0_auto]">
+              <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+                Geography/Location
               </label>
-              <input
-                type="number"
-                value={formData.numberOfLeads}
-                onChange={(e) =>
-                  handleInputChange("numberOfLeads", e.target.value)
-                }
-                placeholder="Enter leads"
-                className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#dbdbdb] [font-family:'Manrope-Regular',Helvetica] font-normal text-base tracking-[-0.29px] leading-[normal] placeholder:text-[#a1a1a1] focus:outline-none focus:border-[#05587a] transition-colors"
-              />
-            </div>
-            <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-              <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
-                Location
-              </label>
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={() => handleDropdownToggle("location")}
-                  className="flex items-center gap-2.5 px-3.5 py-2.5 relative w-[760px] bg-white rounded-lg border border-solid border-[#dbdbdb] focus:outline-none focus:border-[#05587a] transition-colors"
-                >
-                  <span className="relative flex items-center justify-center flex-1 mt-[-1.00px] [font-family:'Manrope-Regular',Helvetica] font-normal text-base tracking-[-0.29px] leading-[normal] text-left">
-                    {formData.location || "Please select"}
-                  </span>
-                  <div className="relative w-[18px] h-[18px]">
-                    <img
-                      className="absolute w-[53.03%] h-[32.41%] top-[34.26%] left-[23.48%]"
-                      alt="Dropdown arrow"
-                      src={vector23}
+              <div className="grid grid-cols-3 gap-3 w-full">
+                {locationOptions.map((location, index) => (
+                  <label
+                    key={index}
+                    className="flex items-center gap-2 p-3 bg-white rounded-lg border border-solid border-[#dbdbdb] hover:border-[#05587a] transition-colors cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={formData.locations.includes(location)}
+                      onChange={() => handleLocationToggle(location)}
+                      className="w-4 h-4 text-[#05587a] bg-white border-[#dbdbdb] rounded focus:ring-[#05587a] focus:ring-2"
                     />
-                  </div>
-                </button>
-                {dropdownStates.location && (
-                  <div className="absolute top-full left-0 w-full bg-white border border-solid border-[#dbdbdb] rounded-lg mt-1 shadow-lg z-10">
-                    {locationOptions.map((option, index) => (
-                      <button
-                        key={index}
-                        type="button"
-                        onClick={() => handleOptionSelect("location", option)}
-                        className="w-full px-3.5 py-2.5 text-left [font-family:'Manrope-Regular',Helvetica] font-normal text-[#111111] text-base tracking-[-0.29px] leading-[normal] hover:bg-gray-50 transition-colors first:rounded-t-lg last:rounded-b-lg"
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                    <span className="[font-family:'Manrope-Regular',Helvetica] font-normal text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+                      {location}
+                    </span>
+                  </label>
+                ))}
               </div>
             </div>
-            <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-              <label className="relative flex items-center justify-center self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+            <div className="flex flex-col items-start gap-3 relative self-stretch w-full flex-[0_0_auto]">
+              <label className="relative flex items-center justify-start self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
                 Investor Type
               </label>
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={() => handleDropdownToggle("investorType")}
-                  className="flex items-center gap-2.5 px-3.5 py-2.5 relative w-[760px] bg-white rounded-lg border border-solid border-[#dbdbdb] focus:outline-none focus:border-[#05587a] transition-colors"
-                >
-                  <span className="relative flex items-center justify-center flex-1 mt-[-1.00px] [font-family:'Manrope-Regular',Helvetica] font-normal text-base tracking-[-0.29px] leading-[normal] text-left">
-                    {formData.investorType || "Please select"}
-                  </span>
-                  <div className="relative w-[18px] h-[18px]">
-                    <img
-                      className="absolute w-[53.03%] h-[32.41%] top-[34.26%] left-[23.48%]"
-                      alt="Dropdown arrow"
-                      src={Upload}
+              <div className="grid grid-cols-3 gap-3 w-full">
+                {investorTypeOptions.map((investorType, index) => (
+                  <label
+                    key={index}
+                    className="flex items-center gap-2 p-3 bg-white rounded-lg border border-solid border-[#dbdbdb] hover:border-[#05587a] transition-colors cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={formData.investorTypes.includes(investorType)}
+                      onChange={() => handleInvestorTypeToggle(investorType)}
+                      className="w-4 h-4 text-[#05587a] bg-white border-[#dbdbdb] rounded focus:ring-[#05587a] focus:ring-2"
                     />
-                  </div>
-                </button>
-                {dropdownStates.investorType && (
-                  <div className="absolute top-full left-0 w-full bg-white border border-solid border-[#dbdbdb] rounded-lg mt-1 shadow-lg z-10">
-                    {investorTypeOptions.map((option, index) => (
-                      <button
-                        key={index}
-                        type="button"
-                        onClick={() =>
-                          handleOptionSelect("investorType", option)
-                        }
-                        className="w-full px-3.5 py-2.5 text-left [font-family:'Manrope-Regular',Helvetica] font-normal text-[#111111] text-base tracking-[-0.29px] leading-[normal] hover:bg-gray-50 transition-colors first:rounded-t-lg last:rounded-b-lg"
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                    <span className="[font-family:'Manrope-Regular',Helvetica] font-normal text-[#111111] text-sm tracking-[-0.25px] leading-[normal]">
+                      {investorType}
+                    </span>
+                  </label>
+                ))}
               </div>
             </div>
           </>
@@ -330,7 +379,7 @@ export const CampaignCreationSection = ({
             <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
               <label
                 htmlFor="subject-line"
-                className="relative flex items-center justify-center self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]"
+                className="relative flex items-center justify-start self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]"
               >
                 Subject Line
               </label>
@@ -348,7 +397,7 @@ export const CampaignCreationSection = ({
             <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
               <label
                 htmlFor="email-body"
-                className="relative flex items-center justify-center self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]"
+                className="relative flex items-center justify-start self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]"
               >
                 Email Body
               </label>
@@ -395,14 +444,16 @@ export const CampaignCreationSection = ({
                 <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
                   <button
                     className={`inline-flex items-start p-0.5 relative flex-[0_0_auto] rounded-[100px] focus:outline-none focus:ring-2 focus:ring-[#05587a] transition-all duration-200 ease-in-out ${
-                      abTestEnabled ? "bg-[#05587a]" : "bg-[#dedede]"
+                      abTestEnabled
+                        ? "bg-[#05587a]"
+                        : "bg-white border border-[#dedede]"
                     }`}
                     onClick={toggleAbTest}
                     aria-pressed={abTestEnabled}
                     aria-label="Toggle A/B test"
                   >
                     <div
-                      className={`relative w-4 h-4 ${abTestEnabled ? "bg-white" : "bg-transparent"} rounded-lg shadow-[0px_2px_4px_#0000001a] transition-all duration-200 ease-in-out`}
+                      className={`relative w-4 h-4 ${abTestEnabled ? "bg-white" : "bg-[#dedede]"} rounded-lg shadow-[0px_2px_4px_#0000001a] transition-all duration-200 ease-in-out`}
                     />
                     <div className="relative w-4 h-4 rounded-lg" />
                   </button>
@@ -415,74 +466,109 @@ export const CampaignCreationSection = ({
                   Performs Best
                 </p>
               </div>
-              <img
-                className="relative self-stretch w-full h-px"
-                alt="Divider line"
-                src={line23403}
-              />
-              <div className="flex flex-col items-start gap-3 relative self-stretch w-full flex-[0_0_auto]">
-                <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
-                  <h4 className="relative w-fit [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
-                    A/B Test Variants
-                  </h4>
-                  <button
-                    className="inline-flex h-8 items-center justify-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#eaeaea] hover:bg-gray-50 transition-colors"
-                    onClick={addAbTestVariant}
-                    aria-label="Add A/B test variant"
-                  >
-                    <span className="relative w-fit mt-[-2.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-                      +
-                    </span>
-                    <span className="relative w-fit mt-[-2.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
-                      Add Variant
-                    </span>
-                  </button>
-                </div>
-                <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-                  <label
-                    htmlFor="distribution-strategy"
-                    className="relative flex items-center justify-center self-stretch mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm tracking-[-0.25px] leading-[normal]"
-                  >
-                    Distribution Strategy
-                  </label>
-                  <div className="relative self-stretch w-full">
-                    <select
-                      id="distribution-strategy"
-                      value={distributionStrategy}
-                      onChange={handleDistributionStrategyChange}
-                      className="flex items-center gap-2.5 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#dbdbdb] [font-family:'Manrope-Regular',Helvetica] font-normal text-base tracking-[-0.29px] leading-[normal] appearance-none focus:outline-none focus:border-[#05587a] focus:ring-1 focus:ring-[#05587a]"
-                    >
-                      <option value="">Please select</option>
-                      <option value="equal">Equal Distribution</option>
-                      <option value="weighted">Weighted Distribution</option>
-                      <option value="winner">Winner Takes All</option>
-                    </select>
-                    <div className="absolute right-3.5 top-1/2 transform -translate-y-1/2 w-[18px] h-[18px] pointer-events-none">
-                      <img
-                        className="absolute w-[53.03%] h-[32.41%] top-[34.26%] left-[23.48%]"
-                        alt="Dropdown arrow"
-                        src={Upload}
-                      />
+              {abTestEnabled && (
+                <>
+                  <img
+                    className="relative self-stretch w-full h-px"
+                    alt="Divider line"
+                    src={line23403}
+                  />
+                  <div className="flex flex-col items-start gap-3 relative self-stretch w-full flex-[0_0_auto]">
+                    <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
+                      <h4 className="relative w-fit [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-[#111111] text-base tracking-[-0.32px] leading-6 whitespace-nowrap">
+                        A/B Test Variants
+                      </h4>
+                      <button
+                        className="inline-flex h-8 items-center justify-center gap-2 px-3 py-2 relative flex-[0_0_auto] bg-white rounded-lg border border-solid border-[#eaeaea] hover:bg-gray-50 transition-colors"
+                        onClick={addAbTestVariant}
+                        aria-label="Add A/B test variant"
+                      >
+                        <span className="relative w-fit mt-[-2.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                          +
+                        </span>
+                        <span className="relative w-fit mt-[-2.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                          Add Variant
+                        </span>
+                      </button>
+                    </div>
+                    {/* Variants list */}
+                    <div className="flex flex-col gap-3 w-full">
+                      {abTestVariants.map((variant) => (
+                        <div
+                          key={variant.id}
+                          className="flex flex-col gap-2 p-3 bg-white rounded-lg border border-solid border-[#eaeaea]"
+                        >
+                          <div className="flex items-center justify-between">
+                            <h5 className="[font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm">
+                              {variant.name}
+                            </h5>
+                            <button
+                              onClick={() =>
+                                setAbTestVariants(
+                                  abTestVariants.filter(
+                                    (v) => v.id !== variant.id
+                                  )
+                                )
+                              }
+                              className="text-[#db5050] hover:text-[#c44545] text-xs [font-family:'Manrope-Medium',Helvetica] font-medium"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                          <input
+                            type="text"
+                            placeholder="Subject line for this variant"
+                            value={variant.subject}
+                            onChange={(e) =>
+                              setAbTestVariants(
+                                abTestVariants.map((v) =>
+                                  v.id === variant.id
+                                    ? { ...v, subject: e.target.value }
+                                    : v
+                                )
+                              )
+                            }
+                            className="w-full px-3 py-2 border border-[#dbdbdb] rounded-lg [font-family:'Manrope-Regular',Helvetica] text-sm focus:outline-none focus:border-[#05587a]"
+                          />
+                          <textarea
+                            placeholder="Email content for this variant"
+                            value={variant.content}
+                            onChange={(e) =>
+                              setAbTestVariants(
+                                abTestVariants.map((v) =>
+                                  v.id === variant.id
+                                    ? { ...v, content: e.target.value }
+                                    : v
+                                )
+                              )
+                            }
+                            rows={3}
+                            className="w-full px-3 py-2 border border-[#dbdbdb] rounded-lg [font-family:'Manrope-Regular',Helvetica] text-sm focus:outline-none focus:border-[#05587a] resize-none"
+                          />
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </div>
-              </div>
+                </>
+              )}
             </div>
 
             {/* Follow-up Section */}
-            <div className="flex items-start justify-around gap-[185px] p-4 relative self-stretch w-full flex-[0_0_auto] bg-[#f3f4f5] rounded-[20px]">
-              <div className="flex flex-col items-start justify-center gap-1.5 relative flex-1 grow">
+            <div className="flex flex-col items-start gap-4 p-4 relative self-stretch w-full flex-[0_0_auto] bg-[#f3f4f5] rounded-[20px]">
+              <div className="flex flex-col items-start justify-center gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                 <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
                   <button
                     className={`inline-flex items-start p-0.5 relative flex-[0_0_auto] rounded-[100px] focus:outline-none focus:ring-2 focus:ring-[#05587a] transition-all duration-200 ease-in-out ${
-                      followUpEnabled ? "bg-[#05587a]" : "bg-[#dedede]"
+                      followUpEnabled
+                        ? "bg-[#05587a]"
+                        : "bg-white border border-[#dedede]"
                     }`}
                     onClick={toggleFollowUp}
                     aria-pressed={followUpEnabled}
                     aria-label="Toggle follow-up email"
                   >
                     <div
-                      className={`relative w-4 h-4 ${followUpEnabled ? "bg-white" : "bg-transparent"} rounded-lg shadow-[0px_2px_4px_#0000001a] transition-all duration-200 ease-in-out`}
+                      className={`relative w-4 h-4 ${followUpEnabled ? "bg-white" : "bg-[#dedede]"} rounded-lg shadow-[0px_2px_4px_#0000001a] transition-all duration-200 ease-in-out`}
                     />
                     <div className="relative w-4 h-4 rounded-lg" />
                   </button>
@@ -494,6 +580,83 @@ export const CampaignCreationSection = ({
                   Send An Additional Email If No Response Is Received
                 </p>
               </div>
+
+              {followUpEnabled && (
+                <>
+                  <img
+                    className="relative self-stretch w-full h-px"
+                    alt="Divider line"
+                    src={line23403}
+                  />
+                  <div className="flex flex-col gap-3 w-full">
+                    {followUps.map((f) => (
+                      <div
+                        key={f.id}
+                        className="flex flex-col gap-2 p-3 bg-white rounded-lg border border-solid border-[#eaeaea]"
+                      >
+                        <div className="flex items-center justify-between">
+                          <h5 className="[font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm">
+                            Follow-up {f.id}
+                          </h5>
+                          <button
+                            onClick={() => removeFollowUp(f.id)}
+                            className="text-[#db5050] hover:text-[#c44545] text-xs [font-family:'Manrope-Medium',Helvetica] font-medium"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                        <input
+                          type="text"
+                          placeholder="Follow-up Subject Line"
+                          value={f.subject}
+                          onChange={(e) =>
+                            updateFollowUp(f.id, "subject", e.target.value)
+                          }
+                          className="w-full px-3 py-2 border border-[#dbdbdb] rounded-lg [font-family:'Manrope-Regular',Helvetica] text-sm focus:outline-none focus:border-[#05587a]"
+                        />
+                        <textarea
+                          placeholder="Follow-up Email Body"
+                          value={f.body}
+                          onChange={(e) =>
+                            updateFollowUp(f.id, "body", e.target.value)
+                          }
+                          rows={4}
+                          className="w-full px-3 py-2 border border-[#dbdbdb] rounded-lg [font-family:'Manrope-Regular',Helvetica] text-sm focus:outline-none focus:border-[#05587a] resize-none"
+                        />
+                        <div className="flex items-center gap-3">
+                          <label className="[font-family:'Manrope-Medium',Helvetica] font-medium text-[#111111] text-sm">
+                            Send After (days)
+                          </label>
+                          <input
+                            type="number"
+                            min={1}
+                            max={30}
+                            value={f.delayDays}
+                            onChange={(e) =>
+                              updateFollowUp(
+                                f.id,
+                                "delayDays",
+                                Number(e.target.value)
+                              )
+                            }
+                            className="w-24 px-3 py-2 border border-[#dbdbdb] rounded-lg [font-family:'Manrope-Regular',Helvetica] text-sm focus:outline-none focus:border-[#05587a]"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <button
+                      className="inline-flex h-8 items-center justify-center gap-2 px-3 py-2 mt-2 bg-white rounded-lg border border-solid border-[#eaeaea] hover:bg-gray-50 transition-colors"
+                      onClick={addFollowUp}
+                    >
+                      <span className="relative w-fit [font-family:'Manrope-Medium',Helvetica] font-medium text-[#4f5059] text-xs tracking-[-0.24px] leading-[18px] whitespace-nowrap">
+                        + Add Follow-up
+                      </span>
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </>
         );
@@ -537,25 +700,21 @@ export const CampaignCreationSection = ({
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium text-[#111111]">
-                  Number of Leads:
-                </span>
+                <span className="font-medium text-[#111111]">Locations:</span>
                 <span className="text-[#4f5059]">
-                  {formData.numberOfLeads || "Not specified"}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-medium text-[#111111]">Location:</span>
-                <span className="text-[#4f5059]">
-                  {formData.location || "Not specified"}
+                  {formData.locations.length > 0
+                    ? formData.locations.join(", ")
+                    : "Not specified"}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="font-medium text-[#111111]">
-                  Investor Type:
+                  Investor Types:
                 </span>
                 <span className="text-[#4f5059]">
-                  {formData.investorType || "Not specified"}
+                  {formData.investorTypes.length > 0
+                    ? formData.investorTypes.join(", ")
+                    : "Not specified"}
                 </span>
               </div>
             </div>
@@ -567,19 +726,97 @@ export const CampaignCreationSection = ({
   };
 
   return (
-    <div className="w-[800px] h-full bg-white relative overflow-hidden">
-      <header className="absolute w-full top-0 left-0 h-[60px] flex justify-end items-center border-b [border-bottom-style:solid] border-[#eaeaea]">
-        <button
-          className="h-6 w-6 mr-5 flex"
-          aria-label="Close"
-          onClick={onClose}
-        >
-          <img className="mt-1.5 w-3 h-3 ml-1.5" alt="Close" src={vector22} />
-        </button>
+    <div className="w-[800px] h-full bg-white flex flex-col overflow-y-auto">
+      <header className="w-full flex flex-col border-b [border-bottom-style:solid] border-[#eaeaea] flex-shrink-0">
+        <div className="h-[60px] flex items-center justify-between px-5">
+          <div className="inline-flex items-center gap-2">
+            <h2 className="font-semibold text-[#111111] text-xl leading-[30px] [font-family:'Manrope',Helvetica] tracking-[0]">
+              {currentStep === 1 && "Configure Campaign"}
+              {currentStep === 2 && "Email Sequences"}
+              {currentStep === 3 && "Upload Lead List"}
+              {currentStep === 4 && "Review Campaign"}
+            </h2>
+            {currentStep === 2 && (
+              <div className="inline-flex items-center justify-center gap-1 px-3 py-1 bg-[#efefef] rounded-[100px]">
+                <div className="w-1.5 h-1.5 bg-[#c2c8d0] rounded-full" />
+                <span className="[font-family:'Manrope-Medium',Helvetica] font-medium text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] whitespace-nowrap">
+                  Initial Email
+                </span>
+              </div>
+            )}
+          </div>
+          <button className="h-6 w-6 flex" aria-label="Close" onClick={onClose}>
+            <img className="mt-1.5 w-3 h-3 ml-1.5" alt="Close" src={vector22} />
+          </button>
+        </div>
+        {/* Steps progress moved into header */}
+        <div className="w-full h-[66px] flex bg-[#fbfbfb] border-t [border-top-style:solid] border-[#eaeaea]">
+          <div className="flex mt-5 h-[26px] mx-6 flex-1 items-center gap-5">
+            {stepData.map((step, index) => (
+              <React.Fragment key={step.id}>
+                <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
+                  <div
+                    className={`flex flex-col w-[26px] h-[26px] items-center justify-center gap-2.5 p-1.5 relative rounded-[100px] ${
+                      step.active
+                        ? "bg-[#05587a]"
+                        : step.completed
+                          ? "bg-[#05587a14] border border-solid border-[#05587a]"
+                          : "bg-[#e9e9e9]"
+                    }`}
+                  >
+                    {step.icon ? (
+                      <div className="relative w-[10.31px] h-[7.48px] mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] mr-[-1.00px]">
+                        <img
+                          className="absolute w-full h-full top-0 left-0"
+                          alt={`${step.label} icon`}
+                          src={step.icon}
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className={`flex items-center justify-center self-stretch mt-[-2.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-center tracking-[-0.22px] leading-[normal] relative text-xs ${
+                          step.active ? "text-white" : "text-[#a1a1a1]"
+                        }`}
+                      >
+                        {step.number}
+                      </div>
+                    )}
+                  </div>
+
+                  <div
+                    className={`relative flex items-center justify-center w-fit [font-family:'Manrope-SemiBold',Helvetica] text-sm tracking-[-0.25px] leading-[normal] ${
+                      step.active || step.completed
+                        ? "font-semibold text-[#05587a]"
+                        : "[font-family:'Manrope-Medium',Helvetica] font-medium text-[#a1a1a1]"
+                    }`}
+                  >
+                    {step.label}
+                  </div>
+                </div>
+
+                {index < stepData.length - 1 && (
+                  <div
+                    className={`relative flex-1 grow h-0.5 rounded-[100px] ${
+                      index < currentStep - 1 ? "bg-[#05587a]" : "bg-[#d9d9d9]"
+                    }`}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+
+        {/* Title now sits on the first row; remove duplicate block */}
       </header>
 
-      <footer className="absolute w-full left-0 bottom-0 h-[60px] flex border-t [border-top-style:solid] border-[#eaeaea]">
-        <div className="inline-flex mt-2.5 w-[280px] h-10 ml-[500px] relative items-center gap-3">
+      <main className="flex-1 overflow-y-auto px-5 py-8">
+        <div className="max-w-[760px] mx-auto w-full space-y-8">
+          {renderStepContent()}
+        </div>
+      </main>
+
+      <footer className="w-full h-[60px] flex justify-end border-t [border-top-style:solid] border-[#eaeaea] flex-shrink-0">
+        <div className="inline-flex mt-2.5 h-10 mr-5 relative items-center gap-3">
           {currentStep > 1 && (
             <button
               className="border border-solid border-[#eaeaea] flex w-[84px] h-10 items-center justify-center gap-2 px-3 py-2 relative rounded-lg hover:bg-gray-50 transition-colors"
@@ -613,103 +850,6 @@ export const CampaignCreationSection = ({
           </button>
         </div>
       </footer>
-
-      <main className="flex flex-col w-[760px] items-start gap-5 absolute top-[212px] left-5">
-        {renderStepContent()}
-      </main>
-
-      <nav
-        className="absolute top-[60px] left-0 w-[800px] h-[66px] flex bg-[#fbfbfb] border-b [border-bottom-style:solid] border-[#eaeaea]"
-        aria-label="Campaign creation steps"
-      >
-        <div className="flex mt-5 h-[26px] ml-6 mr-6 flex-1 relative w-[752px] items-center gap-5">
-          {stepData.map((step, index) => (
-            <React.Fragment key={step.id}>
-              <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-                <div
-                  className={`flex flex-col w-[26px] h-[26px] items-center justify-center gap-2.5 p-1.5 relative rounded-[100px] ${
-                    step.active
-                      ? "bg-[#05587a]"
-                      : step.completed
-                        ? "bg-[#05587a14] border border-solid border-[#05587a]"
-                        : "bg-[#e9e9e9]"
-                  }`}
-                >
-                  {step.icon ? (
-                    <div className="relative w-[10.31px] h-[7.48px] mt-[-1.00px] mb-[-1.00px] ml-[-1.00px] mr-[-1.00px]">
-                      <img
-                        className="absolute w-full h-full top-0 left-0"
-                        alt={`${step.label} icon`}
-                        src={step.icon}
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      className={`flex items-center justify-center self-stretch mt-[-2.00px] [font-family:'Manrope-SemiBold',Helvetica] font-semibold text-center tracking-[-0.22px] leading-[normal] relative text-xs ${
-                        step.active ? "text-white" : "text-[#a1a1a1]"
-                      }`}
-                    >
-                      {step.number}
-                    </div>
-                  )}
-                </div>
-
-                <div
-                  className={`relative flex items-center justify-center w-fit [font-family:'Manrope-SemiBold',Helvetica] text-sm tracking-[-0.25px] leading-[normal] ${
-                    step.active || step.completed
-                      ? "font-semibold text-[#05587a]"
-                      : "[font-family:'Manrope-Medium',Helvetica] font-medium text-[#a1a1a1]"
-                  }`}
-                >
-                  {step.label}
-                </div>
-              </div>
-
-              {index < stepData.length - 1 && (
-                <div
-                  className={`relative flex-1 grow h-0.5 rounded-[100px] ${
-                    index < currentStep - 1 ? "bg-[#05587a]" : "bg-[#d9d9d9]"
-                  }`}
-                />
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-      </nav>
-
-      <section className="flex flex-col w-[798px] items-start gap-5 pt-5 pb-0 px-5 absolute top-[126px] left-0.5">
-        <div className="flex items-center gap-3 relative self-stretch w-full flex-[0_0_auto]">
-          <div className="inline-flex flex-col items-start justify-center gap-0.5 relative flex-[0_0_auto]">
-            <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-              <h2 className="font-semibold text-[#111111] text-xl leading-[30px] [font-family:'Manrope',Helvetica] tracking-[0]">
-                {currentStep === 1 && "Configure Campaign"}
-                {currentStep === 2 && "Email Sequences"}
-                {currentStep === 3 && "Upload Lead List"}
-                {currentStep === 4 && "Review Campaign"}
-              </h2>
-              {currentStep === 2 && (
-                <div className="inline-flex items-center justify-center gap-1 px-3 py-1 relative flex-[0_0_auto] bg-[#efefef] rounded-[100px]">
-                  <div className="relative w-1.5 h-1.5 bg-[#c2c8d0] rounded-full" />
-                  <span className="relative w-fit mt-[-1.00px] [font-family:'Manrope-Medium',Helvetica] font-medium text-[#3b4c63] text-sm tracking-[-0.56px] leading-[19.6px] whitespace-nowrap overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical]">
-                    Initial Email
-                  </span>
-                </div>
-              )}
-            </div>
-
-            <p className="w-fit [font-family:'Manrope-Regular',Helvetica] font-normal text-[#4f5059] text-xs leading-[16.8px] whitespace-nowrap relative tracking-[0]">
-              {currentStep === 1 &&
-                "Monitor Growth In Customer Engagement Over Time"}
-              {currentStep === 2 &&
-                "Create your email template for this campaign"}
-              {currentStep === 3 &&
-                "Upload your CSV file with lead information"}
-              {currentStep === 4 &&
-                "Review your campaign details before creating"}
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
