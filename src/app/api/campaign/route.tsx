@@ -29,6 +29,16 @@ export async function GET(req: NextRequest, res: NextResponse) {
       }
     }
 
+    const timeRangeParam = searchParams.get("timeRange");
+    if (timeRangeParam) {
+      filters.timeRange = timeRangeParam;
+    }
+
+    const isMetricsParam = searchParams.get("isMetrics");
+    if (isMetricsParam) {
+      filters.isMetrics = isMetricsParam === "true";
+    }
+
     const campaignDao = new CampaignDao();
     const campaigns = await campaignDao.getAllCampaignsByUserId(
       user?.user?.id || "",

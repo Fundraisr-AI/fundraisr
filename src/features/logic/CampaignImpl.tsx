@@ -89,11 +89,12 @@ export default class CampaignImpl implements CampaignState {
           loading: false,
           campaigns: [], // nested campaigns if you need them later
           totalActiveCampaigns: 0,
-          totalLeads: 0,
+          totalLeads: c.totalLeads ?? 0,
           positiveReplied: 0,
           meetingsBooked: 0,
           replyRate: 0,
           positive: 0,
+          positiveReplyMetrics: c.positiveReplyMetrics ?? {},
         })
       );
     }

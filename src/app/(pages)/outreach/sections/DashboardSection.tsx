@@ -25,26 +25,51 @@ import {
   TableRow,
 } from "../../../../components/ui/table";
 import { Tabs, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../../../components/ui/select";
 import { OutreachCreate } from "./OutreachCreate";
 import {
   CampaignState,
+  getAllCampaignStatusByUserAsync,
   getCampaignMetricsByUserAsync,
   selectCampaign,
 } from "../../../../features/slices/CampaignSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../../store";
+import { CampaignFilters } from "@/types";
 
 export const DashboardSection = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReplyViewDropdownOpen, setIsReplyViewDropdownOpen] = useState(false);
   const [selectedReplyView, setSelectedReplyView] = useState("Yearly View");
+  const [isCampaignLoading, setIsCampaignLoading] = useState(true);
+  const [campaignFilters, setCampaignFilters] = useState<CampaignFilters>({
+    status: [],
+    timeRange: "7d",
+    isMetrics: true,
+  });
 
   const campaign = useSelector(selectCampaign);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+    setIsCampaignLoading(true);
+    dispatch(getAllCampaignStatusByUserAsync(campaignFilters));
+  }, [campaignFilters]);
+
+  useEffect(() => {
     dispatch(getCampaignMetricsByUserAsync());
+    dispatch(getAllCampaignStatusByUserAsync(campaignFilters));
   }, []);
+
+  useEffect(() => {
+    setIsCampaignLoading(false);
+  }, [campaign.campaigns]);
 
   const handleCreateCampaign = () => {
     setIsModalOpen(true);
@@ -119,7 +144,10 @@ export const DashboardSection = (): JSX.Element => {
 
   const metricCards = [
     {
-      value: campaign?.totalActiveCampaigns,
+      value:
+        campaign?.totalActiveCampaigns ||
+        campaign.campaigns.filter((campaign) => campaign.status === "active")
+          .length,
       label: "Active Campaigns",
       gradient:
         "bg-[linear-gradient(142deg,rgba(1,28,39,1)_0%,rgba(5,102,141,1)_100%)]",
@@ -679,18 +707,35 @@ export const DashboardSection = (): JSX.Element => {
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <Button
-                  variant="outline"
-                  className="h-10 gap-2 border-[#d9dadb]"
+                <Select
+                  value={
+                    campaignFilters.status?.length === 0
+                      ? "All"
+                      : campaignFilters.status?.[0]
+                  }
+                  onValueChange={(value) =>
+                    setCampaignFilters((prev) => ({
+                      ...prev,
+                      status: value === "All" ? [] : [value],
+                    }))
+                  }
                 >
-                  <span className="text-xs font-medium text-[#84858b] tracking-[-0.03px] [font-family:'Manrope']">
-                    Status:{" "}
-                  </span>
-                  <span className="text-xs font-semibold text-[#4f5059] tracking-[-0.03px] [font-family:'Manrope']">
-                    All
-                  </span>
-                  <ChevronDownIcon className="w-[18px] h-[18px]" />
-                </Button>
+                  <SelectTrigger className="h-10 gap-2 border-[#d9dadb] w-[140px]">
+                    <span className="text-xs font-medium text-[#84858b] tracking-[-0.03px] [font-family:'Manrope']">
+                      Status:{" "}
+                    </span>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="All">All</SelectItem>
+                    <SelectItem value="Active">Active</SelectItem>
+                    <SelectItem value="Completed">Completed</SelectItem>
+                    <SelectItem value="Draft">Draft</SelectItem>
+                    <SelectItem value="Paused">Paused</SelectItem>
+                    <SelectItem value="Approved">Approved</SelectItem>
+                    <SelectItem value="Stopped">Stopped</SelectItem>
+                  </SelectContent>
+                </Select>
                 <Tabs
                   defaultValue="week"
                   className="bg-[#f6f6f6] rounded-lg p-0.5"
@@ -741,38 +786,89 @@ export const DashboardSection = (): JSX.Element => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {campaign.campaigns.map(
-                  (campaignItem: CampaignState, index) => (
-                    <TableRow key={index} className="h-[72px] border-[#e9eaec]">
-                      <TableCell className="w-[352px]">
-                        <div className="flex flex-col gap-0.5">
-                          <div className="font-semibold text-[#041824] text-base [font-family:'Manrope']">
-                            {campaignItem.name}
+                {isCampaignLoading ? (
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center">
+                      <div>Loading...</div>
+                    </TableCell>
+                  </TableRow>
+                ) : campaign.campaigns.length > 0 ? (
+                  campaign.campaigns.map(
+                    (campaignItem: CampaignState, index) => (
+                      <TableRow
+                        key={index}
+                        className="h-[72px] border-[#e9eaec]"
+                      >
+                        <TableCell className="w-[352px]">
+                          <div className="flex flex-col gap-0.5">
+                            <div className="font-semibold text-[#041824] text-base [font-family:'Manrope']">
+                              {campaignItem.name}
+                            </div>
                           </div>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope']">
-                        {""}
-                      </TableCell>
-                      <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope']">
-                        {campaignItem.replyRate}
-                      </TableCell>
-                      <TableCell className="text-sm text-[#1b8441] tracking-[-0.56px] [font-family:'Manrope']">
-                        {campaignItem.positive}
-                      </TableCell>
-                      <TableCell className="text-sm text-[#1b8441] tracking-[-0.56px] [font-family:'Manrope']">
-                        {campaignItem.positiveReplied}
-                      </TableCell>
-                      <TableCell>
-                        <Badge className="bg-[#e1ebfd] text-[#1b3e84] hover:bg-[#e1ebfd] rounded-full px-3 py-1 text-sm font-medium tracking-[-0.56px] [font-family:'Manrope']">
-                          {campaignItem.status}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope']">
-                        {""}
-                      </TableCell>
-                    </TableRow>
+                        </TableCell>
+                        <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope']">
+                          {campaignItem.totalLeads}
+                        </TableCell>
+                        <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope']">
+                          {(campaignItem.positiveReplyMetrics?.INTERESTED ||
+                            0) +
+                            (campaignItem.positiveReplyMetrics
+                              ?.MEETING_BOOKED || 0) +
+                            (campaignItem.positiveReplyMetrics
+                              ?.VC_MANUAL_APPLICATION || 0) +
+                            (campaignItem.positiveReplyMetrics
+                              ?.MEETING_REQUESTED || 0) +
+                            (campaignItem.positiveReplyMetrics
+                              ?.MEETING_REQUESTED || 0) +
+                            0 +
+                            (campaignItem.positiveReplyMetrics
+                              ?.INFORMATION_REQUEST || 0)}
+                        </TableCell>
+                        <TableCell className="text-sm text-[#1b8441] tracking-[-0.56px] [font-family:'Manrope']">
+                          {campaignItem.positive}
+                        </TableCell>
+                        <TableCell className="text-sm text-[#1b8441] tracking-[-0.56px] [font-family:'Manrope']">
+                          {(campaignItem.positiveReplyMetrics?.INTERESTED ||
+                            0) +
+                            (campaignItem.positiveReplyMetrics
+                              ?.MEETING_BOOKED || 0) +
+                            (campaignItem.positiveReplyMetrics
+                              ?.VC_MANUAL_APPLICATION || 0) +
+                            (campaignItem.positiveReplyMetrics
+                              ?.MEETING_REQUESTED || 0) +
+                            (campaignItem.positiveReplyMetrics
+                              ?.MEETING_REQUESTED || 0) +
+                            0 +
+                            (campaignItem.positiveReplyMetrics
+                              ?.INFORMATION_REQUEST || 0)}
+                        </TableCell>
+                        <TableCell>
+                          <Badge className="bg-[#e1ebfd] text-[#1b3e84] hover:bg-[#e1ebfd] rounded-full px-3 py-1 text-sm font-medium tracking-[-0.56px] [font-family:'Manrope']">
+                            {campaignItem.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-sm text-[#3b4c63] tracking-[-0.56px] [font-family:'Manrope']">
+                          {new Date(campaignItem.updatedAt).toLocaleString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                            }
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    )
                   )
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center">
+                      No campaigns found
+                    </TableCell>
+                  </TableRow>
                 )}
               </TableBody>
             </Table>

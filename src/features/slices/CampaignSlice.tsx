@@ -32,6 +32,9 @@ export interface CampaignState {
   geographyDistribution?: {
     [key: string]: number;
   };
+  positiveReplyMetrics?: {
+    [key: string]: number;
+  };
 }
 
 const initialState: CampaignState = {
@@ -55,6 +58,7 @@ const initialState: CampaignState = {
   investor: "",
   copy: "",
   geographyDistribution: {},
+  positiveReplyMetrics: {},
 };
 
 const campaignSlice = createSlice({
@@ -79,15 +83,25 @@ const campaignSlice = createSlice({
       .addCase(
         getAllCampaignStatusByUserAsync.fulfilled,
         (state, action: PayloadAction<CampaignState>) => {
-          Object.assign(state, action.payload);
+          state.campaigns = action.payload.campaigns;
+          if (action.payload.user) {
+            state.user = action.payload.user;
+          }
         }
       )
       .addCase(getCampaignMetricsByUserAsync.pending, (state) => {})
       .addCase(
         getCampaignMetricsByUserAsync.fulfilled,
-        (state, action: PayloadAction<CampaignState[]>) => {
+        (state, action: PayloadAction<CampaignState>) => {
           state.loading = false;
-          Object.assign(state, action.payload);
+
+          state.totalActiveCampaigns = action.payload.totalActiveCampaigns;
+          state.totalLeads = action.payload.totalLeads;
+          state.positiveReplied = action.payload.positiveReplied;
+          state.meetingsBooked = action.payload.meetingsBooked;
+          state.replyRate = action.payload.replyRate;
+          state.positive = action.payload.positive;
+          state.positiveReplyMetrics = action.payload.positiveReplyMetrics;
         }
       )
       .addCase(getCampaignMetricsByUserAsync.rejected, (state, action) => {

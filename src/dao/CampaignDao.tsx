@@ -3,6 +3,32 @@ import { CampaignFilters, CampaignMetrics } from "@/types";
 export default class CampaignDao {
   async getAllCampaignsByUserId(userId: string, filters: CampaignFilters) {
     try {
+      // Calculate date range based on timeRange filter
+      let dateFilter = {};
+      if (filters?.timeRange) {
+        const now = new Date();
+        let startDate: Date;
+
+        switch (filters.timeRange) {
+          case "7d":
+            startDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            break;
+          case "30d":
+            startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+            break;
+          default:
+            startDate = new Date(0); // No filter
+        }
+
+        if (filters.timeRange === "7d" || filters.timeRange === "30d") {
+          dateFilter = {
+            createdAt: {
+              gte: startDate,
+            },
+          };
+        }
+      }
+
       const campaigns = await prisma.user.findUnique({
         where: { id: userId },
         include: {
@@ -21,6 +47,7 @@ export default class CampaignDao {
                         },
                       }
                     : {}),
+                  ...dateFilter,
                 },
                 orderBy: { updatedAt: "desc" },
               },
@@ -28,6 +55,38 @@ export default class CampaignDao {
           },
         },
       });
+
+      if (filters.isMetrics) {
+        const campaignIds = campaigns?.details?.campaigns.map((c) => c.id);
+        const leadMetrics = await prisma.lead.groupBy({
+          by: ["status", "campaignId"],
+          where: {
+            campaignId: { in: campaignIds },
+          },
+          _count: { _all: true },
+        });
+
+        if (campaigns?.details?.campaigns) {
+          for (let i = 0; i < campaigns.details.campaigns.length; i++) {
+            const c = campaigns.details.campaigns[i];
+
+            const campaignLeadMetrics = leadMetrics.filter(
+              (l) => l.campaignId === c.id
+            );
+            let totalLeads = 0;
+            const metricsKeyValues: Record<string, number> = {};
+            for (const metric of campaignLeadMetrics) {
+              metricsKeyValues[metric.status] = metric._count._all;
+              totalLeads = totalLeads + metric._count._all;
+            }
+            campaigns.details.campaigns[i] = {
+              ...c,
+              totalLeads: totalLeads,
+              positiveReplyMetrics: metricsKeyValues,
+            };
+          }
+        }
+      }
 
       return campaigns;
     } catch (e) {

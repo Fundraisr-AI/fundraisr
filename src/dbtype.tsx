@@ -36,4 +36,6 @@ export interface Campaign {
   geography: string | null;
   leadList: string | null;
   investor: string | null;
+  totalLeads: number | null;
+  positiveReplyMetrics?: Record<string, number>;
 }

@@ -19,4 +19,6 @@ export type CampaignFilters = {
   status?: string[];
   limit?: Number;
   geography?: string[];
+  timeRange?: string;
+  isMetrics?: boolean;
 };

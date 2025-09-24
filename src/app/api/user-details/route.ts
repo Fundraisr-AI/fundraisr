@@ -9,7 +9,7 @@ export async function PUT(req: NextRequest) {
 
     if (!session?.user?.id) {
       const error = new errorHandler();
-      error.unauthorized("Authentication required");
+      error.unAuthorizedAccess();
       return error.generateError();
     }
 
@@ -17,7 +17,7 @@ export async function PUT(req: NextRequest) {
 
     if (fundraisingTarget === undefined || capitalCommitted === undefined) {
       const error = new errorHandler();
-      error.badRequest("fundraisingTarget and capitalCommitted are required");
+      error.missingItem("fundraisingTarget and capitalCommitted are required");
       return error.generateError();
     }
 
